@@ -1,3 +1,5 @@
+// script.js
+
 document.addEventListener("DOMContentLoaded", function () {
     const moonFase = document.getElementById('moonFase');
     const phaseName = document.getElementById('phase-name');
@@ -44,6 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         phaseName.textContent = phases[phase];
+        console.log("Displaying phase: ", phases[phase]);
+
         let boxShadowValue;
 
         switch (phase) {
@@ -73,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 break;
         }
 
+        console.log("Applying box-shadow: ", boxShadowValue);
         moonFase.style.boxShadow = boxShadowValue;
     }
 

@@ -1,3 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+#form {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+form label {
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+form input[type="date"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#moon-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+#moon-phase-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
 /* Estilos base para el contenedor de la luna */
 #moon {
     position: absolute;
@@ -8,42 +81,9 @@
     height: 200px;
     border-radius: 50%;
     background: #CCC;
-    box-shadow: 0px 0px 100px #FFFF8C;
+    box-shadow: inset -25px 0px 0 0px #999; /* Fase por defecto, Luna Nueva */
     z-index: 5;
     animation: moonAnimation 3s infinite;
-}
-
-/* Estilos para las fases lunares */
-#moon.phase-0 {
-    box-shadow: inset -25px 0px 0 0px #999;
-}
-
-#moon.phase-1 {
-    box-shadow: inset -50px 0px 0 0px #999;
-}
-
-#moon.phase-2 {
-    box-shadow: inset -75px 0px 0 0px #999;
-}
-
-#moon.phase-3 {
-    box-shadow: inset -100px 0px 0 0px #999;
-}
-
-#moon.phase-4 {
-    box-shadow: inset -125px 0px 0 0px #999;
-}
-
-#moon.phase-5 {
-    box-shadow: inset -150px 0px 0 0px #999;
-}
-
-#moon.phase-6 {
-    box-shadow: inset -175px 0px 0 0px #999;
-}
-
-#moon.phase-7 {
-    box-shadow: inset -200px 0px 0 0px #999;
 }
 
 /* Animación para la luna */
@@ -59,3 +99,35 @@
     }
 }
 
+/* Estilos para las fases lunares */
+#moon.phase-0 {
+    box-shadow: inset -25px 0px 0 0px #999; /* Luna Nueva */
+}
+
+#moon.phase-1 {
+    box-shadow: inset -75px 0px 0 0px #999; /* Luna Creciente */
+}
+
+#moon.phase-2 {
+    box-shadow: inset -125px 0px 0 0px #999; /* Cuarto Creciente */
+}
+
+#moon.phase-3 {
+    box-shadow: inset -175px 0px 0 0px #999; /* Gibosa Creciente */
+}
+
+#moon.phase-4 {
+    box-shadow: inset -200px 0px 0 0px #999; /* Luna Llena */
+}
+
+#moon.phase-5 {
+    box-shadow: inset -175px 0px 0 0px #999; /* Gibosa Menguante */
+}
+
+#moon.phase-6 {
+    box-shadow: inset -125px 0px 0 0px #999; /* Cuarto Menguante */
+}
+
+#moon.phase-7 {
+    box-shadow: inset -75px 0px 0 0px #999; /* Luna Menguante */
+}

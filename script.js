@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (b >= 8 ) {
             b = 0; // fase completa en 8 partes
         }
+
         return b;
     }
 
@@ -71,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 boxShadowValue = "inset -75px 0 0 0 #999";
                 break;
         }
+
         moonFase.style.boxShadow = boxShadowValue;
     }
 
@@ -88,3 +90,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // Mostrar fase lunar actual al cargar la página
     updateMoonPhase(new Date());
 });
+

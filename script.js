@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (moonPhaseName) {
             moonPhaseName.textContent = phases[phase];
-            moonPhaseName.style.color = "#333"; // Cambiar el color del texto según el fondo
         }
     }
 

@@ -71,6 +71,7 @@ footer {
     font-size: 1.2rem;
     font-weight: bold;
 }
+
 /* Estilos base para el contenedor de la luna */
 #moon {
     position: absolute;
@@ -84,19 +85,6 @@ footer {
     box-shadow: inset -25px 0px 0 0px #999; /* Fase por defecto, Luna Nueva */
     z-index: 5;
     animation: moonAnimation 3s infinite;
-}
-
-/* Animación para la luna */
-@keyframes moonAnimation {
-    0% {
-        box-shadow: 0px 0px 100px #FFF;
-    }
-    50% {
-        box-shadow: 0px 0px 140px #FFF;
-    }
-    100% {
-        box-shadow: 0px 0px 100px #FFF;
-    }
 }
 
 /* Estilos para las fases lunares */
@@ -130,4 +118,17 @@ footer {
 
 #moon.phase-7 {
     box-shadow: inset -75px 0px 0 0px #999; /* Luna Menguante */
+}
+
+/* Animación para la luna */
+@keyframes moonAnimation {
+    0% {
+        box-shadow: 0px 0px 100px #FFF;
+    }
+    50% {
+        box-shadow: 0px 0px 140px #FFF;
+    }
+    100% {
+        box-shadow: 0px 0px 100px #FFF;
+    }
 }

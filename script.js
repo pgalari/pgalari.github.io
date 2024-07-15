@@ -29,6 +29,51 @@ document.addEventListener("DOMContentLoaded", function () {
         return b;
     }
 
+    function displayMoon(phase) {
+        // Asegurarse de que el elemento moon existe antes de operar sobre él
+        if (moon) {
+            // Limpiar las clases existentes de la fase anterior
+            moon.className = '';
+            // Agregar la clase correspondiente a la fase actual
+            moon.classList.add(`phase-${phase}`);
+        }
+    }
+
+    function displayMoonPhase(phase) {
+        const phases = [
+            "Luna Nueva",
+            "Luna Creciente",
+            "Cuarto Creciente",
+            "Gibosa Creciente",
+            "Luna Llena",
+            "Gibosa Menguante",
+            "Cuarto Menguante",
+            "Luna Menguante"
+        ];
+
+        if (moonPhaseName) {
+            moonPhaseName.textContent = phases[phase];
+            moonPhaseName.style.color = "#333"; // Cambiar el color del texto según el fondo
+        }
+    }
+
+    function updateMoonPhase(date) {
+        const phase = getMoonPhase(date);
+        displayMoonPhase(phase);
+        displayMoon(phase); // Actualizar el dibujo de la luna
+    }
+
+    if (dateForm) {
+        dateForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const selectedDate = new Date(dateInput.value);
+            updateMoonPhase(selectedDate);
+        });
+    }
+
+    // Mostrar fase lunar actual al cargar la página
+    updateMoonPhase(new Date());
+});
 
     function displayMoon(phase) {
     // Asegurarse de que el elemento moon existe antes de operar sobre él

@@ -27,9 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (b >= 8 ) {
             b = 0; // fase completa en 8 partes
         }
-        alert (b);
+
+        console.log("Calculated Moon Phase: ", b); // Depuración
+        alert(b); // Depuración
         return b;
-       
     }
 
     function displayMoonPhase(phase) {

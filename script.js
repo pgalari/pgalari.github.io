@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const dateInput = document.getElementById('date-input');
 
     function getMoonPhase(date) {
-        const year = date.getFullYear();
-        const month = date.getMonth() + 1; // Enero es 0
-        const day = date.getDate();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1; // Enero es 0
+        let day = date.getDate();
 
         let c = 0, e = 0, jd = 0, b = 0;
         if (month < 3) {
@@ -95,4 +95,3 @@ document.addEventListener("DOMContentLoaded", function () {
     // Mostrar fase lunar actual al cargar la página
     updateMoonPhase(new Date());
 });
-

@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         return b;
+        print b;
     }
 
     function displayMoonPhase(phase) {

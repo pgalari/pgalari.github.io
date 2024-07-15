@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (b >= 8 ) {
             b = 0; // fase completa en 8 partes
         }
-
+        alert (b);
         return b;
-        print b;
+       
     }
 
     function displayMoonPhase(phase) {

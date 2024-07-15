@@ -58,8 +58,3 @@ document.addEventListener("DOMContentLoaded", function () {
     // Mostrar fase lunar actual al cargar la página
     updateMoonPhase(new Date());
 });
-
-
-    // Mostrar fase lunar actual al cargar la página
-    updateMoonPhase(new Date());
-});

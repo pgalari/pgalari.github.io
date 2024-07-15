@@ -27,20 +27,19 @@ document.addEventListener("DOMContentLoaded", function () {
         if (b >= 8 ) {
             b = 0; // fase completa en 8 partes
         }
-
         return b;
     }
 
     function displayMoonPhase(phase) {
         const phases = [
             "Luna Nueva",
-            "Creciente Iluminante",
+            "Luna Creciente",
             "Cuarto Creciente",
-            "Gibosa Iluminante",
+            "Gibosa Creciente",
             "Luna Llena",
             "Gibosa Menguante",
             "Cuarto Menguante",
-            "Creciente Menguante"
+            "Luna Menguante"
         ];
 
         phaseName.textContent = phases[phase];
@@ -48,31 +47,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
         switch (phase) {
             case 0: // Luna Nueva
-                boxShadowValue = "inset -25px 0px 0 0px #999";
+                boxShadowValue = "inset 100px 0 0 0 #999";
                 break;
-            case 1: // Creciente Iluminante
-                boxShadowValue = "inset 25px 0px 0 0px #999";
+            case 1: // Luna Creciente
+                boxShadowValue = "inset 75px 0 0 0 #999";
                 break;
             case 2: // Cuarto Creciente
-                boxShadowValue = "inset 50px 0px 0 0px #999";
+                boxShadowValue = "inset 50px 0 0 0 #999";
                 break;
-            case 3: // Gibosa Iluminante
-                boxShadowValue = "inset 75px 0px 0 0px #999";
+            case 3: // Gibosa Creciente
+                boxShadowValue = "inset 25px 0 0 0 #999";
                 break;
             case 4: // Luna Llena
-                boxShadowValue = "inset 100px 0px 0 0px #999";
+                boxShadowValue = "inset 0 0 0 0 #999";
                 break;
             case 5: // Gibosa Menguante
-                boxShadowValue = "inset 125px 0px 0 0px #999";
+                boxShadowValue = "inset -25px 0 0 0 #999";
                 break;
             case 6: // Cuarto Menguante
-                boxShadowValue = "inset 150px 0px 0 0px #999";
+                boxShadowValue = "inset -50px 0 0 0 #999";
                 break;
-            case 7: // Creciente Menguante
-                boxShadowValue = "inset 175px 0px 0 0px #999";
+            case 7: // Luna Menguante
+                boxShadowValue = "inset -75px 0 0 0 #999";
                 break;
         }
-
         moonFase.style.boxShadow = boxShadowValue;
     }
 

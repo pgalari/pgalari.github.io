@@ -40,8 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "Luna Menguante"
         ];
 
-        moonPhaseName.textContent = phases[phase];
-        moonPhaseName.style.color = "#333"; // Cambiar el color del texto según el fondo
+        if (moonPhaseName) {
+            moonPhaseName.textContent = phases[phase];
+            moonPhaseName.style.color = "#333"; // Cambiar el color del texto según el fondo
+        }
     }
 
     function updateMoonPhase(date) {
@@ -49,12 +51,15 @@ document.addEventListener("DOMContentLoaded", function () {
         displayMoonPhase(phase);
     }
 
-    dateForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const selectedDate = new Date(dateInput.value);
-        updateMoonPhase(selectedDate);
-    });
+    if (dateForm) {
+        dateForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const selectedDate = new Date(dateInput.value);
+            updateMoonPhase(selectedDate);
+        });
+    }
 
     // Mostrar fase lunar actual al cargar la página
     updateMoonPhase(new Date());
 });
+

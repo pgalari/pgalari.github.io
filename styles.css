@@ -1,0 +1,87 @@
+/* styles.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    margin: 0;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+#moon, #moonFase {
+    position: absolute;
+    top: 15%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+#moon {
+    background: #CCC;
+    box-shadow: 0px 0px 100px #FFFF8C;
+    z-index: 5;
+    animation: moonAnimation 3s infinite;
+}
+
+#moonFase {
+    background: rgba(153, 153, 153, 0);
+    box-shadow: inset -25px 0px 0 0px #999;
+    z-index: 6;
+}
+
+form {
+    margin-top: 250px;
+}
+
+@keyframes moonFaseAnimation {
+    0%, 100% {
+        box-shadow: inset -25px 0px 0 0px #999;
+        background: rgba(153,153,153,0);
+    }
+    12.5% {
+        box-shadow: inset 25px 0px 0 0px #999;
+        background: rgba(153,153,153,0);
+    }
+    25% {
+        box-shadow: inset 50px 0px 0 0px #999;
+        background: rgba(153,153,153,0);
+    }
+    37.5% {
+        box-shadow: inset 75px 0px 0 0px #999;
+        background: rgba(153,153,153,0);
+    }
+    50% {
+        box-shadow: inset 100px 0px 0 0px #999;
+        background: rgba(153,153,153,0);
+    }
+    62.5% {
+        box-shadow: inset 125px 0px 0 0px #999;
+        background: rgba(153,153,153,0);
+    }
+    75% {
+        box-shadow: inset 150px 0px 0 0px #999;
+        background: rgba(153,153,153,0);
+    }
+    87.5% {
+        box-shadow: inset 175px 0px 0 0px #999;
+        background: rgba(153,153,153,0);
+    }
+}
+
+@keyframes moonAnimation {
+    0% {
+        box-shadow: 0px 0px 100px #FFF;
+    }
+    50% {
+        box-shadow: 0px 0px 140px #FFF;
+    }
+    100% {
+        box-shadow: 0px 0px 100px #FFF;
+    }
+}

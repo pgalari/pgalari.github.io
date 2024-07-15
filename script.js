@@ -1,5 +1,3 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", function () {
     const moonFase = document.getElementById('moonFase');
     const phaseName = document.getElementById('phase-name');
@@ -24,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         b = parseInt(jd); // parte entera
         jd -= b; // parte fraccionaria
         b = Math.round(jd * 8); // fases de la luna en 8 partes
-        if (b >= 8 ) {
+        if (b >= 8) {
             b = 0; // fase completa en 8 partes
         }
 

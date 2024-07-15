@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dateForm = document.getElementById('date-form');
     const dateInput = document.getElementById('date-input');
 
+    // Función para obtener la fase lunar
     function getMoonPhase(date) {
         let year = date.getFullYear();
         let month = date.getMonth() + 1; // Enero es 0
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return b;
     }
 
+    // Función para mostrar la fase lunar en la luna
     function displayMoon(phase) {
         // Asegurarse de que el elemento moon existe antes de operar sobre él
         if (moon) {
@@ -39,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Función para mostrar el nombre de la fase lunar
     function displayMoonPhase(phase) {
         const phases = [
             "Luna Nueva",
@@ -56,12 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Función para actualizar la fase lunar y la visualización al cambiar la fecha
     function updateMoonPhase(date) {
         const phase = getMoonPhase(date);
         displayMoonPhase(phase);
-        displayMoon(phase); // Actualizar el dibujo de la luna
+        displayMoon(phase);
     }
 
+    // Evento para manejar el formulario y actualizar la fase lunar al seleccionar una fecha
     if (dateForm) {
         dateForm.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -69,10 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
             updateMoonPhase(selectedDate);
         });
     }
-
-    // Mostrar fase lunar actual al cargar la página
-    updateMoonPhase(new Date());
-});
 
     // Mostrar fase lunar actual al cargar la página
     updateMoonPhase(new Date());

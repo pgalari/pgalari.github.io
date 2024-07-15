@@ -20,32 +20,6 @@ main {
     margin-top: 2rem;
 }
 
-#moon-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
-}
-
-#moon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: #f0f0f0;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#moon-phase-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
 form {
     margin-top: 2rem;
     text-align: center;
@@ -87,5 +61,78 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Estilos base para el contenedor de la luna */
+#moon-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+#moon-phase-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#moon {
+    position: absolute;
+    top: 15%;
+    right: 50%;
+    transform: translateX(50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #CCC;
+    box-shadow: 0px 0px 100px #FFFF8C;
+    z-index: 5;
+    animation: moonAnimation 3s infinite;
+}
+
+/* Estilos para las fases lunares */
+#moon.phase-0 {
+    background: #CCC; /* Color para Luna Nueva */
+}
+
+#moon.phase-1 {
+    background: #DDD; /* Color para Luna Creciente */
+}
+
+#moon.phase-2 {
+    background: #EEE; /* Color para Cuarto Creciente */
+}
+
+#moon.phase-3 {
+    background: #FFF; /* Color para Gibosa Creciente */
+}
+
+#moon.phase-4 {
+    background: #FFFF8C; /* Color para Luna Llena */
+}
+
+#moon.phase-5 {
+    background: #FFF; /* Color para Gibosa Menguante */
+}
+
+#moon.phase-6 {
+    background: #EEE; /* Color para Cuarto Menguante */
+}
+
+#moon.phase-7 {
+    background: #DDD; /* Color para Luna Menguante */
+}
+
+/* Animación para la luna */
+@keyframes moonAnimation {
+    0% {
+        box-shadow: 0px 0px 100px #FFF;
+    }
+    50% {
+        box-shadow: 0px 0px 140px #FFF;
+    }
+    100% {
+        box-shadow: 0px 0px 100px #FFF;
+    }
+}
+
 
 

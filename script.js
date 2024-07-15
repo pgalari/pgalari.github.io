@@ -1,5 +1,3 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", function () {
     const moonFase = document.getElementById('moonFase');
     const phaseName = document.getElementById('phase-name');

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const moon = document.getElementById('moon');
     const moonPhaseName = document.getElementById('moon-phase-name');
     const dateForm = document.getElementById('date-form');
     const dateInput = document.getElementById('date-input');
@@ -28,6 +29,16 @@ document.addEventListener("DOMContentLoaded", function () {
         return b;
     }
 
+    function displayMoon(phase) {
+        // Asegurarse de que el elemento moon existe antes de operar sobre él
+        if (moon) {
+            // Limpiar las clases existentes de la fase anterior
+            moon.className = '';
+            // Agregar la clase correspondiente a la fase actual
+            moon.classList.add(`phase-${phase}`);
+        }
+    }
+
     function displayMoonPhase(phase) {
         const phases = [
             "Luna Nueva",
@@ -49,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateMoonPhase(date) {
         const phase = getMoonPhase(date);
         displayMoonPhase(phase);
+        displayMoon(phase); // Actualizar el dibujo de la luna
     }
 
     if (dateForm) {

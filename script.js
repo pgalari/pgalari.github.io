@@ -30,15 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function displayMoon(phase) {
-        // Asegurarse de que el elemento moon existe antes de operar sobre él
-        if (moon) {
-            // Limpiar las clases existentes de la fase anterior
-            moon.className = '';
-            // Agregar la clase correspondiente a la fase actual
-            moon.classList.add(`phase-${phase}`);
+    // Asegurarse de que el elemento moon existe antes de operar sobre él
+    if (moon) {
+        // Limpiar las clases existentes de la fase anterior
+        moon.className = 'moon';
+        // Agregar la clase correspondiente a la fase actual
+        moon.classList.add(`phase-${phase}`);
         }
     }
-
     function displayMoonPhase(phase) {
         const phases = [
             "Luna Nueva",

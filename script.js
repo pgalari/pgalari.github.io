@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const moon = document.getElementById('moon');
-    const moonPhaseName = document.getElementById('moon-phase-name');
+    const moonFase = document.getElementById('moonFase');
+    const phaseName = document.getElementById('phase-name');
     const dateForm = document.getElementById('date-form');
     const dateInput = document.getElementById('date-input');
 
-    // Función para obtener la fase lunar
     function getMoonPhase(date) {
         let year = date.getFullYear();
         let month = date.getMonth() + 1; // Enero es 0
@@ -27,21 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
             b = 0; // fase completa en 8 partes
         }
 
+        console.log("Calculated Moon Phase: ", b); // Depuración
+        alert(b); // Depuración
         return b;
     }
 
-    // Función para mostrar la fase lunar en la luna
-    function displayMoon(phase) {
-        // Asegurarse de que el elemento moon existe antes de operar sobre él
-        if (moon) {
-            // Limpiar las clases existentes de la fase anterior
-            moon.className = '';
-            // Agregar la clase correspondiente a la fase actual
-            moon.classList.add(`phase-${phase}`);
-        }
-    }
-
-    // Función para mostrar el nombre de la fase lunar
     function displayMoonPhase(phase) {
         const phases = [
             "Luna Nueva",
@@ -54,26 +43,52 @@ document.addEventListener("DOMContentLoaded", function () {
             "Luna Menguante"
         ];
 
-        if (moonPhaseName) {
-            moonPhaseName.textContent = phases[phase];
+        phaseName.textContent = phases[phase];
+        console.log("Displaying phase: ", phases[phase]);
+
+        let boxShadowValue;
+
+        switch (phase) {
+            case 0: // Luna Nueva
+                boxShadowValue = "inset 100px 0 0 0 #999";
+                break;
+            case 1: // Luna Creciente
+                boxShadowValue = "inset 75px 0 0 0 #999";
+                break;
+            case 2: // Cuarto Creciente
+                boxShadowValue = "inset 50px 0 0 0 #999";
+                break;
+            case 3: // Gibosa Creciente
+                boxShadowValue = "inset 25px 0 0 0 #999";
+                break;
+            case 4: // Luna Llena
+                boxShadowValue = "inset 0 0 0 0 #999";
+                break;
+            case 5: // Gibosa Menguante
+                boxShadowValue = "inset -25px 0 0 0 #999";
+                break;
+            case 6: // Cuarto Menguante
+                boxShadowValue = "inset -50px 0 0 0 #999";
+                break;
+            case 7: // Luna Menguante
+                boxShadowValue = "inset -75px 0 0 0 #999";
+                break;
         }
+
+        console.log("Applying box-shadow: ", boxShadowValue);
+        moonFase.style.boxShadow = boxShadowValue;
     }
 
-    // Función para actualizar la fase lunar y la visualización al cambiar la fecha
     function updateMoonPhase(date) {
         const phase = getMoonPhase(date);
         displayMoonPhase(phase);
-        displayMoon(phase);
     }
 
-    // Evento para manejar el formulario y actualizar la fase lunar al seleccionar una fecha
-    if (dateForm) {
-        dateForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            const selectedDate = new Date(dateInput.value);
-            updateMoonPhase(selectedDate);
-        });
-    }
+    dateForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const selectedDate = dateInput.value ? new Date(dateInput.value) : new Date();
+        updateMoonPhase(selectedDate);
+    });
 
     // Mostrar fase lunar actual al cargar la página
     updateMoonPhase(new Date());

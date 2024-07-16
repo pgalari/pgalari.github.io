@@ -1,5 +1,9 @@
 /* styles.css */
 body {
+    
+}
+
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,9 +12,6 @@ body {
     margin: 0;
     color: #fff;
     font-family: Arial, sans-serif;
-}
-
-.container {
     text-align: center;
 }
 

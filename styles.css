@@ -1,66 +1,42 @@
+/* styles.css */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-main {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin-top: 2rem;
+    height: 100vh;
+    background-color: #000;
+    margin: 0;
+    color: #fff;
+    font-family: Arial, sans-serif;
 }
 
-#form {
-    margin-top: 2rem;
+.container {
     text-align: center;
 }
 
-form label {
-    font-size: 1rem;
-    margin-right: 1rem;
+#moon, #moonFase {
+    position: absolute;
+    top: 15%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
 }
 
-form input[type="date"] {
-    font-size: 1rem;
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+#moon {
+    background: #CCC;
+    box-shadow: 0px 0px 100px #FFFF8C;
+    z-index: 5;
 }
 
-form button {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+#moonFase {
+    background: rgba(153, 153, 153, 0);
+    z-index: 6;
 }
 
-form button:hover {
-    background-color: #555;
+form {
+    margin-top: 250px;
 }
 
-footer {
-    text-align: center;
-    background-color: #333;
-    color: #fff;
-    padding: 1rem 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
 
 /* Estilos para el nombre de la fase lunar */
 #moon-phase-name {
@@ -128,3 +104,42 @@ footer {
         box-shadow: 0px 0px 100px #FFF;
     }
 }
+/* styles.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    margin: 0;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+#moon, #moonFase {
+    position: absolute;
+    top: 15%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+#moon {
+    background: #CCC;
+    box-shadow: 0px 0px 100px #FFFF8C;
+    z-index: 5;
+}
+
+#moonFase {
+    background: rgba(153, 153, 153, 0);
+    z-index: 6;
+}
+
+form {
+    margin-top: 250px;
+}
+

@@ -10,21 +10,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body>bg-secondary card bg-light  background-colorcon .bg-transparent.
     <div class="card text-center bg-dark">
       <div class="card-header  text-white">
-          <p id="phase-name"></p>
+          <p class="card-title" id="phase-name"></p>
       </div>
       <div class="card-body text-center text-white">
-        <h5 class="card-title">Selecciona una fecha</h5>
+        <h5 class="card-subtitle">Selecciona una fecha</h5>
         <form id="date-form">
             <label for="date-input"></label>
             <input type="date" id="date-input">
-            <button class="btn btn-primary" type="submit">Mostrar fase lunar</button>
+            <button type="submit" class="btn btn-primary" >Mostrar fase lunar</button>
         </form>
        </div>    
         <div class="card-footer">
-            <div class="container">
+            <div class="container card-img-top">
                 <div id="moon"></div>
                 <div id="moonFase"></div>
             </div>

@@ -16,25 +16,20 @@
         <p id="phase-name"></p>
       </div>
       <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-           <div class="container">
-            <div id="moon"></div>
-            <div id="moonFase"></div>
-        </div>
-   
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">Selecciona una fecha:</h5>
+              <form id="date-form">
+                <label for="date-input"></label>
+                <input type="date" id="date-input">
+                <button class="btn btn-primary" type="submit">Mostrar fase lunar</button>
+                </form>
+            <div class="container">
+                <div id="moon"></div>
+                <div id="moonFase"></div>
+            </div>
       </div>
       <div class="card-footer text-muted">
-        <h5 class="card-title">Selecciona una fecha:</h5>
-         <form id="date-form">
-            <label for="date-input"></label>
-            <input type="date" id="date-input">
-            <button class="btn btn-primary" type="submit">Mostrar fase lunar</button>
-        </form>
+        <h5 class="card-title"></h5>   
       </div>
-    </div>
-
-
     <script src="script.js"></script>
 </body>
 </html>

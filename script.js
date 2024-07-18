@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         console.log("Calculated Moon Phase: ", b); // Depuración
-        //alert(b); // Depuración
+        alert(b); // Depuración
         return b;
     }
 

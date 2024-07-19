@@ -8,16 +8,16 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-  /*  background-color: #000;*/
+ background-color: #000;
     margin: 0;
-  /*  color: #fff;*/
+ color: #fff;
     font-family: Arial, sans-serif;
  /*   text-align: center;*/
 }
 
 #moon, #moonFase {
- /*  position: absolute;
-    top: 30%;*/
+position: absolute;
+    top: 30%;
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -36,5 +36,5 @@ body {
 
 form {
     
-    /* margin-top: 250px; */
+ margin-top: 250px;
 }

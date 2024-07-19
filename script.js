@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
             b = 0; // fase completa en 8 partes
         }
 
-        console.log("Calculated Moon Phase: ", b); // Depuración
-        alert(b); // Depuración
+    /*    console.log("Calculated Moon Phase: ", b); // Depuración
+        alert(b); // Depuración*/
         return b;
     }
 

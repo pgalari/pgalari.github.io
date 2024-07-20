@@ -10,8 +10,6 @@
     }*/
 
 #moon, #moonFase {
-    
- 
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -27,6 +25,7 @@
     background: rgba(153, 153, 153, 0);
     z-index: 6;
 }
+
  .crater{
         position:absolute;
         background:#555;

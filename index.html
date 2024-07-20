@@ -20,7 +20,7 @@
         </div>
         
         
-        <div class="position-absolute top-50 start-50"></div>
+        <div class="position-absolute top-50 start-50">
                 <div id="moon">
                 </div>
                 <div id="moonFase">
@@ -35,19 +35,20 @@
         </div>    
 
         <div class="position-absolute bottom-0 start-50 translate-middle-x">
-                    <form id="date-form">
+            <form id="date-form">
+                  <div class="input-group mb-3">
+  <span class="input-group-text">Fecha</span>
+  <div class="form-floating">
+    <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Fecha">
+    <label for="floatingInputGroup1">Selecciona una fecha</label>
+
+  </div>
+</div>       
                         <label class="text-white text-center" for="date-input">Selecciona una fecha</label>
                         <input type="date" id="date-input">
                         <button type="submit" class="btn btn-lg btn-light fw-bold border-white bg-white">Mostrar fase lunar</button>
-                   <div class="input-group mb-3">
-  <span class="input-group-text">Fecha</span>
-  <div class="form-floating">
-    <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Username">
-    <label for="floatingInputGroup1">Selecciona una fecha</label>
-  </form>
-  </div>
-</div>
-                    </form>
+            </form>
+                
         </div>    
     
     </div>

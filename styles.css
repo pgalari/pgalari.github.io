@@ -1,7 +1,4 @@
 /* styles.css 
-body {
-        background-color: #333;
-    }
 
     .star {
         width: 2px;
@@ -11,21 +8,9 @@ body {
         box-shadow: 0px 0px 1px 1px rgba(255,255,255,0.6);
         position: absolute;
     }*/
-.cover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-/* background-color: #000;
-    margin: 0;
- color: #fff;
-    font-family: Arial, sans-serif;
- /*   text-align: center;*/
-}
 
 #moon, #moonFase {
     position: absolute;
-    top: 30%;
     width: 200px;
     height: 200px;
     border-radius: 50%;

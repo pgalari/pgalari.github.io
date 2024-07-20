@@ -12,20 +12,24 @@
 </head>
 <body class="d-flex text-center text-bg-dark">  
     <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">  <h1 class="text-dark text-center fw-bold" id="phase-name"></h1> </div>
-    <main class="px-3 cover h-100">    
+    <main class="px-3 cover h-100">
+         <div class="position-absolute top-50 start-50 translate-middle">
             <div id="moon">
             </div>
             <div id="moonFase">
             </div>
+         </div>    
     </main>
     <hr>
     <div class="container py-4">
       <div class="position-absolute bottom-0 end-0">
+          <div class="position-absolute bottom-0 start-50 translate-middle-x">
             <form id="date-form">
                 <label class="text-white text-center" for="date-input">Selecciona una fecha</label>
                 <input type="date" id="date-input">
                 <button type="submit" class="btn btn-lg btn-light fw-bold border-white bg-white">Mostrar fase lunar</button>
             </form>
+          </div>    
         </div>
       </div>   
       

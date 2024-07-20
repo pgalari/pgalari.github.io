@@ -48,7 +48,7 @@ body {
         z-index:7;
     }
 
-    .crater1{
+.crater1{
         top:30px;
         left:40px;
         width:25px;
@@ -62,7 +62,7 @@ body {
         transform:rotate(40deg);
     }
 
-    .crater2{
+.crater2{
         top:125px;
         right:20px;
         width:15px;
@@ -76,7 +76,7 @@ body {
         transform:rotate(-60deg);
     }
 
-    .crater3{
+.crater3{
         top:120px;
         left:60px;
         width:10px;
@@ -84,7 +84,7 @@ body {
         border-radius:50%;
     }
 
-    .crater4{
+.crater4{
         top:90px;
         right:90px;
         width:10px;
@@ -92,7 +92,7 @@ body {
         border-radius:50%;
     }
 
-    .crater5{
+.crater5{
         top:50px;
         left:120px;
         width:30px;
@@ -103,7 +103,7 @@ body {
         transform:rotate(120deg);
     }
 
-    .crater6{
+.crater6{
         bottom:15px;
         left:80px;
         width:15px;
@@ -111,7 +111,7 @@ body {
         border-radius:50%;
     }
 
-    .crater7{
+.crater7{
         bottom:15px;
         left:130px;
         width:5px;

@@ -8,10 +8,14 @@
         box-shadow: 0px 0px 1px 1px rgba(255,255,255,0.6);
         position: absolute;
     }*/
-
+#cover{
+    display: flex;
+    justify-content: center;
+}
 #moon, #moonFase {
     top:33%;
    /*right:55%;*/
+    margin: auto;
     width: 200px;
     height: 200px;
     border-radius: 50%;

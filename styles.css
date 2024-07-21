@@ -91,8 +91,8 @@
     }
 
 .crater6{
-        top:180px;
-      /*  bottom:15px;*/
+      /*    top:180px;*/
+      bottom:15px;
         left:80px;
         width:15px;
         height:15px;
@@ -100,8 +100,8 @@
     }
 
 .crater7{
-        top:185px;
-      /*  bottom:15px;*/
+     /*      top:185px;*/
+     bottom:15px;
         left:130px;
         width:5px;
         height:5px;

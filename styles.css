@@ -1,5 +1,4 @@
-/* styles.css 
-
+/* styles.css */
     .star {
         width: 2px;
         height: 2px;
@@ -7,41 +6,47 @@
         background: rgba(255,255,255,1);
         box-shadow: 0px 0px 1px 1px rgba(255,255,255,0.6);
         position: absolute;
-    }*/
-#cover{
-    display: flex;
-    justify-content: center;
-    position: absolute;
-}
-#moon, #moonFase {
-    position: absolute;
-    top:33%;
-   /*right:55%;*/
-    margin: auto;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-}
+    }
+    #moon{
+        position:absolute;
+        top:15%;
+        right:50%;
+        right:calc(50% - 100px);
+        width:200px;
+        height:200px;
+        border-radius:50%;
+        background:#CCC;
+        box-shadow:0px 0px 100px #FFFF8C;
+        z-index:5;
+    /*    -webkit-animation: moonAnimation 3s infinite;
+        -moz-animation: moonAnimation 3s infinite;
+        animation: moonAnimation 3s infinite;*/
+    }
 
-#moon {
-    background: #CCC;
-    box-shadow: 0px 0px 100px #FFFF8C;
-    z-index: 5;
-}
+    #moonFase{
+        position:absolute;
+        top:15%;
+        right:50%;
+        right:calc(50% - 100px);
+        width:200px;
+        height:200px;
+        border-radius:50%;
+        background: rgba(153,153,153,0);
+        box-shadow: inset -25px 0px 0 0px #999;
+        z-index:6;
+    /*    -webkit-animation: moonFaseAnimation 600s infinite;
+        -moz-animation: moonFaseAnimation 600s infinite;
+        animation: moonFaseAnimation 600s infinite;*/
+    }
 
-#moonFase {
-    background: rgba(153, 153, 153, 0);
-    z-index: 6;
-}
-
- .crater{
+    .crater{
         position:absolute;
         background:#555;
         box-shadow: inset 3px -2px 0 0px #414043;
         z-index:7;
     }
 
-.crater1{
+    .crater1{
         top:30px;
         left:40px;
         width:25px;
@@ -55,7 +60,7 @@
         transform:rotate(40deg);
     }
 
-.crater2{
+    .crater2{
         top:125px;
         right:20px;
         width:15px;
@@ -69,7 +74,7 @@
         transform:rotate(-60deg);
     }
 
-.crater3{
+    .crater3{
         top:120px;
         left:60px;
         width:10px;
@@ -77,7 +82,7 @@
         border-radius:50%;
     }
 
-.crater4{
+    .crater4{
         top:90px;
         right:90px;
         width:10px;
@@ -85,7 +90,7 @@
         border-radius:50%;
     }
 
-.crater5{
+    .crater5{
         top:50px;
         left:120px;
         width:30px;
@@ -96,18 +101,16 @@
         transform:rotate(120deg);
     }
 
-.crater6{
-      /*    top:180px;*/
-      bottom:15px;
+    .crater6{
+        bottom:15px;
         left:80px;
         width:15px;
         height:15px;
         border-radius:50%;
     }
 
-.crater7{
-     /*      top:185px;*/
-     bottom:15px;
+    .crater7{
+        bottom:15px;
         left:130px;
         width:5px;
         height:5px;

@@ -11,6 +11,7 @@
 #cover{
     display: flex;
     justify-content: center;
+    position: absolute;
 }
 #moon, #moonFase {
     top:33%;

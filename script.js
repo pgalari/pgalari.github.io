@@ -105,7 +105,10 @@ document.addEventListener("DOMContentLoaded", function () {
         formattedDateDisplay.textContent = formattedDate;
     });
 
+
     // Mostrar fase lunar actual al cargar la página
-    updateMoonPhase(new Date());
+    const today = new Date();
+    updateMoonPhase(today);
+    formattedDateDisplay.textContent = formatDate(today);
 });
 

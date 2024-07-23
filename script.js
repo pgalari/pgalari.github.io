@@ -62,15 +62,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let boxShadowValue = '';
         let clipPathValue = '';
+        let backgroundColor = '';
 
         switch (phase) {
             case 0: // Luna Nueva
-                boxShadowValue = "inset 0 0 0 0 #888"; // Totalmente en sombra
+                boxShadowValue = ''; // Sin sombra
                 clipPathValue = ''; // No se necesita clip-path
-                backgroundColor = '#999'; // Color gris claro
+                backgroundColor = '#333'; // Gris oscuro para la Luna Nueva
                 break;
             case 1: // Lunula Creciente
-                boxShadowValue = `inset 50px 0 0 0 #000`; // Parte visible en el lado derecho
+                boxShadowValue = `inset 50px 0 0 0 #999`; // Parte visible en el lado derecho
                 clipPathValue = ''; // No se necesita clip-path
                 backgroundColor = '#999'; // Color gris claro
                 break;
@@ -80,17 +81,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 backgroundColor = '#999'; // Color gris claro
                 break;
             case 3: // Gibosa Creciente
-                boxShadowValue = `inset 50px 0 0 0 #000`; // Parte visible en el lado derecho
+                boxShadowValue = `inset 50px 0 0 0 #999`; // Parte visible en el lado derecho
                 clipPathValue = ''; // No se necesita clip-path
                 backgroundColor = '#999'; // Color gris claro
                 break;
             case 4: // Luna Llena
-                boxShadowValue = "inset 0 0 0 0 #000"; // Sin sombra
+                boxShadowValue = ''; // Sin sombra
                 clipPathValue = ''; // No se necesita clip-path
-                backgroundColor = '#999'; // Color gris claro
+                backgroundColor = '#999'; // Color gris claro para representar la luna llena
                 break;
             case 5: // Gibosa Menguante
-                boxShadowValue = `inset -50px 0 0 0 #000`; // Parte visible en el lado izquierdo
+                boxShadowValue = `inset -50px 0 0 0 #999`; // Parte visible en el lado izquierdo
                 clipPathValue = ''; // No se necesita clip-path
                 backgroundColor = '#999'; // Color gris claro
                 break;
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 backgroundColor = '#999'; // Color gris claro
                 break;
             case 7: // Lunula Menguante
-                boxShadowValue = `inset -50px 0 0 0 #000`; // Parte visible en el lado izquierdo
+                boxShadowValue = `inset -50px 0 0 0 #999`; // Parte visible en el lado izquierdo
                 clipPathValue = ''; // No se necesita clip-path
                 backgroundColor = '#999'; // Color gris claro
                 break;
@@ -110,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Applying clip-path: ", clipPathValue);
         moonFase.style.boxShadow = boxShadowValue;
         moonFase.style.clipPath = clipPathValue;
+        moonFase.style.backgroundColor = backgroundColor; // Aplicar el color de fondo
     }
 
     function updateMoonPhase(date) {
@@ -134,4 +136,3 @@ document.addEventListener("DOMContentLoaded", function () {
     // Mostrar la fecha actual formateada al cargar la página
     formattedDateDisplay.textContent = formatDate(currentDate);
 });
-

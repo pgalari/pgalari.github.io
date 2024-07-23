@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
             case 6: // Cuarto Menguante
                 boxShadowValue = ''; // Sin sombra
                 clipPathValue = 'inset(0% 50% 0% 0%)'; // Mitad derecha en sombra
-                backgroundColor = '#333';
+                backgroundColor = '#000';
                 break;
             case 7: // Lúnula Menguante
                 boxShadowValue = 'inset -75px 0 0 0 #333'; // Sombra a la derecha

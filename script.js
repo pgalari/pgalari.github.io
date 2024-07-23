@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 break;
             case 1: // Lúnula Creciente
                 boxShadowValue = 'inset 275px 0 0 0 #333'; // Sombra a la izquierda
+                 box-shadowValue: 'inset 5px 5px 10px rgba(0, 0, 0, 0.5)';
                 clipPathValue = ''; // No se necesita clip-path
                 break;
             case 2: // Cuarto Creciente

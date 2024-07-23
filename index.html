@@ -45,7 +45,9 @@
         </div>    
 
         <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4">
-           <p> <script>
+           <p>  <!-- Name symbols with the value of data-fa-symbol -->
+        <i data-fa-symbol="picture-taker" class="fas fa-moon"></i> de 
+<script>
 let meses = new Array ("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 let diasSemana = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
 let f = new Date();
@@ -64,11 +66,7 @@ document.write(diasSemana[f.getDay()] + ", " + f.getDate() + " de " + meses[f.ge
                 </div>
             </form>
         </div>
-    <!-- Name symbols with the value of data-fa-symbol -->
-        <i data-fa-symbol="picture-taker" class="fas fa-moon"></i>
-
-        <!-- Use the defined name -->
-        <svg class="icon"><use href="#picture-taker"></use></svg>
+   
     </div>
 
 </body>

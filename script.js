@@ -3,6 +3,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const phaseName = document.getElementById('phase-name');
     const dateForm = document.getElementById('date-form');
     const dateInput = document.getElementById('date-input');
+    const formattedDateDisplay = document.getElementById('formattedDateDisplay'); // Elemento para mostrar la fecha formateada
+
+    function formatDate(date) {
+        const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+        const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        
+        const dayName = days[date.getDay()];
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+        
+        return `${dayName}, ${day} de ${month} de ${year}`;
+    }
 
     function getMoonPhase(date) {
         let year = date.getFullYear();
@@ -26,8 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
             b = 0; // fase completa en 8 partes
         }
 
-    /*    console.log("Calculated Moon Phase: ", b); // Depuración
-        alert(b); // Depuración*/
         return b;
     }
 
@@ -87,9 +98,14 @@ document.addEventListener("DOMContentLoaded", function () {
     dateForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const selectedDate = dateInput.value ? new Date(dateInput.value) : new Date();
+        const formattedDate = formatDate(selectedDate);
         updateMoonPhase(selectedDate);
+
+        // Mostrar la fecha formateada
+        formattedDateDisplay.textContent = formattedDate;
     });
 
     // Mostrar fase lunar actual al cargar la página
     updateMoonPhase(new Date());
 });
+

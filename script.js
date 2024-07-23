@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         switch (phase) {
             case 0: // Luna Nueva
-                boxShadowValue = "inset 250px 0 0 0 #099";
+                boxShadowValue = "inset 250px 0 0 0 #666";
                 break;
             case 1: // Luna Creciente
                 boxShadowValue = "inset 100px 0 0 0 #999";

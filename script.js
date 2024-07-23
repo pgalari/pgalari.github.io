@@ -60,36 +60,47 @@ document.addEventListener("DOMContentLoaded", function () {
         phaseName.textContent = phases[phase];
         console.log("Displaying phase: ", phases[phase]);
 
-        let clipPathValue;
+        let boxShadowValue = '';
+        let clipPathValue = '';
 
         switch (phase) {
             case 0: // Luna Nueva
-                clipPathValue = "circle(0% at 50% 50%)";
+                boxShadowValue = "inset 0 0 0 0 #000"; // Totalmente en sombra
+                clipPathValue = ''; // No se necesita clip-path
                 break;
-            case 1: // Luna Creciente
-                clipPathValue = `inset(0% ${100 - illumination}% 0% 0%)`;
+            case 1: // Lunula Creciente
+                boxShadowValue = `inset 50px 0 0 0 #000`; // Parte visible en el lado derecho
+                clipPathValue = ''; // No se necesita clip-path
                 break;
             case 2: // Cuarto Creciente
-                clipPathValue = "inset(0% 50% 0% 0%)";
+                boxShadowValue = ''; // No se usa box-shadow
+                clipPathValue = "inset(0% 50% 0% 0%)"; // Mitad visible
                 break;
             case 3: // Gibosa Creciente
-                clipPathValue = `inset(0% ${100 - illumination}% 0% 0%)`;
+                boxShadowValue = `inset 50px 0 0 0 #000`; // Parte visible en el lado derecho
+                clipPathValue = ''; // No se necesita clip-path
                 break;
             case 4: // Luna Llena
-                clipPathValue = "circle(50% at 50% 50%)";
+                boxShadowValue = "inset 0 0 0 0 #000"; // Sin sombra
+                clipPathValue = ''; // No se necesita clip-path
                 break;
             case 5: // Gibosa Menguante
-                clipPathValue = `inset(0% 0% 0% ${illumination}%)`;
+                boxShadowValue = `inset -50px 0 0 0 #000`; // Parte visible en el lado izquierdo
+                clipPathValue = ''; // No se necesita clip-path
                 break;
             case 6: // Cuarto Menguante
-                clipPathValue = "inset(0% 0% 0% 50%)";
+                boxShadowValue = ''; // No se usa box-shadow
+                clipPathValue = "inset(0% 0% 0% 50%)"; // Mitad visible
                 break;
-            case 7: // Luna Menguante
-                clipPathValue = `inset(0% 0% 0% ${illumination}%)`;
+            case 7: // Lunula Menguante
+                boxShadowValue = `inset -50px 0 0 0 #000`; // Parte visible en el lado izquierdo
+                clipPathValue = ''; // No se necesita clip-path
                 break;
         }
 
+        console.log("Applying box-shadow: ", boxShadowValue);
         console.log("Applying clip-path: ", clipPathValue);
+        moonFase.style.boxShadow = boxShadowValue;
         moonFase.style.clipPath = clipPathValue;
     }
 
@@ -115,3 +126,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // Mostrar la fecha actual formateada al cargar la página
     formattedDateDisplay.textContent = formatDate(currentDate);
 });
+

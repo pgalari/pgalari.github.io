@@ -39,60 +39,63 @@ document.addEventListener("DOMContentLoaded", function () {
             b = 0; // fase completa en 8 partes
         }
 
-        return b;
+        return {
+            phase: b,
+            illumination: (1 - Math.cos((jd - 0.5) * 2 * Math.PI)) * 100 // Porcentaje de iluminación
+        };
     }
 
-    function displayMoonPhase(phase) {
+    function displayMoonPhase(phase, illumination) {
         const phases = [
             "Luna Nueva",
-            "Luna Creciente",
+            "Lunula Creciente",
             "Cuarto Creciente",
             "Gibosa Creciente",
             "Luna Llena",
             "Gibosa Menguante",
             "Cuarto Menguante",
-            "Luna Menguante"
+            "Lunula Menguante"
         ];
 
         phaseName.textContent = phases[phase];
         console.log("Displaying phase: ", phases[phase]);
 
-        let boxShadowValue;
+        let clipPathValue;
 
         switch (phase) {
             case 0: // Luna Nueva
-                boxShadowValue = "inset 250px 0 0 0 #888";
+                clipPathValue = "circle(0% at 50% 50%)";
                 break;
             case 1: // Luna Creciente
-                boxShadowValue = "inset 100px 0 0 0 #999";
+                clipPathValue = `inset(0% ${100 - illumination}% 0% 0%)`;
                 break;
             case 2: // Cuarto Creciente
-                boxShadowValue = "inset 50px 0 0 0 #999";
+                clipPathValue = "inset(0% 50% 0% 0%)";
                 break;
             case 3: // Gibosa Creciente
-                boxShadowValue = "inset 25px 0 0 0 #999";
+                clipPathValue = `inset(0% ${100 - illumination}% 0% 0%)`;
                 break;
             case 4: // Luna Llena
-                boxShadowValue = "inset 0 0 0 0 #999";
+                clipPathValue = "circle(50% at 50% 50%)";
                 break;
             case 5: // Gibosa Menguante
-                boxShadowValue = "inset -25px 0 0 0 #999";
+                clipPathValue = `inset(0% 0% 0% ${illumination}%)`;
                 break;
             case 6: // Cuarto Menguante
-                boxShadowValue = "inset -50px 0 0 0 #999";
+                clipPathValue = "inset(0% 0% 0% 50%)";
                 break;
             case 7: // Luna Menguante
-                boxShadowValue = "inset -100px 0 0 0 #999";
+                clipPathValue = `inset(0% 0% 0% ${illumination}%)`;
                 break;
         }
 
-        console.log("Applying box-shadow: ", boxShadowValue);
-        moonFase.style.boxShadow = boxShadowValue;
+        console.log("Applying clip-path: ", clipPathValue);
+        moonFase.style.clipPath = clipPathValue;
     }
 
     function updateMoonPhase(date) {
-        const phase = getMoonPhase(date);
-        displayMoonPhase(phase);
+        const { phase, illumination } = getMoonPhase(date);
+        displayMoonPhase(phase, illumination);
     }
 
     dateForm.addEventListener('submit', (event) => {
@@ -105,10 +108,10 @@ document.addEventListener("DOMContentLoaded", function () {
         formattedDateDisplay.textContent = formattedDate;
     });
 
-
     // Mostrar fase lunar actual al cargar la página
-    const today = new Date();
-    updateMoonPhase(today);
-    formattedDateDisplay.textContent = formatDate(today);
-});
+    const currentDate = new Date();
+    updateMoonPhase(currentDate);
 
+    // Mostrar la fecha actual formateada al cargar la página
+    formattedDateDisplay.textContent = formatDate(currentDate);
+});

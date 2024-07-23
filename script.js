@@ -75,14 +75,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 break;
             case 2: // Cuarto Creciente
                 boxShadowValue = ''; // Sin sombra
-                clipPathValue = 'inset(0% 50% 0% 0%)'; // Mitad derecha iluminada
+                clipPathValue = 'inset(0% 0% 0% 50%)'; // Mitad izquierda en sombra
+                backgroundColor = '#333';
                 break;
             case 3: // Gibosa Creciente -- perfecto, no tocar
                 boxShadowValue = 'inset 50px 0 0 0 #333'; // Sombra a la izquierda
                 clipPathValue = ''; // No se necesita clip-path
                 break;
             case 4: // Luna Llena
-                boxShadowValue = 'inset 0 0 0 100px #eee'; // Sombra total gris oscuro
+                boxShadowValue = 'inset 0 0 0 100px #eee'; // luz total
                 clipPathValue = ''; // No se necesita clip-path
                 break;
             case 5: // Gibosa Menguante -- perfecto, no tocar
@@ -91,7 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 break;
             case 6: // Cuarto Menguante
                 boxShadowValue = ''; // Sin sombra
-                clipPathValue = 'inset(0% 0% 0% 50%)'; // Mitad izquierda iluminada
+                clipPathValue = 'inset(0% 50% 0% 0%)'; // Mitad derecha en sombra
+                backgroundColor = '#333';
                 break;
             case 7: // Lúnula Menguante
                 boxShadowValue = 'inset 50px 0 0 0 #333'; // Sombra a la derecha

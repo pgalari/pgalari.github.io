@@ -48,13 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayMoonPhase(phase, illumination) {
         const phases = [
             "Luna Nueva",
-            "Lunula Creciente",
+            "Lúnula Creciente",
             "Cuarto Creciente",
             "Gibosa Creciente",
             "Luna Llena",
             "Gibosa Menguante",
             "Cuarto Menguante",
-            "Lunula Menguante"
+            "Lúnula Menguante"
         ];
 
         phaseName.textContent = phases[phase];
@@ -66,44 +66,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
         switch (phase) {
             case 0: // Luna Nueva
-                boxShadowValue = ''; // Sin sombra
+                boxShadowValue = 'inset 0 0 0 100px #333'; // Sombra total gris oscuro
                 clipPathValue = ''; // No se necesita clip-path
-                backgroundColor = '#333'; // Gris oscuro para la Luna Nueva
                 break;
-            case 1: // Lunula Creciente
-                boxShadowValue = `inset 50px 0 0 0 #999`; // Parte visible en el lado derecho
+            case 1: // Lúnula Creciente
+                boxShadowValue = 'inset -50px 0 0 0 #333'; // Sombra a la izquierda
                 clipPathValue = ''; // No se necesita clip-path
-                backgroundColor = '#999'; // Color gris claro
                 break;
             case 2: // Cuarto Creciente
-                boxShadowValue = ''; // No se usa box-shadow
-                clipPathValue = "inset(0% 50% 0% 0%)"; // Mitad visible
-                backgroundColor = '#333'; // Color gris claro
+                boxShadowValue = ''; // Sin sombra
+                clipPathValue = 'inset(0% 50% 0% 0%)'; // Mitad derecha iluminada
                 break;
             case 3: // Gibosa Creciente
-                boxShadowValue = `inset 50px 0 0 0 #999`; // Parte visible en el lado derecho
+                boxShadowValue = 'inset -50px 0 0 0 #333'; // Sombra a la izquierda
                 clipPathValue = ''; // No se necesita clip-path
-                backgroundColor = '#999'; // Color gris claro
                 break;
             case 4: // Luna Llena
                 boxShadowValue = ''; // Sin sombra
                 clipPathValue = ''; // No se necesita clip-path
-                backgroundColor = '#999'; // Color gris claro para representar la luna llena
                 break;
             case 5: // Gibosa Menguante
-                boxShadowValue = `inset -50px 0 0 0 #999`; // Parte visible en el lado izquierdo
+                boxShadowValue = 'inset 50px 0 0 0 #333'; // Sombra a la derecha
                 clipPathValue = ''; // No se necesita clip-path
-                backgroundColor = '#999'; // Color gris claro
                 break;
             case 6: // Cuarto Menguante
-                boxShadowValue = ''; // No se usa box-shadow
-                clipPathValue = "inset(0% 0% 0% 50%)"; // Mitad visible
-                backgroundColor = '#333'; // Color gris claro
+                boxShadowValue = ''; // Sin sombra
+                clipPathValue = 'inset(0% 0% 0% 50%)'; // Mitad izquierda iluminada
                 break;
-            case 7: // Lunula Menguante
-                boxShadowValue = `inset -50px 0 0 0 #999`; // Parte visible en el lado izquierdo
+            case 7: // Lúnula Menguante
+                boxShadowValue = 'inset 50px 0 0 0 #333'; // Sombra a la derecha
                 clipPathValue = ''; // No se necesita clip-path
-                backgroundColor = '#999'; // Color gris claro
                 break;
         }
 
@@ -111,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Applying clip-path: ", clipPathValue);
         moonFase.style.boxShadow = boxShadowValue;
         moonFase.style.clipPath = clipPathValue;
-        moonFase.style.backgroundColor = backgroundColor; // Aplicar el color de fondo
+        moonFase.style.backgroundColor = ''; // No es necesario para las fases actuales
     }
 
     function updateMoonPhase(date) {

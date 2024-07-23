@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         switch (phase) {
             case 0: // Luna Nueva
-                boxShadowValue = "inset 0 0 0 0 #000"; // Totalmente en sombra
+                boxShadowValue = "inset 0 0 0 0 #888"; // Totalmente en sombra
                 clipPathValue = ''; // No se necesita clip-path
                 break;
             case 1: // Lunula Creciente

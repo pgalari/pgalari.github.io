@@ -67,10 +67,12 @@ document.addEventListener("DOMContentLoaded", function () {
             case 0: // Luna Nueva
                 boxShadowValue = "inset 0 0 0 0 #888"; // Totalmente en sombra
                 clipPathValue = ''; // No se necesita clip-path
+                backgroundColor = '#999'; // Color gris claro
                 break;
             case 1: // Lunula Creciente
                 boxShadowValue = `inset 50px 0 0 0 #000`; // Parte visible en el lado derecho
                 clipPathValue = ''; // No se necesita clip-path
+                backgroundColor = '#999'; // Color gris claro
                 break;
             case 2: // Cuarto Creciente
                 boxShadowValue = ''; // No se usa box-shadow
@@ -80,14 +82,17 @@ document.addEventListener("DOMContentLoaded", function () {
             case 3: // Gibosa Creciente
                 boxShadowValue = `inset 50px 0 0 0 #000`; // Parte visible en el lado derecho
                 clipPathValue = ''; // No se necesita clip-path
+                backgroundColor = '#999'; // Color gris claro
                 break;
             case 4: // Luna Llena
                 boxShadowValue = "inset 0 0 0 0 #000"; // Sin sombra
                 clipPathValue = ''; // No se necesita clip-path
+                backgroundColor = '#999'; // Color gris claro
                 break;
             case 5: // Gibosa Menguante
                 boxShadowValue = `inset -50px 0 0 0 #000`; // Parte visible en el lado izquierdo
                 clipPathValue = ''; // No se necesita clip-path
+                backgroundColor = '#999'; // Color gris claro
                 break;
             case 6: // Cuarto Menguante
                 boxShadowValue = ''; // No se usa box-shadow
@@ -97,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
             case 7: // Lunula Menguante
                 boxShadowValue = `inset -50px 0 0 0 #000`; // Parte visible en el lado izquierdo
                 clipPathValue = ''; // No se necesita clip-path
+                backgroundColor = '#999'; // Color gris claro
                 break;
         }
 

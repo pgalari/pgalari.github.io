@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 clipPathValue = ''; // No se necesita clip-path
                 break;
             case 1: // Lúnula Creciente
-                boxShadowValue = 'inset 50px 0 0 0 #333'; // Sombra a la izquierda
+                boxShadowValue = 'inset 75px 0 0 0 #333'; // Sombra a la izquierda
                 clipPathValue = ''; // No se necesita clip-path
                 break;
             case 2: // Cuarto Creciente
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 backgroundColor = '#333';
                 break;
             case 7: // Lúnula Menguante
-                boxShadowValue = 'inset 50px 0 0 0 #333'; // Sombra a la derecha
+                boxShadowValue = 'inset -75px 0 0 0 #333'; // Sombra a la derecha
                 clipPathValue = ''; // No se necesita clip-path
                 break;
         }
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Applying clip-path: ", clipPathValue);
         moonFase.style.boxShadow = boxShadowValue;
         moonFase.style.clipPath = clipPathValue;
-        moonFase.style.backgroundColor = ''; // No es necesario para las fases actuales
+       moonFase.style.backgroundColor = backgroundColor;
     }
 
     function updateMoonPhase(date) {

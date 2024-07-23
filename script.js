@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
             case 2: // Cuarto Creciente
                 boxShadowValue = ''; // No se usa box-shadow
                 clipPathValue = "inset(0% 50% 0% 0%)"; // Mitad visible
-                backgroundColor = '#999'; // Color gris claro
+                backgroundColor = '#333'; // Color gris claro
                 break;
             case 3: // Gibosa Creciente
                 boxShadowValue = `inset 50px 0 0 0 #999`; // Parte visible en el lado derecho
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             case 6: // Cuarto Menguante
                 boxShadowValue = ''; // No se usa box-shadow
                 clipPathValue = "inset(0% 0% 0% 50%)"; // Mitad visible
-                backgroundColor = '#999'; // Color gris claro
+                backgroundColor = '#333'; // Color gris claro
                 break;
             case 7: // Lunula Menguante
                 boxShadowValue = `inset -50px 0 0 0 #999`; // Parte visible en el lado izquierdo

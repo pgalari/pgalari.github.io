@@ -65,12 +65,16 @@ document.addEventListener("DOMContentLoaded", function () {
         let backgroundColor = '';
 
         switch (phase) {
-            case 0: // Luna Nueva
+            case 4: // Luna Llena
+                boxShadowValue = ''; // Sin sombra
+                clipPathValue = ''; // No se necesita clip-path
+                break;
+            case 0: // Luna Nueva 
                 boxShadowValue = 'inset 0 0 0 100px #333'; // Sombra total gris oscuro
                 clipPathValue = ''; // No se necesita clip-path
                 break;
             case 1: // Lúnula Creciente
-                boxShadowValue = 'inset -50px 0 0 0 #333'; // Sombra a la izquierda
+                boxShadowValue = 'inset 50px 0 0 0 #333'; // Sombra a la izquierda
                 clipPathValue = ''; // No se necesita clip-path
                 break;
             case 2: // Cuarto Creciente
@@ -78,15 +82,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 clipPathValue = 'inset(0% 50% 0% 0%)'; // Mitad derecha iluminada
                 break;
             case 3: // Gibosa Creciente
-                boxShadowValue = 'inset -50px 0 0 0 #333'; // Sombra a la izquierda
+                boxShadowValue = 'inset 50px 0 0 0 #333'; // Sombra a la izquierda
                 clipPathValue = ''; // No se necesita clip-path
                 break;
-            case 4: // Luna Llena
-                boxShadowValue = ''; // Sin sombra
-                clipPathValue = ''; // No se necesita clip-path
-                break;
+            
             case 5: // Gibosa Menguante
-                boxShadowValue = 'inset 50px 0 0 0 #333'; // Sombra a la derecha
+                boxShadowValue = 'inset -50px 0 0 0 #333'; // Sombra a la derecha
                 clipPathValue = ''; // No se necesita clip-path
                 break;
             case 6: // Cuarto Menguante

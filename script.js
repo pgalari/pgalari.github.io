@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 boxShadowValue = 'inset 50px 0 0 0 #333'; // Sombra a la izquierda
                 clipPathValue = ''; // No se necesita clip-path
                 break;
-            case 4: // Luna Llena
+            case 4: // Luna Llena -- perfecto, no tocar
                 boxShadowValue = 'inset 0 0 0 100px #eee'; // luz total
                 clipPathValue = ''; // No se necesita clip-path
                 break;
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 backgroundColor = '#000';
                 break;
             case 7: // Lúnula Menguante
-                boxShadowValue = 'inset -75px 0 0 0 #333'; // Sombra a la derecha
+                boxShadowValue = 'inset -175px 0 0 0 #333'; // Sombra a la derecha
                 clipPathValue = ''; // No se necesita clip-path
                 break;
         }

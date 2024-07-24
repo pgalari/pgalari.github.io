@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
             case 7: // Lúnula Menguante
                 boxShadowValue = 'inset 0 0 0 100px #333'; // Sombra total gris oscuro
                // boxShadowValue = 'inset -175px 0 0 0 #999'; // Sombra a la derecha
-                boxShadowValue = "inset -100px 0 0 0 #999";
+                boxShadowValue = "inset 100px 0 0 0 #bbb";
                 clipPathValue = ''; // No se necesita clip-path
                 break;
         }

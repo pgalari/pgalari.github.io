@@ -97,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 backgroundColor = '#000';
                 break;
             case 7: // Lúnula Menguante
-                boxShadowValue = 'inset -175px 0 0 0 #333'; // Sombra a la derecha
+                boxShadowValue = 'inset 0 0 0 100px #333'; // Sombra total gris oscuro
+                boxShadowValue = 'inset -175px 0 0 0 #999'; // Sombra a la derecha
                 clipPathValue = ''; // No se necesita clip-path
                 break;
         }

@@ -117,7 +117,7 @@
         border-radius:50%;
     }
 
-.semicirculoR {
+.CuartoMenguante {
             background: #888;
             margin: 2%;
             height: 80px;
@@ -125,7 +125,7 @@
             border-bottom-right-radius: 100% 50%;
             width: 40px;
         }
-        .semicirculoL {
+.CuartoCreciente {
             background: #888;
             margin: 2%;
             height: 80px;

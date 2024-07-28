@@ -77,7 +77,7 @@
                     case 2: // Cuarto Creciente
                         boxShadowValue = ''; 
                         clipPathValue = ''; 
-                        classToAdd = 'semicirculoL'; // Clase para semicírculo a la derecha
+                        classToAdd = 'CuartoCreciente'; // Clase para semicírculo a la derecha
                         break;
                     case 3: // Gibosa Creciente
                         boxShadowValue = 'inset 50px 0 0 0 #333';
@@ -94,7 +94,7 @@
                     case 6: // Cuarto Menguante
                         boxShadowValue = ''; 
                         clipPathValue = ''; 
-                        classToAdd = 'semicirculoR'; // Clase para semicírculo a la izquierda
+                        classToAdd = 'CuartoMenguante'; // Clase para semicírculo a la izquierda
                         break;
                     case 7: // Lúnula Menguante
                         boxShadowValue = 'inset -275px 0 0 0 #333';

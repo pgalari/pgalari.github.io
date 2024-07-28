@@ -1,71 +1,181 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/jpg" href="/favicon.ico"/>
-    <link rel="icon" type="image/jpg" href="/favicon.png"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- A quick, reasonable place to start with styling your symbols -->
-<style>
-  .icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.125em;
-  }
-</style>
-
-
-    <script defer src="script.js"></script>
     <title>Fases de la Luna</title>
+    <style>
+        #moonFase {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #eee;
+            position: relative;
+            margin: 20px auto;
+        }
+        
+        .luna-nueva {
+            box-shadow: inset 0 0 0 100px #333;
+        }
+        .lunula-creciente {
+            background-color: #888;
+            clip-path: inset(0% 25% 0% 0%);
+            box-shadow: inset 100px 0 50px -40px #333;
+        }
+        .cuarto-creciente {
+            clip-path: inset(0% 50% 0% 0%);
+            background-color: #333;
+        }
+        .gibosa-creciente {
+            background-color: #888;
+            clip-path: inset(0% 75% 0% 0%);
+            box-shadow: inset 100px 0 50px -20px #333;
+        }
+        .luna-llena {
+            box-shadow: inset 0 0 0 100px #eee;
+        }
+        .gibosa-menguante {
+            background-color: #888;
+            clip-path: inset(0% 0% 0% 75%);
+            box-shadow: inset -100px 0 50px -20px #333;
+        }
+        .cuarto-menguante {
+            clip-path: inset(0% 0% 0% 50%);
+            background-color: #000;
+        }
+        .lunula-menguante {
+            background-color: #888;
+            clip-path: inset(0% 0% 0% 25%);
+            box-shadow: inset -100px 0 50px -40px #333;
+        }
+    </style>
 </head>
-<body class="d-flex text-center text-bg-dark">
-    <div class="container-fluid">
-        
-        <div class="position-absolute top-0 start-50 translate-middle-x">
-            <div class="shadow-lg mt-3 p-2 bg-body-tertiary rounded">
-                 <h3 class="text-dark text-center fw-bold" id="phase-name"></h3> 
-             </div>
-        </div>
-        
-        <div id="cover" class=w-100 h=100 p-3"></div>
-                <div id="moon">
-                </div>
-                <div id="moonFase">
-                    <div class="crater crater1"></div>
-                    <div class="crater crater2"></div>
-                    <div class="crater crater3"></div>
-                    <div class="crater crater4"></div>
-                    <div class="crater crater5"></div>
-                    <div class="crater crater6"></div>
-                    <div class="crater crater7"></div>
-                </div>
-        </div>    
+<body>
+    <div id="moonFase"></div>
+    <div id="phase-name"></div>
+    <form id="date-form">
+        <input type="date" id="date-input">
+        <button type="submit">Consultar</button>
+    </form>
+    <div id="formattedDateDisplay"></div>
 
-        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4">
-           <p>  <!-- Name symbols with the value of data-fa-symbol -->
-        <i data-fa-symbol="picture-taker" class="fas fa-moon"></i> del día 
-               
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const moonFase = document.getElementById('moonFase');
+            const phaseName = document.getElementById('phase-name');
+            const dateForm = document.getElementById('date-form');
+            const dateInput = document.getElementById('date-input');
+            const formattedDateDisplay = document.getElementById('formattedDateDisplay');
 
-            <span id="formattedDateDisplay"></span> </p>
+            function formatDate(date) {
+                const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+                const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+                
+                const dayName = days[date.getDay()];
+                const day = date.getDate();
+                const month = months[date.getMonth()];
+                const year = date.getFullYear();
+                
+                return `${dayName}, ${day} de ${month} de ${year}`;
+            }
 
-            <form id="date-form" class="row row-cols-lg-auto g-3 align-items-center">
-                <div class="col-12">
-                    <label class="visually-hidden" for="date-input"><i class="fas fa-calendar"></i></label>
-                    <div class="input-group">
-                        <div class="input-group-text"></div>
-                          <input type="date" class="form-control" id="date-input" required>
-                        </div>
-                    </div>
-                <div class="col-12 ">
-                    <button type="submit" class="btn btn-light fw-bold border-white bg-white">Seleccione fecha</button>
-                </div>
-            </form>
-        </div>
-   
-    </div>
+            function getMoonPhase(date) {
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1; // Enero es 0
+                let day = date.getDate();
 
+                let c = 0, e = 0, jd = 0, b = 0;
+                if (month < 3) {
+                    year--;
+                    month += 12;
+                }
+                ++month;
+                c = 365.25 * year;
+                e = 30.6 * month;
+                jd = c + e + day - 694039.09; // días julianos desde 1/1/1900
+                jd /= 29.5305882; // ciclo lunar (29.53 días)
+                b = parseInt(jd); // parte entera
+                jd -= b; // parte fraccionaria
+                b = Math.round(jd * 8); // fases de la luna en 8 partes
+                if (b >= 8) {
+                    b = 0; // fase completa en 8 partes
+                }
+
+                return {
+                    phase: b,
+                    illumination: (1 - Math.cos((jd - 0.5) * 2 * Math.PI)) * 100 // Porcentaje de iluminación
+                };
+            }
+
+            function displayMoonPhase(phase, illumination) {
+                const phases = [
+                    "Luna Nueva",
+                    "Lúnula Creciente",
+                    "Cuarto Creciente",
+                    "Gibosa Creciente",
+                    "Luna Llena",
+                    "Gibosa Menguante",
+                    "Cuarto Menguante",
+                    "Lúnula Menguante"
+                ];
+
+                phaseName.textContent = phases[phase];
+                console.log("Displaying phase: ", phases[phase]);
+
+                // Limpiar clases anteriores
+                moonFase.className = '';
+
+                // Asignar la clase correspondiente a la fase lunar
+                switch (phase) {
+                    case 0:
+                        moonFase.classList.add('luna-nueva');
+                        break;
+                    case 1:
+                        moonFase.classList.add('lunula-creciente');
+                        break;
+                    case 2:
+                        moonFase.classList.add('cuarto-creciente');
+                        break;
+                    case 3:
+                        moonFase.classList.add('gibosa-creciente');
+                        break;
+                    case 4:
+                        moonFase.classList.add('luna-llena');
+                        break;
+                    case 5:
+                        moonFase.classList.add('gibosa-menguante');
+                        break;
+                    case 6:
+                        moonFase.classList.add('cuarto-menguante');
+                        break;
+                    case 7:
+                        moonFase.classList.add('lunula-menguante');
+                        break;
+                }
+            }
+
+            function updateMoonPhase(date) {
+                const { phase, illumination } = getMoonPhase(date);
+                displayMoonPhase(phase, illumination);
+            }
+
+            dateForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const selectedDate = dateInput.value ? new Date(dateInput.value) : new Date();
+                const formattedDate = formatDate(selectedDate);
+                updateMoonPhase(selectedDate);
+
+                // Mostrar la fecha formateada
+                formattedDateDisplay.textContent = formattedDate;
+            });
+
+            // Mostrar fase lunar actual al cargar la página
+            const currentDate = new Date();
+            updateMoonPhase(currentDate);
+
+            // Mostrar la fecha actual formateada al cargar la página
+            formattedDateDisplay.textContent = formatDate(currentDate);
+        });
+    </script>
 </body>
 </html>

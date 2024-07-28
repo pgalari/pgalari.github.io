@@ -116,3 +116,20 @@
         height:5px;
         border-radius:50%;
     }
+
+.semicirculoR {
+            background: #888;
+            margin: 2%;
+            height: 80px;
+            border-top-right-radius: 100% 50%;
+            border-bottom-right-radius: 100% 50%;
+            width: 40px;
+        }
+        .semicirculoL {
+            background: #888;
+            margin: 2%;
+            height: 80px;
+            border-top-left-radius: 100% 50%;
+            border-bottom-left-radius: 100% 50%;
+            width: 40px;
+        }

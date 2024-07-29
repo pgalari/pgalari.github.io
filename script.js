@@ -1,4 +1,4 @@
-        document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
             const moonFase = document.getElementById('moonFase');
             const phaseName = document.getElementById('phase-name');
             const dateForm = document.getElementById('date-form');
@@ -60,58 +60,35 @@
                 phaseName.textContent = phases[phase];
                 console.log("Displaying phase: ", phases[phase]);
 
-                let boxShadowValue = '';
-                let clipPathValue = '';
-                let backgroundColor = '';
-                let classToAdd = ''; // Nueva variable para clases CSS
-
-                switch (phase) {
-                    case 0: // Luna Nueva
-                        boxShadowValue = 'inset 0 0 0 100px #333';
-                        clipPathValue = '';
-                        break;
-                    case 1: // Lúnula Creciente
-                        boxShadowValue = 'inset 275px 0 0 0 #333';
-                        clipPathValue = '';
-                        break;
-                    case 2: // Cuarto Creciente
-                        boxShadowValue = ''; 
-                        clipPathValue = ''; 
-                        classToAdd = 'CuartoCreciente'; // Clase para semicírculo a la derecha
-                        break;
-                    case 3: // Gibosa Creciente
-                        boxShadowValue = 'inset 50px 0 0 0 #333';
-                        clipPathValue = '';
-                        break;
-                    case 4: // Luna Llena
-                        boxShadowValue = 'inset 0 0 0 100px #eee';
-                        clipPathValue = '';
-                        break;
-                    case 5: // Gibosa Menguante
-                        boxShadowValue = 'inset -50px 0 0 0 #333';
-                        clipPathValue = '';
-                        break;
-                    case 6: // Cuarto Menguante
-                        boxShadowValue = ''; 
-                        clipPathValue = ''; 
-                        classToAdd = 'CuartoMenguante'; // Clase para semicírculo a la izquierda
-                        break;
-                    case 7: // Lúnula Menguante
-                        boxShadowValue = 'inset -275px 0 0 0 #333';
-                        clipPathValue = '';
-                        break;
-                }
-
-                console.log("Applying box-shadow: ", boxShadowValue);
-                console.log("Applying clip-path: ", clipPathValue);
-                moonFase.style.boxShadow = boxShadowValue;
-                moonFase.style.clipPath = clipPathValue;
-                moonFase.style.backgroundColor = backgroundColor;
-                
-                // Limpiamos cualquier clase previa y aplicamos la nueva clase si es necesario
+                // Limpiar clases anteriores
                 moonFase.className = '';
-                if (classToAdd) {
-                    moonFase.classList.add(classToAdd);
+
+                // Asignar la clase correspondiente a la fase lunar
+                switch (phase) {
+                    case 0:
+                        moonFase.classList.add('luna-nueva');
+                        break;
+                    case 1:
+                        moonFase.classList.add('lunula-creciente');
+                        break;
+                    case 2:
+                        moonFase.classList.add('cuarto-creciente');
+                        break;
+                    case 3:
+                        moonFase.classList.add('gibosa-creciente');
+                        break;
+                    case 4:
+                        moonFase.classList.add('luna-llena');
+                        break;
+                    case 5:
+                        moonFase.classList.add('gibosa-menguante');
+                        break;
+                    case 6:
+                        moonFase.classList.add('cuarto-menguante');
+                        break;
+                    case 7:
+                        moonFase.classList.add('lunula-menguante');
+                        break;
                 }
             }
 
@@ -137,11 +114,3 @@
             // Mostrar la fecha actual formateada al cargar la página
             formattedDateDisplay.textContent = formatDate(currentDate);
         });
-
-    // Mostrar fase lunar actual al cargar la página
-    const currentDate = new Date();
-    updateMoonPhase(currentDate);
-
-    // Mostrar la fecha actual formateada al cargar la página
-    formattedDateDisplay.textContent = formatDate(currentDate);
-});

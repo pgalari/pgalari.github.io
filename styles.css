@@ -78,6 +78,7 @@
 	height: 200px;
 	background: #fff;
 	border-radius: 100px 0 0 100px;
+	       z-index:17;
       /*  box-shadow: inset 80px 0px 0 0px #333;
 		
        /* clip-path: inset(0% 50% 0% 0%);*/

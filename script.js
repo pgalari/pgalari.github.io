@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Mostrar la fecha actual formateada al cargar la página
             formattedDateDisplay.textContent = formatDate(currentDate);
-        });
+
             var w = window.innerWidth;
             var h = window.innerHeight;
 
@@ -127,3 +127,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 star.style.right = wRan + "px";
                 document.body.appendChild(star);
             } 
+        });
+            

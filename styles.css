@@ -45,7 +45,8 @@
           box-shadow: inset -35px 0px 0 0px #333;
         } 
 	.cuarto-menguante {
-        	box-shadow: inset -80px 0px 0 0px #333;
+        	 background: #333;
+          box-shadow: inset 255px 0px 0 -165px #eee;
 	} 
         .lunula-menguante {
             background: #333;
@@ -60,7 +61,9 @@
 	
         }
        .cuarto-creciente {
-	       box-shadow: inset 80px 0px 0 0px #333;
+	background: #333;
+        box-shadow: inset -135px 0px 0 -50px #eee;
+	   /*    box-shadow: inset 80px 0px 0 0px #333;*/
 	}
         .gibosa-creciente {
           box-shadow: inset 0 0 0 100px #eee;

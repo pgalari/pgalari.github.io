@@ -13,14 +13,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const day = date.getDate();
         const month = months[date.getMonth()];
         const year = date.getFullYear();
+        const hours = date.getHours();
+        const minutes = date.getMinutes().toString().padStart(2, '0');
         
-        return `${dayName}, ${day} de ${month} de ${year}`;
+        return `${dayName}, ${day} de ${month} de ${year}, ${hours}:${minutes}`;
     }
 
     function getMoonPhase(date) {
         let year = date.getFullYear();
         let month = date.getMonth() + 1; // Enero es 0
         let day = date.getDate();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
 
         let c = 0, e = 0, jd = 0, b = 0;
         if (month < 3) {
@@ -30,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ++month;
         c = 365.25 * year;
         e = 30.6 * month;
-        jd = c + e + day - 694039.09; // días julianos desde 1/1/1900
+        jd = c + e + day - 694039.09 + (hours + minutes / 60 + seconds / 3600) / 24; // días julianos desde 1/1/1900
         jd /= 29.5305882; // ciclo lunar (29.53 días)
         b = parseInt(jd); // parte entera
         jd -= b; // parte fraccionaria
@@ -107,14 +112,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getRandomSize() {
         const rand = Math.random();
-        if (rand < 0.65) {
-            return 1; // 65% de probabilidad para las estrellas pequeñas
-        } else if (rand < 0.85) {
+        if (rand < 0.7) {
+            return 1; // 70% de probabilidad para las estrellas pequeñas
+        } else if (rand < 0.9) {
             return 2; // 20% de probabilidad para las estrellas medianas
-        } else if (rand < 0.99) {
-            return 3; // 14% de probabilidad para las estrellas grandes
         } else {
-            return 4; // 1% de probabilidad para las estrellas grandes
+            return 3; // 10% de probabilidad para las estrellas grandes
         }
     }
 
@@ -158,3 +161,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // Mostrar la fecha actual formateada al cargar la página
     formattedDateDisplay.textContent = formatDate(currentDate);
 });
+

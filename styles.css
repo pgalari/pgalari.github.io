@@ -12,6 +12,14 @@
         box-shadow: 0px 0px 1px 1px rgba(255,255,255,0.6);
         position: absolute;
 }
+.starmax {
+        width: 4px;
+        height: 4px;
+        border-radius: 2px;
+        background: rgba(255,255,255,1);
+        box-shadow: 0px 0px 1px 1px rgba(255,255,255,0.6);
+        position: absolute;
+}
 
 #moon{
         position:absolute;
@@ -50,7 +58,7 @@
 	} 
         .lunula-menguante {
             background: #333;
-            box-shadow: inset 35px -15px 0 0px #eee;
+            box-shadow: inset 35px -25px 0 0px #eee;
         }
         .luna-nueva {
             box-shadow: inset 0 0 0 100px #333;

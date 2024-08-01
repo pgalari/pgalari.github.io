@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Limpiar clases anteriores
                 moonFase.className = '';
-                starsky = 0;        
+                sky = 0;        
                 // Asignar la clase correspondiente a la fase lunar
                 switch (phase) {
                     case 0:
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var h = window.innerHeight;
 
             // estrellas random
-            starsky = 240/starsky;
+            sky = 240/starsky;
             for (i = 1; i < starsky; i++) {
                 wRan = Math.floor(Math.random() * w);
                 hRan = Math.floor(Math.random() * h);

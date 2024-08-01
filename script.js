@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 star.setAttribute("class", "star");
                 star.style.bottom = hRan + "px";
                 star.style.right = wRan + "px";
-                star.style.border-radius = '2px';
+                star.style.bordeRadius = "2px";
                 document.body.appendChild(star);
             } 
         });

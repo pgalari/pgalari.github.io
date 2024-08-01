@@ -105,6 +105,17 @@ document.addEventListener("DOMContentLoaded", function () {
         displayMoonPhase(phase, illumination);
     }
 
+    function getRandomSize() {
+        const rand = Math.random();
+        if (rand < 0.7) {
+            return 1; // 70% de probabilidad para las estrellas pequeñas
+        } else if (rand < 0.9) {
+            return 2; // 20% de probabilidad para las estrellas medianas
+        } else {
+            return 3; // 10% de probabilidad para las estrellas grandes
+        }
+    }
+
     function displayStars(starsky) {
         var w = window.innerWidth;
         var h = window.innerHeight;
@@ -116,11 +127,14 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let i = 0; i < starsky; i++) {
             let wRan = Math.floor(Math.random() * w);
             let hRan = Math.floor(Math.random() * h);
+            let size = getRandomSize();
             var star = document.createElement("div");
             star.setAttribute("class", "star");
             star.style.bottom = hRan + "px";
             star.style.right = wRan + "px";
-            star.style.borderRadius = "2px";
+            star.style.borderRadius = "50%";
+            star.style.width = size + "px";
+            star.style.height = size + "px";
             document.body.appendChild(star);
         }
     }

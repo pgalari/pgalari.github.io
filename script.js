@@ -130,11 +130,12 @@ document.addEventListener("DOMContentLoaded", function () {
             for (i = 1; i < starsky; i++) {
                 wRan = Math.floor(Math.random() * w);
                 hRan = Math.floor(Math.random() * h);
+                border_radius = 2;
                 var star = document.createElement("div");
                 star.setAttribute("class", "star");
                 star.style.bottom = hRan + "px";
                 star.style.right = wRan + "px";
-                star.style.bordeRadius = "2px";
+                star.style.bordeRadius = border_radius + "px";
                 document.body.appendChild(star);
             } 
         });

@@ -66,35 +66,35 @@ document.addEventListener("DOMContentLoaded", function () {
         switch (phase) {
             case 0:
                 moonFase.classList.add('luna-nueva');
-                starsky = 1;
+                starsky = 240;
                 break;
             case 1:
                 moonFase.classList.add('lunula-creciente');
-                starsky = 2;
+                starsky = 180;
                 break;
             case 2:
                 moonFase.classList.add('cuarto-creciente');
-                starsky = 3;
+                starsky = 120;
                 break;
             case 3:
                 moonFase.classList.add('gibosa-creciente');
-                starsky = 4;
+                starsky = 60;
                 break;
             case 4:
                 moonFase.classList.add('luna-llena');
-                starsky = 5;
+                starsky = 30;
                 break;
             case 5:
                 moonFase.classList.add('gibosa-menguante');
-                starsky = 6;
+                starsky = 60;
                 break;
             case 6:
                 moonFase.classList.add('cuarto-menguante');
-                starsky = 7;
+                starsky = 120;
                 break;
             case 7:
                 moonFase.classList.add('lunula-menguante');
-                starsky = 8;
+                starsky = 180;
                 break;
         }
         displayStars(starsky);
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll('.star').forEach(star => star.remove());
         
         // Generar nuevas estrellas
-        for (let i = 1; i < starsky; i++) {
+        for (let i = 0; i < starsky; i++) {
             let wRan = Math.floor(Math.random() * w);
             let hRan = Math.floor(Math.random() * h);
             var star = document.createElement("div");

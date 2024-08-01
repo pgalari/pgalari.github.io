@@ -107,12 +107,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getRandomSize() {
         const rand = Math.random();
-        if (rand < 0.7) {
-            return 1; // 70% de probabilidad para las estrellas pequeñas
-        } else if (rand < 0.9) {
+        if (rand < 0.65) {
+            return 1; // 65% de probabilidad para las estrellas pequeñas
+        } else if (rand < 0.85) {
             return 2; // 20% de probabilidad para las estrellas medianas
+        } else if (rand < 0.99) {
+            return 3; // 14% de probabilidad para las estrellas grandes
         } else {
-            return 3; // 10% de probabilidad para las estrellas grandes
+            return 4; // 1% de probabilidad para las estrellas grandes
         }
     }
 

@@ -126,13 +126,15 @@ document.addEventListener("DOMContentLoaded", function () {
             var h = window.innerHeight;
 
             // estrellas random
-            for (i = 0; i < starsky; i++) {
+            starsky = 240/starsky;
+            for (i = 1; i < starsky; i++) {
                 wRan = Math.floor(Math.random() * w);
                 hRan = Math.floor(Math.random() * h);
                 var star = document.createElement("div");
                 star.setAttribute("class", "star");
                 star.style.bottom = hRan + "px";
                 star.style.right = wRan + "px";
+                star.style.border-radius = '2px';
                 document.body.appendChild(star);
             } 
         });

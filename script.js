@@ -62,32 +62,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Limpiar clases anteriores
                 moonFase.className = '';
-
+                starsky = 0;        
                 // Asignar la clase correspondiente a la fase lunar
                 switch (phase) {
                     case 0:
                         moonFase.classList.add('luna-nueva');
+                                        starsky = 1;  
                         break;
                     case 1:
                         moonFase.classList.add('lunula-creciente');
+                                        starsky = 2;  
                         break;
                     case 2:
                         moonFase.classList.add('cuarto-creciente');
+                                        starsky = 3;  
                         break;
                     case 3:
                         moonFase.classList.add('gibosa-creciente');
+                                        starsky = 4;  
                         break;
                     case 4:
                         moonFase.classList.add('luna-llena');
+                                        starsky = 5;  
                         break;
                     case 5:
                         moonFase.classList.add('gibosa-menguante');
+                                        starsky = 6;  
                         break;
                     case 6:
                         moonFase.classList.add('cuarto-menguante');
+                                        starsky = 7;  
                         break;
                     case 7:
                         moonFase.classList.add('lunula-menguante');
+                                        starsky = 8;  
                         break;
                 }
             }
@@ -117,8 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
             var w = window.innerWidth;
             var h = window.innerHeight;
 
-            // pinto 222 estrellas random
-            for (i = 0; i < 222; i++) {
+            // estrellas random
+            for (i = 0; i < starsky; i++) {
                 wRan = Math.floor(Math.random() * w);
                 hRan = Math.floor(Math.random() * h);
                 var star = document.createElement("div");

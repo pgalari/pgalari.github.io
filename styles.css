@@ -1,3 +1,7 @@
+body {
+    position: relative;
+}
+
 .icon {
     width: 1em;
     height: 1em;
@@ -11,15 +15,10 @@
         background: rgba(255,255,255,1);
         box-shadow: 0px 0px 1px 1px rgba(255,255,255,0.6);
         position: absolute;
+    /*	background-color: white;*/
+    	z-index: 0; /* Asegura que las estrellas estén detrás de otros elementos */
 }
-.starmax {
-        width: 4px;
-        height: 4px;
-        border-radius: 2px;
-        background: rgba(255,255,255,1);
-        box-shadow: 0px 0px 1px 1px rgba(255,255,255,0.6);
-        position: absolute;
-}
+
 
 #moon{
         position:absolute;
@@ -43,7 +42,15 @@
         border-radius:50%;
         right:50%;
         right:calc(50% - 100px);
+	
 }
+
+
+#phase-name, #date-form {
+    z-index: 1; /* Asegura que el texto y el formulario estén delante de las estrellas */
+    position: relative;
+}
+
      /* Fases*/    
         .luna-llena {
             box-shadow: inset 0 0 0 100px #eee;

@@ -30,5 +30,31 @@ document.addEventListener("DOMContentLoaded", function() {
         ctx.fill();
     }
 
+    function drawVenusPosition(cx, cy, radius, venusAngle) {
+        let angleInRadians = venusAngle * (Math.PI / 180);
+        let x = cx + radius * Math.cos(angleInRadians);
+        let y = cy + radius * Math.sin(angleInRadians);
+
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'blue';
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+    }
+
+    // Obtén la posición actual de Venus utilizando Astro.js
+    function getVenusPosition() {
+        const now = new Date();
+        const observer = Astronomy.MakeObserver(0, 0, 0); // Observador en el centro de la Tierra
+        const venus = Astronomy.HelioVector('Venus', now);
+        const ecliptic = Astronomy.Ecliptic(venus);
+        return ecliptic.elon; // Longitud eclíptica de Venus en grados
+    }
+
+    let venusAngle = getVenusPosition(); // Obtiene la posición actual de Venus en grados
+
     drawVenusStarPoint(400, 400, 5, 300, 150);
+    drawVenusPosition(400, 400, 300, venusAngle);
 });

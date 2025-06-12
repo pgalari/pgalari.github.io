@@ -1,1 +1,20 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Árbol de la Vida</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <svg id="tree-svg" viewBox="0 0 600 800"></svg>
+    <div id="panel-lateral" class="cerrado">
+      <button onclick="cerrarPanel()">✕</button>
+      <div id="contenido-sefira"></div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

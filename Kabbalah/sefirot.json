@@ -1,0 +1,110 @@
+{
+  "sefirot": [
+    {
+      "nombre": "Keter",
+      "x": 300,
+      "y": 50,
+      "descripcion": "Corona divina"
+    },
+    {
+      "nombre": "Chokhmah",
+      "x": 200,
+      "y": 150,
+      "descripcion": "Sabidur\u00eda"
+    },
+    {
+      "nombre": "Binah",
+      "x": 400,
+      "y": 150,
+      "descripcion": "Entendimiento"
+    },
+    {
+      "nombre": "Chesed",
+      "x": 150,
+      "y": 300,
+      "descripcion": "Misericordia"
+    },
+    {
+      "nombre": "Geburah",
+      "x": 450,
+      "y": 300,
+      "descripcion": "Rigor"
+    },
+    {
+      "nombre": "Tiferet",
+      "x": 300,
+      "y": 350,
+      "descripcion": "Belleza"
+    },
+    {
+      "nombre": "Netzach",
+      "x": 200,
+      "y": 500,
+      "descripcion": "Victoria"
+    },
+    {
+      "nombre": "Hod",
+      "x": 400,
+      "y": 500,
+      "descripcion": "Gloria"
+    },
+    {
+      "nombre": "Yesod",
+      "x": 300,
+      "y": 600,
+      "descripcion": "Fundamento"
+    },
+    {
+      "nombre": "Malkuth",
+      "x": 300,
+      "y": 700,
+      "descripcion": "Reino"
+    }
+  ],
+  "sendas": [
+    {
+      "de": 0,
+      "a": 1
+    },
+    {
+      "de": 0,
+      "a": 2
+    },
+    {
+      "de": 1,
+      "a": 3
+    },
+    {
+      "de": 2,
+      "a": 4
+    },
+    {
+      "de": 3,
+      "a": 5
+    },
+    {
+      "de": 4,
+      "a": 5
+    },
+    {
+      "de": 5,
+      "a": 6
+    },
+    {
+      "de": 5,
+      "a": 7
+    },
+    {
+      "de": 6,
+      "a": 8
+    },
+    {
+      "de": 7,
+      "a": 8
+    },
+    {
+      "de": 8,
+      "a": 9
+    }
+  ]
+}

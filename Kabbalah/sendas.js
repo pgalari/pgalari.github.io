@@ -3,6 +3,7 @@ export const sendas = [
   { de: "keter", a: "binah" },
   { de: "chochmah", a: "binah" },
   { de: "chochmah", a: "chesed" },
+  { de: "chochmah", a: "tiferet" },
   { de: "binah", a: "gevurah" },
   { de: "binah", a: "tiferet" },
   { de: "keter", a: "tiferet" },

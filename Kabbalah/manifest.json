@@ -1,10 +1,10 @@
 {
-  "name": "\u00c1rbol de la Vida",
-  "short_name": "Sefirot",
-  "start_url": "./index.html",
+  "name": "Árbol de la Vida",
+  "short_name": "Kabbalah",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#111111",
+  "background_color": "#f3f0ea",
+  "theme_color": "#333333",
   "icons": [
     {
       "src": "icon192.ico",

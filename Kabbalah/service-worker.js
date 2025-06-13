@@ -1,21 +1,22 @@
-self.addEventListener("install", e => {
-  e.waitUntil(
-    caches.open("sefirot-cache").then(cache => {
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open('kabbalah-v1').then(cache => {
       return cache.addAll([
-        "./",
-        "./index.html",
-        "./styles.css",
-        "./app.js",
-        "./sefirot.json",
-        "./manifest.json",
-        "./icon192.ico"
+        './',
+        './index.html',
+        './styles.css',
+        './app.js',
+        './sefirot.js',
+        './manifest.json'
       ]);
     })
   );
 });
 
-self.addEventListener("fetch", e => {
-  e.respondWith(
-    caches.match(e.request).then(response => response || fetch(e.request))
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });

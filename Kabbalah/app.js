@@ -1,63 +1,55 @@
 import { sefirot } from './sefirot.js';
+import { sendas } from './sendas.js';
 
 const svg = document.getElementById("tree-svg");
-const panel = document.getElementById("panel-lateral");
-const contenido = document.getElementById("contenido-sefira");
 
-const conexiones = [
-  ["keter", "chochmah"], ["keter", "binah"],["chochmah", "binah"], 
-  ["chochmah", "chesed"], ["binah", "gevurah"], ["chesed", "gevurah"],
-  ["chesed", "tiferet"], ["gevurah", "tiferet"],["tiferet", "netzach"], 
-  ["tiferet", "hod"],["netzach", "hod"], ["netzach", "yesod"],
-  ["hod", "yesod"], ["yesod", "malkuth"], ["daat", "tiferet"], 
-  ["daat", "keter"], ["daat", "chochmah"], ["daat", "binah"],
-  ["netzach", "malkuth"], ["hod", "malkuth"],["chesed", "netzach"], 
-  ["gevurah", "hod"]
-];
-
-conexiones.forEach(([id1, id2]) => {
-  const s1 = sefirot.find(s => s.id === id1);
-  const s2 = sefirot.find(s => s.id === id2);
-  if (s1 && s2) {
-    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("x1", s1.x);
-    line.setAttribute("y1", s1.y);
-    line.setAttribute("x2", s2.x);
-    line.setAttribute("y2", s2.y);
-    line.setAttribute("stroke", "#fff");
-    line.setAttribute("stroke-width", "2");
-    svg.appendChild(line);
-  }
-});
-
-sefirot.forEach(sefira => {
+function crearSefira({ id, x, y, color, nombre }) {
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  circle.setAttribute("cx", sefira.x);
-  circle.setAttribute("cy", sefira.y);
-  circle.setAttribute("r", 20);
-  circle.setAttribute("class", `sefira ${sefira.color}`);
-  circle.setAttribute("id", sefira.id);
-  circle.addEventListener("click", () => mostrarSefira(sefira));
+  circle.setAttribute("cx", x);
+  circle.setAttribute("cy", y);
+  circle.setAttribute("r", 30);
+  circle.setAttribute("fill", color);
+  circle.setAttribute("id", id);
+  circle.addEventListener("click", () => mostrarInfo(id));
   svg.appendChild(circle);
-});
-
-let index = 0;
-function activarSefira() {
-  if (index < sefirot.length) {
-    const sefira = sefirot[index];
-    const el = document.getElementById(sefira.id);
-    el.classList.add("activo");
-    index++;
-    setTimeout(activarSefira, 300);
-  }
 }
-activarSefira();
 
-function mostrarSefira(sefira) {
+function crearSendas() {
+  sendas.forEach(({ de, a }) => {
+    const origen = sefirot.find(s => s.id === de);
+    const destino = sefirot.find(s => s.id === a);
+    if (origen && destino) {
+      const linea = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      linea.setAttribute("x1", origen.x);
+      linea.setAttribute("y1", origen.y);
+      linea.setAttribute("x2", destino.x);
+      linea.setAttribute("y2", destino.y);
+      linea.setAttribute("stroke", "#888");
+      svg.appendChild(linea);
+    }
+  });
+}
+
+function mostrarInfo(id) {
+  const sefira = sefirot.find(s => s.id === id);
+  const panel = document.getElementById("panel-lateral");
+  const contenido = document.getElementById("contenido-sefira");
   contenido.innerHTML = `<h2>${sefira.nombre}</h2><p>${sefira.descripcion}</p>`;
   panel.classList.remove("cerrado");
 }
 
-window.cerrarPanel = function () {
-  panel.classList.add("cerrado");
-};
+window.cerrarPanel = () => {
+  document.getElementById("panel-lateral").classList.add("cerrado");
+}
+
+export function iluminarRecorrido(recorrido) {
+  recorrido.forEach(({ id, nivel }) => {
+    const node = document.getElementById(id);
+    if (node) {
+      node.classList.add(`iluminado-${nivel}`);
+    }
+  });
+}
+
+crearSendas();
+sefirot.forEach(crearSefira);

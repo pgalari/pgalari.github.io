@@ -1,11 +1,19 @@
 import { sefirot } from './sefirot.js';
-import { conexiones } from './sefirot.js';
 
 const svg = document.getElementById("tree-svg");
 const panel = document.getElementById("panel-lateral");
 const contenido = document.getElementById("contenido-sefira");
 
-
+const conexiones = [
+  ["keter", "chochmah"], ["keter", "binah"],["chochmah", "binah"], 
+  ["chochmah", "chesed"], ["binah", "gevurah"], ["chesed", "gevurah"],
+  ["chesed", "tiferet"], ["gevurah", "tiferet"],["tiferet", "netzach"], 
+  ["tiferet", "hod"],["netzach", "hod"], ["netzach", "yesod"],
+  ["hod", "yesod"], ["yesod", "malkuth"], ["daat", "tiferet"], 
+  ["daat", "keter"], ["daat", "chochmah"], ["daat", "binah"],
+  ["netzach", "malkuth"], ["hod", "malkuth"],["chesed", "netzach"], 
+  ["gevurah", "hod"]
+];
 
 conexiones.forEach(([id1, id2]) => {
   const s1 = sefirot.find(s => s.id === id1);
@@ -17,7 +25,7 @@ conexiones.forEach(([id1, id2]) => {
     line.setAttribute("x2", s2.x);
     line.setAttribute("y2", s2.y);
     line.setAttribute("stroke", "#fff");
-    line.setAttribute("stroke-width", "3");
+    line.setAttribute("stroke-width", "2");
     svg.appendChild(line);
   }
 });

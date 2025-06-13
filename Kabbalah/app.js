@@ -34,7 +34,7 @@ sefirot.forEach(sefira => {
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", sefira.x);
   circle.setAttribute("cy", sefira.y);
-  circle.setAttribute("r", 30);
+  circle.setAttribute("r", 20);
   circle.setAttribute("class", `sefira ${sefira.color}`);
   circle.setAttribute("id", sefira.id);
   circle.addEventListener("click", () => mostrarSefira(sefira));

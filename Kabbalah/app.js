@@ -48,7 +48,7 @@ function activarSefira() {
     const el = document.getElementById(sefira.id);
     el.classList.add("activo");
     index++;
-    setTimeout(activarSefira, 400);
+    setTimeout(activarSefira, 300);
   }
 }
 activarSefira();

@@ -11,14 +11,3 @@ export const sefirot = [
   { id: "yesod", nombre: "Yesod", orden: 10, x: 350, y: 600, color: "plata", descripcion: "Fundamento." },
   { id: "malkuth", nombre: "Malkut", orden: 11, x: 350, y: 700, color: "tierra", descripcion: "Reino." }
 ];
-
-export const conexiones = [
-  ["keter", "chochmah"], ["keter", "binah"],["chochmah", "binah"], 
-  ["chochmah", "chesed"], ["binah", "gevurah"], ["chesed", "gevurah"],
-  ["chesed", "tiferet"], ["gevurah", "tiferet"],["tiferet", "netzach"], 
-  ["tiferet", "hod"],["netzach", "hod"], ["netzach", "yesod"],
-  ["hod", "yesod"], ["yesod", "malkuth"], ["daat", "tiferet"], 
-  ["daat", "keter"], ["daat", "chochmah"], ["daat", "binah"],
-  ["netzach", "malkuth"], ["hod", "malkuth"],["chesed", "netzach"], 
-  ["gevurah", "hod"]
-];

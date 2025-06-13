@@ -1,110 +1,15 @@
 {
-  "sefirot": [
-    {
-      "nombre": "Keter",
-      "x": 300,
-      "y": 50,
-      "descripcion": "Corona divina"
-    },
-    {
-      "nombre": "Chokhmah",
-      "x": 200,
-      "y": 150,
-      "descripcion": "Sabidur\u00eda"
-    },
-    {
-      "nombre": "Binah",
-      "x": 400,
-      "y": 150,
-      "descripcion": "Entendimiento"
-    },
-    {
-      "nombre": "Chesed",
-      "x": 150,
-      "y": 300,
-      "descripcion": "Misericordia"
-    },
-    {
-      "nombre": "Geburah",
-      "x": 450,
-      "y": 300,
-      "descripcion": "Rigor"
-    },
-    {
-      "nombre": "Tiferet",
-      "x": 300,
-      "y": 350,
-      "descripcion": "Belleza"
-    },
-    {
-      "nombre": "Netzach",
-      "x": 200,
-      "y": 500,
-      "descripcion": "Victoria"
-    },
-    {
-      "nombre": "Hod",
-      "x": 400,
-      "y": 500,
-      "descripcion": "Gloria"
-    },
-    {
-      "nombre": "Yesod",
-      "x": 300,
-      "y": 600,
-      "descripcion": "Fundamento"
-    },
-    {
-      "nombre": "Malkuth",
-      "x": 300,
-      "y": 700,
-      "descripcion": "Reino"
-    }
-  ],
-  "sendas": [
-    {
-      "de": 0,
-      "a": 1
-    },
-    {
-      "de": 0,
-      "a": 2
-    },
-    {
-      "de": 1,
-      "a": 3
-    },
-    {
-      "de": 2,
-      "a": 4
-    },
-    {
-      "de": 3,
-      "a": 5
-    },
-    {
-      "de": 4,
-      "a": 5
-    },
-    {
-      "de": 5,
-      "a": 6
-    },
-    {
-      "de": 5,
-      "a": 7
-    },
-    {
-      "de": 6,
-      "a": 8
-    },
-    {
-      "de": 7,
-      "a": 8
-    },
-    {
-      "de": 8,
-      "a": 9
-    }
+  "sefirot":   [
+  { id: "keter", nombre: "Kéter", orden: 1, x: 350, y: 100, color: "violeta", descripcion: "Corona divina." },
+  { id: "chochmah", nombre: "Jojmá", orden: 2, x: 200, y: 200, color: "azul", descripcion: "Sabiduría." },
+  { id: "binah", nombre: "Biná", orden: 3, x: 500, y: 200, color: "rojo", descripcion: "Entendimiento." },
+  { id: "daat", nombre: "Daat", orden: 4, x: 350, y: 250, color: "gris", descripcion: "Conocimiento." },
+  { id: "chesed", nombre: "Jésed", orden: 5, x: 200, y: 320, color: "celeste", descripcion: "Amor." },
+  { id: "gevurah", nombre: "Gevurá", orden: 6, x: 500, y: 320, color: "granate", descripcion: "Fuerza." },
+  { id: "tiferet", nombre: "Tiféret", orden: 7, x: 350, y: 400, color: "dorado", descripcion: "Belleza." },
+  { id: "netzach", nombre: "Nétzaj", orden: 8, x: 200, y: 500, color: "verde", descripcion: "Victoria." },
+  { id: "hod", nombre: "Hod", orden: 9, x: 500, y: 500, color: "naranja", descripcion: "Gloria." },
+  { id: "yesod", nombre: "Yesod", orden: 10, x: 350, y: 600, color: "plata", descripcion: "Fundamento." },
+  { id: "malkuth", nombre: "Malkut", orden: 11, x: 350, y: 700, color: "tierra", descripcion: "Reino." }
   ]
 }

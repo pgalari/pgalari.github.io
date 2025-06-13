@@ -1,4 +1,5 @@
 import { sefirot } from './sefirot.js';
+import { conexiones } from './sefirot.js';
 
 const svg = document.getElementById("tree-svg");
 const panel = document.getElementById("panel-lateral");

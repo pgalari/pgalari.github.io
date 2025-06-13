@@ -4,19 +4,7 @@ const svg = document.getElementById("tree-svg");
 const panel = document.getElementById("panel-lateral");
 const contenido = document.getElementById("contenido-sefira");
 
-const conexiones = [
-  ["keter", "chochmah"], ["keter", "binah"],
-  ["chochmah", "binah"], ["chochmah", "chesed"],
-  ["binah", "gevurah"], ["chesed", "gevurah"],
-  ["chesed", "tiferet"], ["gevurah", "tiferet"],
-  ["tiferet", "netzach"], ["tiferet", "hod"],
-  ["netzach", "hod"], ["netzach", "yesod"],
-  ["hod", "yesod"], ["yesod", "malkuth"],
-  ["daat", "tiferet"], ["daat", "keter"],
-  ["daat", "chochmah"], ["daat", "binah"],
-  ["netzach", "malkuth"], ["hod", "malkuth"],
-  ["chesed", "netzach"], ["gevurah", "hod"]
-];
+
 
 conexiones.forEach(([id1, id2]) => {
   const s1 = sefirot.find(s => s.id === id1);
@@ -27,8 +15,8 @@ conexiones.forEach(([id1, id2]) => {
     line.setAttribute("y1", s1.y);
     line.setAttribute("x2", s2.x);
     line.setAttribute("y2", s2.y);
-    line.setAttribute("stroke", "#999");
-    line.setAttribute("stroke-width", "2");
+    line.setAttribute("stroke", "#fff");
+    line.setAttribute("stroke-width", "3");
     svg.appendChild(line);
   }
 });
@@ -37,7 +25,7 @@ sefirot.forEach(sefira => {
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", sefira.x);
   circle.setAttribute("cy", sefira.y);
-  circle.setAttribute("r", 20);
+  circle.setAttribute("r", 30);
   circle.setAttribute("class", `sefira ${sefira.color}`);
   circle.setAttribute("id", sefira.id);
   circle.addEventListener("click", () => mostrarSefira(sefira));

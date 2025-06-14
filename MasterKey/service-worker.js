@@ -6,7 +6,7 @@ self.addEventListener('install', event => {
         './index.html',
         './styles.css',
         './app.js',
-        './sefirot.js',
+        './orbs.js',
         './sendas.js',
         './manifest.json'
       ]);

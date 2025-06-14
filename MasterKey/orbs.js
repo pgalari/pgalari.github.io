@@ -9,6 +9,6 @@ export const orbs = [
   { id: "orb-10", nombre: "Orb 10", orden: 10, x: 450, y: 350, color: "#fef200", descripcion: "Pareja" },
   { id: "orb-8", nombre: "Orb 8", orden: 8, x: 450, y: 450, color: "#fef200", descripcion: "Relaciones" },
   { id: "orb-11", nombre: "Orb 11", orden: 11, x: 250, y: 250, color: "#eb018e", descripcion: "Propósito" },
-  { id: "orb-9", nombre: "Orb 9", orden: 9, x: 250, y: 350, color: "#eb018e", descripcion: "Habilidades." },
+  { id: "orb-9", nombre: "Orb 9", orden: 9, x: 250, y: 350, color: "#04adf0", descripcion: "Habilidades." },
   { id: "orb-7", nombre: "Orb 7", orden: 7, x: 250, y: 450, color: "#eb018e", descripcion: "Servicio" }
 ];

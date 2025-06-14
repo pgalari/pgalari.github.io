@@ -1,0 +1,57 @@
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #111;
+  color: white;
+  display: flex;
+}
+
+#app {
+  display: flex;
+  width: 100%;
+}
+
+#tree-svg {
+  flex: 1;
+  height: 100vh;
+}
+
+circle {
+  stroke: white;
+  stroke-width: 2;
+  cursor: pointer;
+}
+
+.iluminado-1 {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
+}
+
+.iluminado-2 {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+}
+
+.iluminado-3 {
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 1));
+}
+
+#panel-lateral {
+  width: 250px;
+  background-color: #222;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+#panel-lateral.cerrado {
+  transform: translateX(100%);
+}
+
+#panel-lateral button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  float: right;
+}

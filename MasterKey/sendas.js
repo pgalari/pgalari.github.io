@@ -22,5 +22,9 @@ export const sendas = [
   { de: "orb-5", a: "orb-7" },
   { de: "orb-5", a: "orb-8" },
   { de: "orb-6", a: "orb-7" },
-  { de: "orb-6", a: "orb-8" }
+  { de: "orb-6", a: "orb-8" },
+  { de: "orb-7", a: "orb-9" },
+  { de: "orb-8", a: "orb-10" },
+  { de: "orb-9", a: "orb-11" },
+  { de: "orb-10", a: "orb-12" }
 ];

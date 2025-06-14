@@ -1,12 +1,13 @@
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open('kabbalah-v1').then(cache => {
+    caches.open('masterkey-v1').then(cache => {
       return cache.addAll([
         './',
         './index.html',
         './styles.css',
         './app.js',
         './sefirot.js',
+        './sendas.js',
         './manifest.json'
       ]);
     })

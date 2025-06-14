@@ -1,5 +1,5 @@
 export const orbs = [
-  { id: "orb-1", nombre: "Orb 1", orden: 1, x: 350, y: 100, color: "#7F00FF", descripcion: "Gama. Vibración" },
+  { id: "orb-1", nombre: "Orb 1", orden: 1, x: 350, y: 100, color: "MediumVioletRed", descripcion: "Gama. Vibración" },
   { id: "orb-2", nombre: "Orb 2", orden: 2, x: 350, y: 200, color: "blue", descripcion: "Beta. Química" },
   { id: "orb-3", nombre: "Orb 3", orden: 3, x: 350, y: 300, color: "green", descripcion: "Alpha. Emociones." },
   { id: "orb-4", nombre: "Orb 4", orden: 4, x: 350, y: 400, color: "gold", descripcion: "Theta. Infomación" },

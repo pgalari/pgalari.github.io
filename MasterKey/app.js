@@ -1,9 +1,9 @@
-import { sefirot } from './sefirot.js';
+import { orbs } from './orbs.js';
 import { sendas } from './sendas.js';
 
 const svg = document.getElementById("tree-svg");
 
-function crearSefira({ id, x, y, color, nombre }) {
+function crearOrb({ id, x, y, color, nombre }) {
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", x);
   circle.setAttribute("cy", y);

@@ -16,8 +16,8 @@ function crearOrb({ id, x, y, color, nombre }) {
 
 function crearSendas() {
   sendas.forEach(({ de, a }) => {
-    const origen = sefirot.find(s => s.id === de);
-    const destino = sefirot.find(s => s.id === a);
+    const origen = orbs.find(s => s.id === de);
+    const destino = orbs.find(s => s.id === a);
     if (origen && destino) {
       const linea = document.createElementNS("http://www.w3.org/2000/svg", "line");
       linea.setAttribute("x1", origen.x);

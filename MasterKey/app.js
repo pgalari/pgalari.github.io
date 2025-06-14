@@ -31,10 +31,10 @@ function crearSendas() {
 }
 
 function mostrarInfo(id) {
-  const sefira = sefirot.find(s => s.id === id);
+  const orb = orbs.find(s => s.id === id);
   const panel = document.getElementById("panel-lateral");
-  const contenido = document.getElementById("contenido-sefira");
-  contenido.innerHTML = `<h2>${sefira.nombre}</h2><p>${sefira.descripcion}</p>`;
+  const contenido = document.getElementById("contenido");
+  contenido.innerHTML = `<h2>${orb.nombre}</h2><p>${orb.descripcion}</p>`;
   panel.classList.remove("cerrado");
 }
 
@@ -52,4 +52,4 @@ export function iluminarRecorrido(recorrido) {
 }
 
 crearSendas();
-sefirot.forEach(crearSefira);
+orbs.forEach(crearOrb);

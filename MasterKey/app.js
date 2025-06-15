@@ -51,5 +51,24 @@ export function iluminarRecorrido(recorrido) {
   });
 }
 
+function showSefiraInfo(name, description) {
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    document.getElementById('mobileTitle').textContent = name;
+    document.getElementById('mobileDescription').textContent = description;
+    document.getElementById('mobileModal').classList.add('active');
+  } else {
+    // Código para mostrar en panel lateral (escritorio)
+    document.getElementById('sidebar-title').textContent = name;
+    document.getElementById('sidebar-description').textContent = description;
+    document.getElementById('sidebar').classList.add('active');
+  }
+}
+
+function closeMobileModal() {
+  document.getElementById('mobileModal').classList.remove('active');
+}
+
 crearSendas();
 orbs.forEach(crearOrb);

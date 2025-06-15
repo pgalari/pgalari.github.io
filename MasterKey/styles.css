@@ -27,6 +27,31 @@ circle {
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
 }
 
+.orb {
+  transition: filter 0.5s, stroke 0.5s;
+  cursor: pointer;
+}
+
+.orb.nivel1 {
+  filter: drop-shadow(0 0 6px gold);
+  stroke: gold;
+  stroke-width: 4;
+}
+
+.orb.nivel2 {
+  filter: drop-shadow(0 0 4px orange);
+  stroke: orange;
+  stroke-width: 3;
+}
+
+.orb.nivel3 {
+  filter: drop-shadow(0 0 4px violet);
+  stroke: violet;
+  stroke-width: 2;
+}
+
+
+
 .iluminado-2 {
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
 }

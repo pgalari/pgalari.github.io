@@ -63,6 +63,7 @@ function showSefiraInfo(name, description) {
     document.getElementById('sidebar-title').textContent = name;
     document.getElementById('sidebar-description').textContent = description;
     document.getElementById('sidebar').classList.add('active');
+    document.getElementById("reiniciar").addEventListener("click", demoRecorrido);
   }
 }
 

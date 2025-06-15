@@ -75,24 +75,6 @@ circle {
     pointer-events: none;
   }
 
-  /* Diseño responsivo */
-  @media (max-width: 768px) {
-    .tree-container svg {
-      width: 90vw;
-      height: auto;
-    }
-
-    .orb circle {
-      r: 18;
-    }
-
-    .orb text {
-      font-size: 10px;
-    }
-
-    .sidebar {
-      display: none;
-    }
 
     /* Modal para descripción */
     .mobile-modal {
@@ -142,13 +124,27 @@ circle {
   cursor: pointer;
   float: right;
 }
+  /* Diseño responsivo */
+  @media (max-width: 768px) {
+    .tree-container svg {
+      width: 90vw;
+      height: auto;
+    }
 
-@media (max-width: 768px) {
-  .tree-container svg {
-    width: 90vw;
-    height: auto;
-  }
+    .orb circle {
+      r: 18;
+    }
 
+    .orb text {
+      font-size: 10px;
+    }
+
+    .sidebar {
+      display: none;
+    }
+
+
+ 
   .sefira circle {
     r: 18; /* Agrandar los círculos */
   }

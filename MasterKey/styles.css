@@ -140,3 +140,22 @@ circle {
   cursor: pointer;
   float: right;
 }
+
+@media (max-width: 768px) {
+  .tree-container svg {
+    width: 90vw;
+    height: auto;
+  }
+
+  .sefira circle {
+    r: 18; /* Agrandar los círculos */
+  }
+
+  .sefira text {
+    font-size: 10px; /* O mostrar al hacer zoom */
+  }
+
+  .sidebar {
+    display: none; /* O reemplazar por modal */
+  }
+}

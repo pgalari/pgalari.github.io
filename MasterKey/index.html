@@ -23,73 +23,13 @@
 </div>
   
   <script type="module" src="app.js"></script>
-</body>
+
+  <button id="reiniciar" style="position: fixed; top: 10px; right: 10px; z-index: 999;">🔁 Recorrido</button>
+  </body>
 </html>
 
 
-// Cambios en el CSS para las 4 mejoras en móviles
 
-<style>
-  /* Estilo base para las esferas (Sefirot) */
-  .sefira circle {
-    transition: r 0.3s, fill 0.3s;
-  }
-
-  .sefira text {
-    font-family: sans-serif;
-    text-anchor: middle;
-    dominant-baseline: middle;
-    font-size: 12px;
-    fill: white;
-    pointer-events: none;
-  }
-
-  /* Diseño responsivo */
-  @media (max-width: 768px) {
-    .tree-container svg {
-      width: 90vw;
-      height: auto;
-    }
-
-    .sefira circle {
-      r: 18;
-    }
-
-    .sefira text {
-      font-size: 10px;
-    }
-
-    .sidebar {
-      display: none;
-    }
-
-    /* Modal para descripción */
-    .mobile-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #222;
-      color: white;
-      padding: 2rem;
-      z-index: 1000;
-    }
-
-    .mobile-modal.active {
-      display: block;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-  }
-</style>
 
 
 

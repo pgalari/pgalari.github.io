@@ -69,6 +69,26 @@ function showSefiraInfo(name, description) {
 function closeMobileModal() {
   document.getElementById('mobileModal').classList.remove('active');
 }
+function demoRecorrido() {
+  const ordenRecorrido = [
+    "orb-1", "orb-2", "orb-3", "orb-4", "orb-5", "orb-6",
+    "orb-7", "orb-8", "orb-9", "orb-10", "orb-11", "orb-12"
+  ];
+
+  ordenRecorrido.forEach((id, index) => {
+    setTimeout(() => {
+      document.querySelectorAll(".orb").forEach(el => {
+        el.classList.remove("nivel1", "nivel2", "nivel3");
+      });
+      const sefira = document.getElementById(id);
+      if (orb) orb.classList.add("nivel1");
+    }, index * 1000); // 1 segundo entre cada paso
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  demoRecorrido(); // Inicia automáticamente
+});
 
 crearSendas();
 orbs.forEach(crearOrb);

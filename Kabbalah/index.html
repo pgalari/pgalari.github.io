@@ -7,13 +7,17 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="app">
-    <svg id="tree-svg" viewBox="0 0 700 800"></svg>
-    <div id="panel-lateral" class="cerrado">
-      <button onclick="cerrarPanel()">✕</button>
-      <div id="contenido-sefira"></div>
-    </div>
+  <div id="tree-container"></div>
+  <div id="info-panel" class="hidden">
+    <button id="close-panel">X</button>
+    <h2 id="panel-title"></h2>
+    <p id="panel-content"></p>
   </div>
-  <script type="module" src="app.js"></script>
+  <button id="start-button">Iniciar Recorrido</button>
+  <audio id="sound1" src="assets/sounds/click-suave.mp3" preload="auto"></audio>
+  <audio id="sound2" src="assets/sounds/ding-sutil.mp3" preload="auto"></audio>
+  <script src="sefirot-data.js"></script>
+  <script src="sendas-data.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>

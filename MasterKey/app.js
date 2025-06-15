@@ -81,7 +81,7 @@ function demoRecorrido() {
       document.querySelectorAll(".orb").forEach(el => {
         el.classList.remove("nivel1", "nivel2", "nivel3");
       });
-      const sefira = document.getElementById(id);
+      const orb = document.getElementById(id);
       if (orb) orb.classList.add("nivel1");
     }, index * 1000); // 1 segundo entre cada paso
   });

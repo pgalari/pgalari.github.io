@@ -59,6 +59,66 @@ circle {
 .iluminado-3 {
   filter: drop-shadow(0 0 14px rgba(255, 255, 255, 1));
 }
+  /* Estilo base para las esferas (orbs) */
+  .orb circle {
+    transition: r 0.3s, fill 0.3s;
+  }
+
+  .orb text {
+    font-family: sans-serif;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-size: 12px;
+    fill: white;
+    pointer-events: none;
+  }
+
+  /* Diseño responsivo */
+  @media (max-width: 768px) {
+    .tree-container svg {
+      width: 90vw;
+      height: auto;
+    }
+
+    .orb circle {
+      r: 18;
+    }
+
+    .orb text {
+      font-size: 10px;
+    }
+
+    .sidebar {
+      display: none;
+    }
+
+    /* Modal para descripción */
+    .mobile-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #222;
+      color: white;
+      padding: 2rem;
+      z-index: 1000;
+    }
+
+    .mobile-modal.active {
+      display: block;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  
+
 
 #panel-lateral {
   width: 250px;

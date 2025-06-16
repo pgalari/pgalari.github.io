@@ -3,66 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orbes Interactivos</title>
+  <title>Orbes Interactivas</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      background: #000;
+      background-color: #000;
       overflow: hidden;
+      font-family: sans-serif;
     }
     svg {
+      display: block;
+      margin: 0 auto;
       width: 100vw;
       height: 100vh;
-      display: block;
     }
     .orb {
       cursor: pointer;
-      transition: transform 0.3s ease, filter 0.5s ease;
-      filter: url(#gaseoso);
+    }
+    .orb circle {
+      filter: url(#glow);
+      transition: transform 0.3s ease;
+      transform-origin: center;
+      animation: gaseous 3s infinite alternate ease-in-out;
     }
     .orb text {
-      pointer-events: none;
-      font-size: 14px;
       fill: white;
+      pointer-events: none;
       text-anchor: middle;
-      opacity: 0;
-      transition: opacity 0.3s;
+      alignment-baseline: middle;
+      font-size: 14px;
     }
-    .orb:hover text {
-      opacity: 1;
+    .orb.central:hover circle {
+      animation: vibrate 0.2s infinite;
     }
-    .highlight {
-      filter: drop-shadow(0 0 8px white);
+    .orb.satelite:hover circle {
+      animation: spin 4s linear infinite;
     }
-    .expanded {
-      transform: scale(5);
-      z-index: 10;
-    }
-    .pulse {
-      animation: pulse 3s infinite ease-in-out;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
+
+    @keyframes vibrate {
+      0% { transform: scale(1); }
       50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
-    .rotate {
-      animation: spin 10s linear infinite;
-    }
+
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+
+    @keyframes gaseous {
+      0% { filter: drop-shadow(0 0 5px #fff); }
+      100% { filter: drop-shadow(0 0 15px #fff); }
+    }
+
+    #defs-filter {
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
   </style>
 </head>
 <body>
-  <svg id="canvas"></svg>
-  <svg width="0" height="0">
+  <svg id="svgCanvas"></svg>
+  <svg id="defs-filter">
     <defs>
-      <filter id="gaseoso">
-        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="3" result="turbulence"/>
-        <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G"/>
-        <feGaussianBlur stdDeviation="1.5"/>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
       </filter>
     </defs>
   </svg>
@@ -83,46 +93,28 @@
       { id: "orb-7", nombre: "Orb 7", orden: 7, x: 250, y: 450, color: "#fb0202", descripcion: "Servicio" }
     ];
 
-    const canvas = document.getElementById("canvas");
+    const svg = document.getElementById("svgCanvas");
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
 
     circulos.forEach(c => {
-      const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-      group.setAttribute("class", "orb");
-      group.setAttribute("id", c.id);
-      group.setAttribute("transform", `translate(${c.x}, ${c.y})`);
+      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.setAttribute("class", `orb ${c.orden <= 6 ? 'central' : 'satelite'}`);
+      g.setAttribute("transform", `translate(${c.x},${c.y})`);
 
       const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      circle.setAttribute("r", "20");
+      circle.setAttribute("r", 30);
       circle.setAttribute("fill", c.color);
-      group.appendChild(circle);
 
-      const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      label.setAttribute("y", 5);
-      label.textContent = c.nombre;
-      group.appendChild(label);
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.textContent = c.nombre;
+      text.setAttribute("y", 5);
 
-      group.addEventListener("click", () => {
-        document.querySelectorAll(".orb").forEach(o => o.classList.remove("expanded"));
-        group.classList.add("expanded");
-        alert(c.descripcion); // Aquí irá la info interna con botón en futuro
-      });
-
-      canvas.appendChild(group);
+      g.appendChild(circle);
+      g.appendChild(text);
+      svg.appendChild(g);
     });
-
-    function aplicarAnimacionesFinales() {
-      circulos.forEach(c => {
-        const orb = document.getElementById(c.id);
-        if (c.orden >= 1 && c.orden <= 6) {
-          orb.classList.add("pulse");
-        } else {
-          orb.classList.add("rotate");
-        }
-      });
-    }
-
-    // Llama esto al finalizar el recorrido visual
-    aplicarAnimacionesFinales();
   </script>
 </body>
 </html>

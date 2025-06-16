@@ -133,6 +133,13 @@
         document.getElementById("overlay").style.display = "flex";
       });
     });
+    function closeOverlay() {
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeOverlay();
+    });
   </script>
 </body>
 </html>

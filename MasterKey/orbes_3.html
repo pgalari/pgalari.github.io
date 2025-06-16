@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbes Interactivas</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      max-width: 100vw;
+      max-height: 100vh;
+    }
+
+    .orb {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      transform-origin: center;
+      filter: blur(0.3px) brightness(1.1);
+      animation: gaseoso 2.5s ease-in-out infinite;
+    }
+
+    .orb text {
+      font-size: 12px;
+      fill: white;
+      pointer-events: none;
+      text-anchor: middle;
+    }
+
+    @keyframes gaseoso {
+      0%, 100% {
+        filter: blur(0.3px) brightness(1.05);
+      }
+      50% {
+        filter: blur(1px) brightness(1.15);
+      }
+    }
+
+    /* Vibración en orbes centrales al hover */
+    #orb-1:hover, #orb-2:hover, #orb-3:hover, #orb-4:hover, #orb-5:hover, #orb-6:hover {
+      animation: vibrar 0.4s infinite, gaseoso 2.5s ease-in-out infinite;
+    }
+
+    @keyframes vibrar {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.03); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    /* Giro sobre sí misma en orbes satélites al hover */
+    #orb-7:hover, #orb-8:hover, #orb-9:hover, #orb-10:hover, #orb-11:hover, #orb-12:hover {
+      animation: girar 1.2s linear infinite, gaseoso 2.5s ease-in-out infinite;
+    }
+
+    @keyframes girar {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      svg {
+        viewBox: 0 0 600 800;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet">
+    <!-- Círculos generados -->
+    <g id="orb-1" class="orb">
+      <circle cx="350" cy="100" r="30" fill="#902692" />
+      <text x="350" y="105">Orb 1</text>
+    </g>
+    <g id="orb-2" class="orb">
+      <circle cx="350" cy="200" r="30" fill="#0071bd" />
+      <text x="350" y="205">Orb 2</text>
+    </g>
+    <g id="orb-3" class="orb">
+      <circle cx="350" cy="300" r="30" fill="#02a550" />
+      <text x="350" y="305">Orb 3</text>
+    </g>
+    <g id="orb-4" class="orb">
+      <circle cx="350" cy="400" r="30" fill="#fef200" />
+      <text x="350" y="405">Orb 4</text>
+    </g>
+    <g id="orb-5" class="orb">
+      <circle cx="350" cy="500" r="30" fill="#f7941f" />
+      <text x="350" y="505">Orb 5</text>
+    </g>
+    <g id="orb-6" class="orb">
+      <circle cx="350" cy="600" r="30" fill="#fb0202" />
+      <text x="350" y="605">Orb 6</text>
+    </g>
+
+    <!-- Satélites -->
+    <g id="orb-12" class="orb">
+      <circle cx="450" cy="250" r="30" fill="#eb018e" />
+      <text x="450" y="255">Orb 12</text>
+    </g>
+    <g id="orb-10" class="orb">
+      <circle cx="450" cy="350" r="30" fill="#00ff01" />
+      <text x="450" y="355">Orb 10</text>
+    </g>
+    <g id="orb-8" class="orb">
+      <circle cx="450" cy="450" r="30" fill="#fef200" />
+      <text x="450" y="455">Orb 8</text>
+    </g>
+    <g id="orb-11" class="orb">
+      <circle cx="250" cy="250" r="30" fill="#0800ff" />
+      <text x="250" y="255">Orb 11</text>
+    </g>
+    <g id="orb-9" class="orb">
+      <circle cx="250" cy="350" r="30" fill="#04adf0" />
+      <text x="250" y="355">Orb 9</text>
+    </g>
+    <g id="orb-7" class="orb">
+      <circle cx="250" cy="450" r="30" fill="#fb0202" />
+      <text x="250" y="455">Orb 7</text>
+    </g>
+  </svg>
+</body>
+</html>

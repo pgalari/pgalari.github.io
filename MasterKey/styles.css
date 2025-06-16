@@ -24,6 +24,7 @@ circle {
 }
 .circle:hover {
   transform: rotate(360deg); /* Al pasar el cursor sobre el elemento, girará 360 grados */
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
 }
   .iluminado-1 {
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));

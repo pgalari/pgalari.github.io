@@ -1,9 +1,9 @@
 import { orbs } from './orbs.js';
 import { sendas } from './sendas.js';
 
-const svg = document.getElementById("tree-svg");
+const svg = document.getElementById("simbolo");
 
-function crearOrb({ id, x, y, color, nombre }) {
+function crearOrbs({ id, x, y, color, nombre }) {
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", x);
   circle.setAttribute("cy", y);
@@ -32,14 +32,14 @@ function crearSendas() {
 
 function mostrarInfo(id) {
   const orb = orbs.find(s => s.id === id);
-  const panel = document.getElementById("panel-lateral");
-  const contenido = document.getElementById("contenido");
+  const panel = document.getElementById("p-lateral");
+  const contenido = document.getElementById("p-contenido");
   contenido.innerHTML = `<h2>${orb.nombre}</h2><p>${orb.descripcion}</p>`;
   panel.classList.remove("cerrado");
 }
 
 window.cerrarPanel = () => {
-  document.getElementById("panel-lateral").classList.add("cerrado");
+  document.getElementById("p-lateral").classList.add("cerrado");
 }
 
 export function iluminarRecorrido(recorrido) {
@@ -51,7 +51,7 @@ export function iluminarRecorrido(recorrido) {
   });
 }
 
-function showSefiraInfo(name, description) {
+function showInfo(name, description) {
   const isMobile = window.innerWidth <= 768;
 
   if (isMobile) {
@@ -92,4 +92,4 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 crearSendas();
-orbs.forEach(crearOrb);
+orbs.forEach(crearOrbs);

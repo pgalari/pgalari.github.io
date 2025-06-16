@@ -115,6 +115,18 @@
       g.appendChild(text);
 
       svg.appendChild(g);
+
+      g.addEventListener("mouseenter", () => {
+        circle.classList.add("glow");
+      });
+      g.addEventListener("mouseleave", () => {
+        circle.classList.remove("glow");
+      });
+      g.addEventListener("click", () => {
+        document.getElementById("overlay-title").textContent = nombre;
+        document.getElementById("overlay-description").textContent = descripcion;
+        document.getElementById("overlay").style.display = "flex";
+      });
     });
   </script>
 </body>

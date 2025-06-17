@@ -37,22 +37,24 @@
       height: 120px;
     }
 
-    .orb-info-panel {
-      position: fixed;
-      top: 160px;
-      left: 0;
-      width: 100%;
-      max-height: 60vh;
-      overflow-y: auto;
-      background: rgba(255, 255, 255, 0.95);
-      color: #111;
-      padding: 2rem;
-      z-index: 999;
-      display: none;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      border-top: 3px solid #ccc;
-    }
 
+.orb-info-panel {
+  position: fixed;
+  top: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.95);
+  color: #111;
+  padding: 2rem;
+  z-index: 999;
+  display: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
     .orb-info-panel.active {
       display: block;
     }

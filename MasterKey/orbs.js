@@ -69,5 +69,3 @@
     nombre: "Familia", descripcion: "Origen, pertenencia"
   }
 ];
-
-];

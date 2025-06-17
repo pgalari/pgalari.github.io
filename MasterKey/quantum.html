@@ -95,48 +95,72 @@
   <script>
     const orbData = [
       {
-        id: 'orb-1', tipo: 'orb', color: '#902692', nombre: 'Conexión', frecuencia: 'Onda Gama',
-        situacion: 'Flota por encima de tu cabeza.',
-        glandula: 'Pineal', mudra: 'Mudra L.O.V.E', respiracion: 'G Breath',
+        id: 'orb-1', tipo: 'orb', orden: 1, color: '#902692', x: 350, y: 100, nombre: 'Conexión', frecuencia: 'Onda Gama’, titulo: ‘Gama. Vibración’,
+        situacion: 'Flota por encima de la cabeza’, conecta: ‘Glándula Pineal', mudra: 'L.O.V.E', respiracion: 'G Breath',
         breve: 'Es el sistema principal.',
-        ampliado: 'Es el sistema de memoria vibracional...'
+        ampliado: 'Es el sistema de memoria vibracional. Es el sistema que hace posible que los demás sistemas estén activos en el cuerpo. Regula el sueño y el descanso, la conexión espiritual, habilidades extrasensoriales, DMT y conciencia elevada. En caso de necesitar regulación lo mejor es la respiración.’
       },
       {
-        id: 'orb-2', tipo: 'orb', color: '#0071bd', nombre: 'Química', frecuencia: 'Partícula Beta',
-        situacion: 'Flota frente a la cabeza.',
-        glandula: 'Hipotálamo e Hipófisis', mudra: 'Gyan Mudra (Jupiter)', respiracion: 'Beta',
+        id: 'orb-2', tipo: 'orb', orden: 2, color: '#0071bd', x: 350, y: 100, nombre: 'Química', frecuencia: 'Partícula Beta',
+        situacion: 'Flota frente a la cabeza',
+        conecta: 'Hipotálamo e Hipófisis', mudra: 'Gyan', respiracion: 'Beta',
         breve: 'Es el sistema de memoria nutricional.',
-        ampliado: 'Es el sistema que hace posible la digestión...'
+        ampliado: 'Es el sistema que hace posible la digestión, el balance hormonal, el equilibrio hidro-electrolítico y el ph. Si el cuerpo está bien nutrido, dispondrá de energía para iniciar, gestionar y terminar proyectos, si no hay energía pueden existir alergias y adicciones. En caso de necesitar regulación lo mejor es el movimiento.'
       },
       {
-        id: 'orb-3', tipo: 'orb', color: '#02a550', nombre: 'Emociones', frecuencia: 'Onda Alpha',
-        situacion: 'Flota frente al pecho.',
-        glandula: 'Amígdala y el hipocampo', mudra: 'Shuni Mudra (Saturno)', respiracion: 'Alpha',
+        id: 'orb-3', tipo: 'orb', color: '#02a550', x: 350, y: 300, nombre: 'Emociones', frecuencia: 'Onda Alpha',
+        situacion: 'Flota frente al pecho',
+        conecta: 'Amígdala y el hipocampo', mudra: 'Shuni', respiracion: 'Alpha',
         breve: 'Es el sistema de memoria emocional.',
-        ampliado: 'El sistema límbico convierte la química cerebral en vibración...'
+        ampliado: 'El sistema límbico. Es decir, convierte la química cerebral en vibración y de esta forma sientas en el cuerpo la emoción. Este sistema es básicamente un GPS, conectado a todo tu cuerpo es un sistema intuitivo diseñado para indicarte si vas bien, o debes cambiar de dirección o decisiones. En caso de necesitar regulación lo mejor es el arte.'
       },
       {
-        id: 'orb-4', tipo: 'orb', color: '#fef200', nombre: 'Información', frecuencia: 'Partícula Theta',
+        id: 'orb-4', tipo: 'orb', color: '#fef200', 350, y: 400, nombre: 'Información', frecuencia: 'Partícula Theta',
         situacion: 'Flota frente al vientre.',
-        glandula: 'Lóbulo Frontal', mudra: 'Surya Mudra (Sol)', respiracion: 'Theta',
-        breve: 'Es el sistema de creencias y valores.',
-        ampliado: 'Este sistema es básicamente la personalidad...'
+        conecta: 'Lóbulo Frontal', mudra: ‘Surya’, respiracion: 'Theta',
+        breve: 'Es el sistema de memoria de la información.’,
+        ampliado: 'Este sistema almacena creencias y valores que conforman la personalidad y se emplea en la solución de problemas, la toma de decisiones. Generando habilidades y confianza., conectado a todo tu cuerpo es un sistema intuitivo diseñado para indicarte si vas bien, o debes cambiar de dirección o decisiones. En caso de necesitar regulación lo mejor es el arte. Problemas de personalidad, desórdenes obsesivo-compulsivos, la hipocondría, o la falta de decisión para solucionar problemas o hacer cosas nuevas  se trabajan en este sistema. es básicamente la personalidad y se emplea en la solución de problemas, la toma de decisiones. Generando habilidades y confianza., conectado a todo tu cuerpo es un sistema intuitivo diseñado para indicarte si vas bien, o debes cambiar de dirección o decisiones. En caso de necesitar regulación lo mejor es el arte. Problemas de personalidad, desórdenes obsesivo-compulsivos, la hipocondría, o la falta de decisión para solucionar problemas o hacer cosas nuevas  se trabajan en este sistema.'
       },
       {
-        id: 'orb-5', tipo: 'orb', color: '#f7941f', nombre: 'Comunicación', frecuencia: 'Onda Delta',
+        id: 'orb-5', tipo: 'orb', color: '#f7941f', orden: 5, x: 350, y: 500, nombre: 'Comunicación', frecuencia: 'Onda Delta',
         situacion: 'Flota frente a las rodillas.',
-        glandula: 'Lóbulos parietal, occipital y temporal', mudra: 'Buddhi Mudra (Mercurio)', respiracion: 'Theta',
+        conecta: 'Lóbulos parietal, occipital y temporal', mudra: ‘Buddhi', respiracion: ‘Delta',
         breve: 'Es el sistema de memoria de comunicación.',
-        ampliado: 'Regula la comunicación como puente entre interior y exterior...'
+        ampliado: 'Regula la comunicación porque es el puente que conecta tu realidad interior con el mundo externo. Este sistema es peculiar porque actúa como el puente entre lo que sientes y piensas con la realidad tridimensional.’
       },
       {
-        id: 'orb-6', tipo: 'orb', color: '#fb0202', nombre: 'Interacción', frecuencia: 'Segundo Beta',
+	id: 'orb-6', tipo: 'orb', color: '#fb0202', orden: 6, x: 350, y: 600, nombre: 'Interacción', frecuencia: ‘Partícula Segundo Beta',
         situacion: 'Flota frente a los pies.',
-        glandula: 'Cerebelo', mudra: 'Anjali Mudra', respiracion: 'Beta',
+        conecta: 'Cerebelo', mudra: ‘Anjali', respiracion: ‘Beta',
         breve: 'Es el sistema de memoria muscular.',
-        ampliado: 'Regula la motricidad y cualquier movimiento...'
-      }
-    ];
+        ampliado: 'Este sistema regula la motricidad y cualquier movimiento. Si tienen energía disponible se puede tomar acción. Personas con poca energía física, que necesitan estimulantes o tienen problemas con energía sexual o recuperación de lesiones, hay que incrementar la energía en este sistema.’
+	},
+      	{
+	id: 'orb-7', tipo: 'orb', color: '#fb0202', orden: 7, x: 250, y: 450, nombre: 'Servicio', frecuencia: ‘',
+        situacion: ‘Orbita alrededor de la muñeca de la mano dominante',
+        conecta: ‘’, mudra: ‘ ', respiracion: ‘ ',
+        breve: 'Es el sistema de memoria del Servicio.',
+        ampliado: 'Sistema que es necesario mantener funcionando’
+      },
+      	{
+	id: 'orb-8', tipo: 'orb', color: '#fef200', orden: 8, 450, y: 450, nombre: 'Relaciones', frecuencia: ‘',
+        situacion: ‘Orbita alrededor de la muñeca de la mano no dominante',
+        conecta: ‘’, mudra: ‘ ', respiracion: ‘ ',
+        breve: 'Es el sistema de memoria de las Relaciones.',
+        ampliado: 'Sistema que es necesario mantener funcionando de acorde a dos reglas: 1. Tratar a todos por igual, de forma genuina, no como medio para obtener cosas. 2. No hacer sentir mal a nadie de ninguna manera. 
+Dentro de este orbital tenemos un sistema que ordena las relaciones de fuera hacia adentro desde DESCONOCIDOS, CONOCIDOS, AMIGOS, MEJORES AMIGOS.’
+      },
+ { id: ‘orb-9’, tipo: 'orb', color: ‘#04adf0’, orden: 9, x: 250, y: 350, nombre: ‘Habilidades’, frecuencia: ‘',
+        situacion: ‘Orbita alrededor del codo de la mano dominante',
+        conecta: ‘’, mudra: ‘ ', respiracion: ‘ ‘, breve: 'Es el sistema de memoria de las Habilidades.’, ampliado: ‘Sistema'},
+{ id: 'orb-10', tipo: 'orb', color: ‘#00ff01’, orden: 10, x: 450, y: 350, nombre: ‘Pareja’,   situacion: ‘Orbita alrededor del codo de la mano no dominante',
+        conecta: ‘’, mudra: ‘ ', respiracion: ‘ ‘, breve: 'Es el sistema de memoria de la Pareja.’, ampliado: ‘Sistema' },
+{ id: 'orb-11', tipo: 'orb', color: ‘#0800ff’, orden: 11, x: 250, y: 250, nombre: ‘Propósito’,   situacion: ‘Orbita alrededor del hombro de la mano  dominante',
+        conecta: ‘’, mudra: ‘ ', respiracion: ‘ ‘, breve: 'Es el sistema de memoria del Propósito.’, ampliado: ‘Sistema' },
+{ id: 'orb-12', tipo: 'orb', color: ‘#eb018e’, orden: 12, x: 450, y: 250, nombre: ‘Familia’,   situacion: ‘Orbita alrededor del hombro de la mano no dominante',
+        conecta: ‘’, mudra: ‘ ', respiracion: ‘ ‘, breve: 'Es el sistema de memoria de la Pareja.’, ampliado: ‘Sistema' }
+                ];
+    
 
     const container = document.getElementById('orbContainer');
 

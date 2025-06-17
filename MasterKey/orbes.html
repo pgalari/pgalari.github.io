@@ -1,88 +1,135 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orb estilo plasma</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbes Energéticos</title>
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #000;
+      background: black;
+      font-family: sans-serif;
+      overflow-x: hidden;
     }
 
-    .plasma-orb {
-      position: relative;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(255,255,255,0.2), rgba(144,38,146,0.8));
-      box-shadow:
-        0 0 20px #902692,
-        0 0 40px #902692,
-        0 0 60px #902692;
-      animation: pulse 2s infinite ease-in-out;
-      overflow: hidden;
-    }
-
-    .plasma-orb::before {
-      content: "";
+    .orb {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 10px;
-      height: 10px;
-      background: #fff;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow:
-        0 0 10px #fff,
-        0 0 20px #fff,
-        0 0 40px #ff00ff;
-    }
-
-    .ray {
-      position: absolute;
-      width: 2px;
+      width: 100px;
       height: 100px;
-      background: linear-gradient(to top, #ff00ff, transparent);
-      top: 50%;
-      left: 50%;
-      transform-origin: bottom center;
-      animation: flicker 1.5s infinite ease-in-out;
-      opacity: 0.5;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(144,38,146,0.3) 60%, rgba(144,38,146,0.1) 100%);
+      box-shadow: 0 0 20px 10px rgba(144,38,146,0.5), inset 0 0 10px rgba(255,255,255,0.5);
+      transition: transform 0.5s ease;
+      cursor: pointer;
+      animation: pulse 2s infinite;
     }
 
-    .ray:nth-child(2) { transform: rotate(0deg); }
-    .ray:nth-child(3) { transform: rotate(60deg); }
-    .ray:nth-child(4) { transform: rotate(120deg); }
-    .ray:nth-child(5) { transform: rotate(180deg); }
-    .ray:nth-child(6) { transform: rotate(240deg); }
-    .ray:nth-child(7) { transform: rotate(300deg); }
+    .orb.central:hover {
+      transform: scale(1.1);
+    }
+
+    .orb.orbital:hover {
+      animation: rotate 2s linear infinite;
+    }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      0%, 100% { box-shadow: 0 0 20px 10px rgba(144,38,146,0.5); }
+      50% { box-shadow: 0 0 40px 20px rgba(144,38,146,0.8); }
     }
 
-    @keyframes flicker {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .orb-panel {
+      position: fixed;
+      top: 120px;
+      left: 10%;
+      width: 80%;
+      max-width: 700px;
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.95);
+      color: #000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      display: none;
+    }
+
+    .orb-panel.active {
+      display: block;
+    }
+
+    .orb-panel button {
+      background: #902692;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="plasma-orb">
-    <div class="ray"></div>
-    <div class="ray"></div>
-    <div class="ray"></div>
-    <div class="ray"></div>
-    <div class="ray"></div>
-    <div class="ray"></div>
+  <div id="orbContainer"></div>
+  <div id="orbPanel" class="orb-panel">
+    <h2 id="panelTitle"></h2>
+    <p id="panelDescription"></p>
+    <button onclick="closePanel()">Cerrar</button>
   </div>
+
+  <script>
+    const orbs = [
+      { id: "orb-1", nombre: "Orb 1", orden: 1, x: 350, y: 100, color: "#902692", descripcion: "Gama. Vibración" },
+      { id: "orb-2", nombre: "Orb 2", orden: 2, x: 350, y: 200, color: "#0071bd", descripcion: "Beta. Química" },
+      { id: "orb-3", nombre: "Orb 3", orden: 3, x: 350, y: 300, color: "#02a550", descripcion: "Alpha. Emociones." },
+      { id: "orb-4", nombre: "Orb 4", orden: 4, x: 350, y: 400, color: "#fef200", descripcion: "Theta. Infomación" },
+      { id: "orb-5", nombre: "Orb 5", orden: 5, x: 350, y: 500, color: "#f7941f", descripcion: "Delta. Comunicación" },
+      { id: "orb-6", nombre: "Orb 6", orden: 6, x: 350, y: 600, color: "#fb0202", descripcion: "Segundo Beta. Interacción" },
+      { id: "orb-12", nombre: "Orb 12", orden: 12, x: 450, y: 250, color: "#eb018e", descripcion: "Familia" },
+      { id: "orb-10", nombre: "Orb 10", orden: 10, x: 450, y: 350, color: "#00ff01", descripcion: "Pareja" },
+      { id: "orb-8", nombre: "Orb 8", orden: 8, x: 450, y: 450, color: "#fef200", descripcion: "Relaciones" },
+      { id: "orb-11", nombre: "Orb 11", orden: 11, x: 250, y: 250, color: "#0800ff", descripcion: "Propósito" },
+      { id: "orb-9", nombre: "Orb 9", orden: 9, x: 250, y: 350, color: "#04adf0", descripcion: "Habilidades." },
+      { id: "orb-7", nombre: "Orb 7", orden: 7, x: 250, y: 450, color: "#fb0202", descripcion: "Servicio" }
+    ];
+
+    const container = document.getElementById("orbContainer");
+    const panel = document.getElementById("orbPanel");
+    const title = document.getElementById("panelTitle");
+    const desc = document.getElementById("panelDescription");
+
+    orbs.forEach((orb) => {
+      const div = document.createElement("div");
+      div.classList.add("orb");
+      div.classList.add(orb.orden <= 6 ? "central" : "orbital");
+      div.style.left = `${orb.x}px`;
+      div.style.top = `${orb.y}px`;
+      div.style.background = `radial-gradient(circle, rgba(255,255,255,0.9) 0%, ${hexToRGBA(orb.color, 0.3)} 60%, ${hexToRGBA(orb.color, 0.1)} 100%)`;
+      div.style.boxShadow = `0 0 20px 10px ${hexToRGBA(orb.color, 0.5)}, inset 0 0 10px rgba(255,255,255,0.5)`;
+      div.onclick = () => showPanel(orb);
+      container.appendChild(div);
+    });
+
+    function showPanel(orb) {
+      title.textContent = orb.nombre;
+      desc.textContent = orb.descripcion;
+      panel.classList.add("active");
+    }
+
+    function closePanel() {
+      panel.classList.remove("active");
+    }
+
+    function hexToRGBA(hex, alpha) {
+      const bigint = parseInt(hex.replace("#", ""), 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+  </script>
 </body>
 </html>
-

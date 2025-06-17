@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbes Interactivos</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      font-family: sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+    .orb-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .orb {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 0.75rem;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 0 20px 5px rgba(255,255,255,0.2);
+      transition: transform 0.3s ease, box-shadow 0.5s ease;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 80%);
+    }
+    .orb:hover {
+      animation: pulse 0.5s ease-in-out;
+    }
+    .orbital:hover {
+      animation: spin 1.2s linear infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .orb.expanded {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      transform: scale(1);
+      transition: all 0.5s ease-in-out;
+      border-radius: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 2rem;
+    }
+    .orb-content {
+      max-width: 600px;
+      text-align: left;
+    }
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="orb-container" id="orbContainer"></div>
+  <script>
+    const orbData = [
+      {
+        id: 'orb-1', tipo: 'orb', color: '#902692', nombre: 'Conexión', frecuencia: 'Onda Gama',
+        situacion: 'Flota por encima de tu cabeza.',
+        glandula: 'Pineal', mudra: 'Mudra L.O.V.E', respiracion: 'G Breath',
+        breve: 'Es el sistema principal.',
+        ampliado: 'Es el sistema de memoria vibracional...'
+      },
+      {
+        id: 'orb-2', tipo: 'orb', color: '#0071bd', nombre: 'Química', frecuencia: 'Partícula Beta',
+        situacion: 'Flota frente a la cabeza.',
+        glandula: 'Hipotálamo e Hipófisis', mudra: 'Gyan Mudra (Jupiter)', respiracion: 'Beta',
+        breve: 'Es el sistema de memoria nutricional.',
+        ampliado: 'Es el sistema que hace posible la digestión...'
+      },
+      {
+        id: 'orb-3', tipo: 'orb', color: '#02a550', nombre: 'Emociones', frecuencia: 'Onda Alpha',
+        situacion: 'Flota frente al pecho.',
+        glandula: 'Amígdala y el hipocampo', mudra: 'Shuni Mudra (Saturno)', respiracion: 'Alpha',
+        breve: 'Es el sistema de memoria emocional.',
+        ampliado: 'El sistema límbico convierte la química cerebral en vibración...'
+      },
+      {
+        id: 'orb-4', tipo: 'orb', color: '#fef200', nombre: 'Información', frecuencia: 'Partícula Theta',
+        situacion: 'Flota frente al vientre.',
+        glandula: 'Lóbulo Frontal', mudra: 'Surya Mudra (Sol)', respiracion: 'Theta',
+        breve: 'Es el sistema de creencias y valores.',
+        ampliado: 'Este sistema es básicamente la personalidad...'
+      },
+      {
+        id: 'orb-5', tipo: 'orb', color: '#f7941f', nombre: 'Comunicación', frecuencia: 'Onda Delta',
+        situacion: 'Flota frente a las rodillas.',
+        glandula: 'Lóbulos parietal, occipital y temporal', mudra: 'Buddhi Mudra (Mercurio)', respiracion: 'Theta',
+        breve: 'Es el sistema de memoria de comunicación.',
+        ampliado: 'Regula la comunicación como puente entre interior y exterior...'
+      },
+      {
+        id: 'orb-6', tipo: 'orb', color: '#fb0202', nombre: 'Interacción', frecuencia: 'Segundo Beta',
+        situacion: 'Flota frente a los pies.',
+        glandula: 'Cerebelo', mudra: 'Anjali Mudra', respiracion: 'Beta',
+        breve: 'Es el sistema de memoria muscular.',
+        ampliado: 'Regula la motricidad y cualquier movimiento...'
+      }
+    ];
+
+    const container = document.getElementById('orbContainer');
+
+    orbData.forEach(orb => {
+      const div = document.createElement('div');
+      div.className = `orb ${orb.tipo === 'orbital' ? 'orbital' : ''}`;
+      div.id = orb.id;
+      div.style.backgroundColor = orb.color;
+      div.textContent = orb.nombre;
+      div.addEventListener('click', () => expandOrb(orb, div));
+      container.appendChild(div);
+    });
+
+    function expandOrb(data, element) {
+      element.classList.add('expanded');
+      element.innerHTML = `
+        <button class="close-btn" onclick="closeOrb()">✕</button>
+        <div class="orb-content">
+          <h2>${data.nombre}</h2>
+          <p><strong>Frecuencia:</strong> ${data.frecuencia}</p>
+          <p><strong>Situación:</strong> ${data.situacion}</p>
+          <p><strong>Glándula:</strong> ${data.glandula}</p>
+          <p><strong>Mudra:</strong> ${data.mudra}</p>
+          <p><strong>Respiración:</strong> ${data.respiracion}</p>
+          <p><strong>${data.breve}</strong></p>
+          <p>${data.ampliado}</p>
+        </div>
+      `;
+    }
+
+    function closeOrb() {
+      const expanded = document.querySelector('.orb.expanded');
+      if (expanded) {
+        expanded.classList.remove('expanded');
+        expanded.innerHTML = expanded.id.replace('orb-', 'Orbe ');
+        const data = orbData.find(o => o.id === expanded.id);
+        expanded.textContent = data.nombre;
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeOrb();
+    });
+  </script>
+</body>
+</html>

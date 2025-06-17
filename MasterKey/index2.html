@@ -1,91 +1,123 @@
-// Cambios en el CSS para las 4 mejoras en móviles
-
-<style>
-  /* Estilo base para las esferas (Sefirot) */
-  .sefira circle {
-    transition: r 0.3s, fill 0.3s;
-  }
-
-  .sefira text {
-    font-family: sans-serif;
-    text-anchor: middle;
-    dominant-baseline: middle;
-    font-size: 12px;
-    fill: white;
-    pointer-events: none;
-  }
-
-  /* Diseño responsivo */
-  @media (max-width: 768px) {
-    .tree-container svg {
-      width: 90vw;
-      height: auto;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbes Interactivas</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: sans-serif;
     }
 
-    .sefira circle {
-      r: 18;
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      box-shadow: 0 0 15px 5px rgba(255, 0, 255, 0.3);
+      background: radial-gradient(white, #a200ff22, #00000000);
+      animation: pulse 2s infinite;
+      z-index: 2;
     }
 
-    .sefira text {
-      font-size: 10px;
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 10px 5px rgba(255, 0, 255, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 30px 10px rgba(255, 0, 255, 0.6);
+      }
     }
 
-    .sidebar {
-      display: none;
-    }
-
-    /* Modal para descripción */
-    .mobile-modal {
-      display: none;
-      position: fixed;
+    svg {
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #222;
-      color: white;
-      padding: 2rem;
-      z-index: 1000;
+      z-index: 1;
     }
+  </style>
+</head>
+<body>
 
-    .mobile-modal.active {
-      display: block;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-  }
-</style>
-
-<!-- HTML para el modal en móvil -->
-<div id="mobileModal" class="mobile-modal">
-  <div class="modal-close" onclick="closeMobileModal()">&times;</div>
-  <h2 id="mobileTitle"></h2>
-  <p id="mobileDescription"></p>
-</div>
+<svg id="lines"></svg>
 
 <script>
-function showSefiraInfo(name, description) {
-  const isMobile = window.innerWidth <= 768;
+  const orbData = [
+    { id: 'orb-1', x: 50, y: 10 },
+    { id: 'orb-2', x: 50, y: 20 },
+    { id: 'orb-3', x: 50, y: 30 },
+    { id: 'orb-4', x: 50, y: 40 },
+    { id: 'orb-5', x: 50, y: 50 },
+    { id: 'orb-6', x: 50, y: 60 },
+    { id: 'orb-7', x: 20, y: 35 },
+    { id: 'orb-8', x: 80, y: 35 },
+    { id: 'orb-9', x: 20, y: 25 },
+    { id: 'orb-10', x: 80, y: 25 },
+    { id: 'orb-11', x: 20, y: 15 },
+    { id: 'orb-12', x: 80, y: 15 }
+  ];
 
-  if (isMobile) {
-    document.getElementById('mobileTitle').textContent = name;
-    document.getElementById('mobileDescription').textContent = description;
-    document.getElementById('mobileModal').classList.add('active');
-  } else {
-    // Código para mostrar en panel lateral (escritorio)
-    document.getElementById('sidebar-title').textContent = name;
-    document.getElementById('sidebar-description').textContent = description;
-    document.getElementById('sidebar').classList.add('active');
+  const lines = [
+    { de: "orb-1", a: "orb-2" }, { de: "orb-2", a: "orb-3" }, { de: "orb-3", a: "orb-4" }, { de: "orb-4", a: "orb-5" }, { de: "orb-5", a: "orb-6" },
+    { de: "orb-1", a: "orb-11" }, { de: "orb-1", a: "orb-12" }, { de: "orb-2", a: "orb-11" }, { de: "orb-2", a: "orb-12" }, { de: "orb-11", a: "orb-12" },
+    { de: "orb-3", a: "orb-11" }, { de: "orb-3", a: "orb-12" }, { de: "orb-3", a: "orb-9" }, { de: "orb-3", a: "orb-10" }, { de: "orb-9", a: "orb-10" },
+    { de: "orb-4", a: "orb-9" }, { de: "orb-4", a: "orb-10" }, { de: "orb-4", a: "orb-7" }, { de: "orb-4", a: "orb-8" }, { de: "orb-7", a: "orb-8" },
+    { de: "orb-5", a: "orb-7" }, { de: "orb-5", a: "orb-8" }, { de: "orb-6", a: "orb-7" }, { de: "orb-6", a: "orb-8" },
+    { de: "orb-7", a: "orb-9" }, { de: "orb-8", a: "orb-10" }, { de: "orb-9", a: "orb-11" }, { de: "orb-10", a: "orb-12" }, { de: "orb-10", a: "orb-12" },
+    { de: "orb-7", a: "orb-3" }, { de: "orb-8", a: "orb-3" }, { de: "orb-9", a: "orb-2" }, { de: "orb-10", a: "orb-2" }, { de: "orb-11", a: "orb-4" },
+    { de: "orb-12", a: "orb-4" }, { de: "orb-9", a: "orb-5" }, { de: "orb-10", a: "orb-5" }
+  ];
+
+  const svg = document.getElementById('lines');
+
+  function updateSVGSize() {
+    svg.setAttribute("width", window.innerWidth);
+    svg.setAttribute("height", window.innerHeight);
   }
-}
+  window.addEventListener('resize', updateSVGSize);
+  updateSVGSize();
 
-function closeMobileModal() {
-  document.getElementById('mobileModal').classList.remove('active');
-}
+  orbData.forEach(orb => {
+    const div = document.createElement("div");
+    div.className = "orb";
+    div.id = orb.id;
+
+    const size = parseInt(orb.id.split('-')[1]) <= 6 ? 60 : 45;
+    div.style.width = size + "px";
+    div.style.height = size + "px";
+
+    const left = (orb.x / 100) * window.innerWidth - size / 2;
+    const top = (orb.y / 100) * window.innerHeight - size / 2;
+    div.style.left = `${left}px`;
+    div.style.top = `${top}px`;
+
+    document.body.appendChild(div);
+    orb.cx = left + size / 2;
+    orb.cy = top + size / 2;
+  });
+
+  function getCoords(id) {
+    const orb = orbData.find(o => o.id === id);
+    return orb ? { x: orb.cx, y: orb.cy } : null;
+  }
+
+  lines.forEach(line => {
+    const start = getCoords(line.de);
+    const end = getCoords(line.a);
+    if (start && end) {
+      const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      l.setAttribute("x1", start.x);
+      l.setAttribute("y1", start.y);
+      l.setAttribute("x2", end.x);
+      l.setAttribute("y2", end.y);
+      l.setAttribute("stroke", "#b000ff");
+      l.setAttribute("stroke-width", "1.5");
+      l.setAttribute("opacity", "0.3");
+      svg.appendChild(l);
+    }
+  });
 </script>
+
+</body>
+</html>

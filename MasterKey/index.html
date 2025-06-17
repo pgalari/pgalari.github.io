@@ -143,6 +143,11 @@
 
     function closeOverlay() {
       overlay.classList.remove("visible");
+      overlay.style.display = "none";
+    }
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape") cerrarOverlay();
+    });
     }
   </script>
 </body>

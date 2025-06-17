@@ -1,14 +1,73 @@
-export const orbs = [
-  { id: "orb-1", nombre: "Orb 1", orden: 1, x: 350, y: 100, color: "#902692", descripcion: "Gama. Vibración" },
-  { id: "orb-2", nombre: "Orb 2", orden: 2, x: 350, y: 200, color: "#0071bd", descripcion: "Beta. Química" },
-  { id: "orb-3", nombre: "Orb 3", orden: 3, x: 350, y: 300, color: "#02a550", descripcion: "Alpha. Emociones." },
-  { id: "orb-4", nombre: "Orb 4", orden: 4, x: 350, y: 400, color: "#fef200", descripcion: "Theta. Infomación" },
-  { id: "orb-5", nombre: "Orb 5", orden: 5, x: 350, y: 500, color: "#f7941f", descripcion: "Delta. Comunicación" },
-  { id: "orb-6", nombre: "Orb 6", orden: 6, x: 350, y: 600, color: "#fb0202", descripcion: "Segundo Beta. Interacción" },
-  { id: "orb-12", nombre: "Orb 12", orden: 12, x: 450, y: 250, color: "#eb018e", descripcion: "Familia" },
-  { id: "orb-10", nombre: "Orb 10", orden: 10, x: 450, y: 350, color: "#00ff01", descripcion: "Pareja" },
-  { id: "orb-8", nombre: "Orb 8", orden: 8, x: 450, y: 450, color: "#fef200", descripcion: "Relaciones" },
-  { id: "orb-11", nombre: "Orb 11", orden: 11, x: 250, y: 250, color: "#0800ff", descripcion: "Propósito" },
-  { id: "orb-9", nombre: "Orb 9", orden: 9, x: 250, y: 350, color: "#04adf0", descripcion: "Habilidades." },
-  { id: "orb-7", nombre: "Orb 7", orden: 7, x: 250, y: 450, color: "#fb0202", descripcion: "Servicio" }
+
+  const orbs = [
+  {
+    id: "orb-1", tipo: "central", x: 350, y: 100, color: "#902692",
+    nombre: "Conexión. Vibración",
+    descripcion: "Onda Gama",
+    descripcionBreve: "Es el sistema principal.",
+    descripcionAmpliada: "Es el sistema de memoria vibracional. Hace posible que los demás sistemas estén activos en el cuerpo..."
+  },
+  {
+    id: "orb-2", tipo: "central", x: 350, y: 200, color: "#0071bd",
+    nombre: "Química",
+    descripcion: "Partícula Beta",
+    descripcionBreve: "Es el sistema de memoria nutricional.",
+    descripcionAmpliada: "Hace posible la digestión, el balance hormonal, el equilibrio hidro-electrólitico y el pH..."
+  },
+  {
+    id: "orb-3", tipo: "central", x: 350, y: 300, color: "#02a550",
+    nombre: "Emociones",
+    descripcion: "Onda Alpha",
+    descripcionBreve: "Es el sistema de memoria emocional.",
+    descripcionAmpliada: "El sistema límbico convierte la química cerebral en vibración. Es un sistema intuitivo conectado a todo el cuerpo..."
+  },
+  {
+    id: "orb-4", tipo: "central", x: 350, y: 400, color: "#fef200",
+    nombre: "Información",
+    descripcion: "Partícula Theta",
+    descripcionBreve: "Es el sistema de creencias y valores.",
+    descripcionAmpliada: "La personalidad, la solución de problemas, la toma de decisiones. Problemas obsesivos o hipocondría..."
+  },
+  {
+    id: "orb-5", tipo: "central", x: 350, y: 500, color: "#f7941f",
+    nombre: "Comunicación",
+    descripcion: "Onda Delta",
+    descripcionBreve: "Sistema de memoria de comunicación.",
+    descripcionAmpliada: "Conecta la realidad interior con el mundo externo. Es el puente entre lo que sientes y el mundo 3D..."
+  },
+  {
+    id: "orb-6", tipo: "central", x: 350, y: 600, color: "#fb0202",
+    nombre: "Interacción",
+    descripcion: "Partícula Segundo Beta",
+    descripcionBreve: "Sistema de memoria muscular.",
+    descripcionAmpliada: "Regula la motricidad y los movimientos. Si no hay energía aquí, hay baja acción física, fatiga, etc."
+  },
+
+  // Orbs orbitales con posiciones
+  {
+    id: "orb-7", tipo: "orbital", x: 250, y: 450, color: "#fb0202",
+    nombre: "Servicio", descripcion: "Relación con el entorno"
+  },
+  {
+    id: "orb-8", tipo: "orbital", x: 450, y: 450, color: "#fef200",
+    nombre: "Relaciones", descripcion: "Conexión emocional"
+  },
+  {
+    id: "orb-9", tipo: "orbital", x: 250, y: 350, color: "#04adf0",
+    nombre: "Habilidades", descripcion: "Competencias"
+  },
+  {
+    id: "orb-10", tipo: "orbital", x: 450, y: 350, color: "#00ff01",
+    nombre: "Pareja", descripcion: "Amor, intimidad"
+  },
+  {
+    id: "orb-11", tipo: "orbital", x: 250, y: 250, color: "#0800ff",
+    nombre: "Propósito", descripcion: "Dirección y misión"
+  },
+  {
+    id: "orb-12", tipo: "orbital", x: 450, y: 250, color: "#eb018e",
+    nombre: "Familia", descripcion: "Origen, pertenencia"
+  }
+];
+
 ];

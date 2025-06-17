@@ -1,152 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orbes Interactivos</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orb estilo plasma</title>
   <style>
     body {
       margin: 0;
-      background: #000;
-      font-family: sans-serif;
-      color: white;
-      overflow: hidden;
-    }
-    svg {
-      display: block;
-      width: 100vw;
       height: 100vh;
-    }
-    .orb {
-      cursor: pointer;
-      filter: drop-shadow(0 0 5px white);
-      transition: transform 0.3s ease;
-    }
-    .orb.central:hover {
-      animation: pulse 1s infinite ease-in-out;
-    }
-    .orb.orbital:hover {
-      animation: spin 4s linear infinite;
-    }
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-    }
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.95);
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      color: white;
-      padding: 2rem;
-      z-index: 1000;
-      display: none;
+      background-color: #000;
     }
-    .overlay h2 {
-      margin-bottom: 0.5rem;
+
+    .plasma-orb {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.2), rgba(144,38,146,0.8));
+      box-shadow:
+        0 0 20px #902692,
+        0 0 40px #902692,
+        0 0 60px #902692;
+      animation: pulse 2s infinite ease-in-out;
+      overflow: hidden;
     }
-    .overlay p {
-      max-width: 600px;
-      text-align: center;
-      margin-bottom: 1rem;
+
+    .plasma-orb::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow:
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 40px #ff00ff;
     }
-    .close-btn {
-      margin-top: 1rem;
-      cursor: pointer;
-      background: #444;
-      border: none;
-      padding: 0.5rem 1rem;
-      color: white;
-      border-radius: 5px;
+
+    .ray {
+      position: absolute;
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(to top, #ff00ff, transparent);
+      top: 50%;
+      left: 50%;
+      transform-origin: bottom center;
+      animation: flicker 1.5s infinite ease-in-out;
+      opacity: 0.5;
+    }
+
+    .ray:nth-child(2) { transform: rotate(0deg); }
+    .ray:nth-child(3) { transform: rotate(60deg); }
+    .ray:nth-child(4) { transform: rotate(120deg); }
+    .ray:nth-child(5) { transform: rotate(180deg); }
+    .ray:nth-child(6) { transform: rotate(240deg); }
+    .ray:nth-child(7) { transform: rotate(300deg); }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <svg id="canvas" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet"></svg>
-  <div class="overlay" id="overlay">
-    <h2 id="titulo"></h2>
-    <p><strong>Frecuencia:</strong> <span id="frecuencia"></span></p>
-    <p><strong>Situación:</strong> <span id="situacion"></span></p>
-    <p><strong>Activado por:</strong> <span id="glandula"></span></p>
-    <p><strong>Mudra:</strong> <span id="mudra"></span></p>
-    <p><strong>Respiración:</strong> <span id="respiracion"></span></p>
-    <p><strong>Descripción:</strong> <span id="breve"></span></p>
-    <p><strong>Contenido ampliado:</strong> <span id="ampliado"></span></p>
-    <button class="close-btn" onclick="cerrarOverlay()">Cerrar</button>
+  <div class="plasma-orb">
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
   </div>
-
-  <script>
-    const orbs = [
-      { id: "orb-1", tipo: "central", x: 350, y: 100, color: "#902692", nombre: "Conexión", frecuencia: "Gama", situacion: "Flota por encima de tu cabeza", glandula: "Pineal", mudra: "Mudra L.O.V.E", respiracion: "G Breath", breve: "Es el sistema principal.", ampliado: "Es el sistema de memoria vibracional. Es el sistema que hace posible que los demás sistemas estén activos en el cuerpo. Regula el sueño y el descanso, la conexión espiritual, habilidades extrasensoriales, DMT y conciencia elevada. En caso de necesitar regulación lo mejor es la respiración." },
-      { id: "orb-2", tipo: "central", x: 350, y: 200, color: "#0071bd", nombre: "Química", frecuencia: "Beta", situacion: "Flota frente a la cabeza", glandula: "Hipotálamo e Hipófisis", mudra: "Gyan Mudra (Jupiter)", respiracion: "Beta", breve: "Es el sistema de memoria nutricional.", ampliado: "Es el sistema que hace posible la digestión, el balance hormonal, el equilibrio hidro-electrólitico y el ph. Si el cuerpo está bien nutrido, dispondrá de energía para iniciar, gestionar y terminar proyectos, si hay desbalance pueden existir alergias y adicciones. En caso de necesitar regulación lo mejor es el movimiento." },
-      { id: "orb-3", tipo: "central", x: 350, y: 300, color: "#02a550", nombre: "Emociones", frecuencia: "Alpha", situacion: "Flota frente al pecho", glandula: "Amígdala y el hipocampo", mudra: "Shuni Mudra (Saturno)", respiracion: "Alpha", breve: "Es el sistema de memoria emocional", ampliado: "El sistema límbico. Es decir, convierte la química cerebral en vibración y de esta forma sientas en el cuerpo la emoción. Este sistema es básicamente un GPS, conectado a todo tu cuerpo es un sistema intuitivo diseñado para indicarte si vas bien, o debes cambiar de dirección o decisiones. En caso de necesitar regulación lo mejor es el arte." },
-      { id: "orb-4", tipo: "central", x: 350, y: 400, color: "#fef200", nombre: "Información", frecuencia: "Theta", situacion: "Flota frente al vientre", glandula: "Lóbulo Frontal", mudra: "Surya Mudra (Sol)", respiracion: "Theta", breve: "Es el sistema de creencias y valores.", ampliado: "Este sistema de información es básicamente la personalidad y se emplea en la solución de problemas, la toma de decisiones. Generando habilidades y confianza. Problemas de personalidad, desórdenes obsesivo-compulsivos, la hipocondría, o la falta de decisión para solucionar problemas o hacer cosas nuevas  se trabajan en este sistema." },
-      { id: "orb-5", tipo: "central", x: 350, y: 500, color: "#f7941f", nombre: "Comunicación", frecuencia: "Delta", situacion: "Flota frente a las rodillas", glandula: "Lóbulos parietal, occipital y temporal", mudra: "Buddhi Mudra (Mercurio)", respiracion: "Theta", breve: "Es el sistema de memoria de comunicación", ampliado: "Regula la comunicación porque es el puente que conecta tu realidad interior con el mundo externo. Este sistema es peculiar porque actúa como el puente entre lo que sientes y piensas con la realidad tridimensional." },
-      { id: "orb-6", tipo: "central", x: 350, y: 600, color: "#fb0202", nombre: "Interacción", frecuencia: "Segundo Beta", situacion: "Flota frente a los pies", glandula: "Cerebelo", mudra: "Anjali Mudra", respiracion: "Beta", breve: "Es el sistema de memoria muscular", ampliado: "Este sistema regula la motricidad y cualquier movimiento. Personas con poca energía física, que necesitan estimulantes o tienen problemas con energía sexual o recuperación de lesiones, hay que incrementar la energía en este sistema." },
-      { id: "orb-12", tipo: "orbital", x: 450, y: 250, color: "#eb018e", nombre: "Familia", descripcion: "Orbital emocional" },
-      { id: "orb-10", tipo: "orbital", x: 450, y: 350, color: "#00ff01", nombre: "Pareja", descripcion: "Orbital emocional" },
-      { id: "orb-8", tipo: "orbital", x: 450, y: 450, color: "#fef200", nombre: "Relaciones", descripcion: "Orbital emocional" },
-      { id: "orb-11", tipo: "orbital", x: 250, y: 250, color: "#0800ff", nombre: "Propósito", descripcion: "Orbital de sentido" },
-      { id: "orb-9", tipo: "orbital", x: 250, y: 350, color: "#04adf0", nombre: "Habilidades", descripcion: "Orbital de sentido" },
-      { id: "orb-7", tipo: "orbital", x: 250, y: 450, color: "#fb0202", nombre: "Servicio", descripcion: "Orbital de sentido" }
-    ];
-
-    const svg = document.getElementById("canvas");
-    const overlay = document.getElementById("overlay");
-
-    function crearOrbes() {
-      orbs.forEach(orb => {
-        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        circle.setAttribute("cx", orb.x);
-        circle.setAttribute("cy", orb.y);
-        circle.setAttribute("r", 30);
-        circle.setAttribute("fill", orb.color);
-        circle.classList.add("orb", orb.tipo);
-        circle.setAttribute("id", orb.id);
-        circle.addEventListener("click", () => mostrarOverlay(orb));
-        svg.appendChild(circle);
-      });
-    }
-
-    function mostrarOverlay(orb) {
-      document.getElementById("titulo").innerText = orb.nombre || "";
-      document.getElementById("frecuencia").innerText = orb.frecuencia || "";
-      document.getElementById("situacion").innerText = orb.situacion || "";
-      document.getElementById("glandula").innerText = orb.glandula || "";
-      document.getElementById("mudra").innerText = orb.mudra || "";
-      document.getElementById("respiracion").innerText = orb.respiracion || "";
-      document.getElementById("breve").innerText = orb.breve || "";
-      document.getElementById("ampliado").innerText = orb.ampliado || orb.descripcion || "";
-      overlay.style.display = "flex";
-    }
-
-    function cerrarOverlay() {
-      overlay.style.display = "none";
-    }
-
-    window.addEventListener("keydown", e => {
-      if (e.key === "Escape") cerrarOverlay();
-    });
-
-    crearOrbes();
-  </script>
 </body>
 </html>
+

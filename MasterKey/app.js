@@ -1,5 +1,5 @@
-import { orbs } from './orbs.js';
-import { sendas } from './sendas.js';
+import { orbs } from './quantum-data.js';
+import { sendas } from './quantum-data.js';
 
 const svg = document.getElementById("simbolo");
 

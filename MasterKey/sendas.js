@@ -34,6 +34,6 @@ export const sendas = [
   { de: "orb-10", a: "orb-2" },
   { de: "orb-11", a: "orb-4" },
   { de: "orb-12", a: "orb-4" },
-   { de: "orb-9", a: "orb-5" },
+  { de: "orb-9", a: "orb-5" },
   { de: "orb-10", a: "orb-5" }
 ];

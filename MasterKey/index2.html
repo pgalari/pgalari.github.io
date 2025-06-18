@@ -247,7 +247,7 @@ conexiones.forEach(({ de, a }) => {
 // Crear orbes HTML
 orbes.forEach(orb => {
   const div = document.createElement("div");
-  div.className = "orb" + (orb.orden === 4 ? " central" : "");
+  div.className = "orb" + (orb.orden <6 ? "central" : "");
   div.id = orb.id;
   div.style.backgroundColor = orb.color;
   div.style.left = `${orb.x - 30}px`;

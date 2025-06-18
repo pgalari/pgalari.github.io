@@ -88,12 +88,12 @@
       { id: "orb-4", nombre: "Orb 4", orden: 4, x: 350, y: 400, color: "#fef200", descripcion: "Información", tipo: "central" },
       { id: "orb-5", nombre: "Orb 5", orden: 5, x: 350, y: 500, color: "#f7941f", descripcion: "Comunicación", tipo: "central" },
       { id: "orb-6", nombre: "Orb 6", orden: 6, x: 350, y: 600, color: "#fb0202", descripcion: "Interacción", tipo: "central" },
-      { id: "orb-12", nombre: "Orb 12", orden: 12, x: 450, y: 250, color: "#eb018e", descripcion: "Familia", tipo: "orbital" },
-      { id: "orb-10", nombre: "Orb 10", orden: 10, x: 450, y: 350, color: "#00ff01", descripcion: "Pareja", tipo: "orbital" },
+      { id: "orb-7", nombre: "Orb 7", orden: 7, x: 250, y: 450, color: "#fb0202", descripcion: "Servicio", tipo: "orbital" },
       { id: "orb-8", nombre: "Orb 8", orden: 8, x: 450, y: 450, color: "#fef200", descripcion: "Relaciones", tipo: "orbital" },
-      { id: "orb-11", nombre: "Orb 11", orden: 11, x: 250, y: 250, color: "#0800ff", descripcion: "Propósito", tipo: "orbital" },
       { id: "orb-9", nombre: "Orb 9", orden: 9, x: 250, y: 350, color: "#04adf0", descripcion: "Habilidades.", tipo: "orbital" },
-      { id: "orb-7", nombre: "Orb 7", orden: 7, x: 250, y: 450, color: "#fb0202", descripcion: "Servicio", tipo: "orbital" }
+      { id: "orb-10", nombre: "Orb 10", orden: 10, x: 450, y: 350, color: "#00ff01", descripcion: "Pareja", tipo: "orbital" },
+      { id: "orb-11", nombre: "Orb 11", orden: 11, x: 250, y: 250, color: "#0800ff", descripcion: "Propósito", tipo: "orbital" },
+      { id: "orb-12", nombre: "Orb 12", orden: 12, x: 450, y: 250, color: "#eb018e", descripcion: "Familia", tipo: "orbital" }
     ];
 
     const conexiones = [
@@ -137,10 +137,10 @@
       for (let i = 0; i < orbs.length; i++) {
         const current = document.getElementById(orbs[i].id);
         current.classList.add("glow");
-        if (i > 0) {
+       /* if (i > 0) {
           const prev = document.getElementById(orbs[i - 1].id);
           setTimeout(() => prev.classList.remove("glow"), 600);
-        }
+        }*/
         await new Promise(r => setTimeout(r, 800));
       }
       // al final las dejamos encendidas

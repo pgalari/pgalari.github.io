@@ -32,8 +32,8 @@ svg {
 }
 
 .orb.central {
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
   animation: gaseous 6s ease-in-out infinite alternate, pulse 2s infinite;
 }
 
@@ -42,11 +42,11 @@ svg {
 }
 
 .orb.off {
-  filter: brightness(40%) blur(2px);
+  filter: brightness(50%) blur(2px);
 }
 
 .orb.idle {
-  filter: brightness(60%) blur(4px);
+  filter: brightness(75%) blur(4px);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
@@ -57,7 +57,7 @@ svg {
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50% { transform: scale(0.9); }
 }
 
 @keyframes spin {
@@ -74,7 +74,7 @@ svg {
   100% {
     filter: blur(1.2px) brightness(1.2);
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    transform: scale(1.03) translate(1px, -1px);
+    transform: scale(0.9) translate(1px, -1px);
   }
 }
 

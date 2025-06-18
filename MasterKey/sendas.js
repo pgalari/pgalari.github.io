@@ -1,4 +1,4 @@
-export const sendas = [
+export const conexiones = [
   { de: "orb-1", a: "orb-2" },
   { de: "orb-2", a: "orb-3" },
   { de: "orb-3", a: "orb-4" },

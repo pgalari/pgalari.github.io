@@ -91,6 +91,8 @@ button {
   font-size: 16px;
 }
   </style>
+  <script src="orbs.js"></script>
+  <script src="sendas.js"></script>
 </head>
 <body>
   <svg id="svgCanvas" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet"></svg>
@@ -100,8 +102,7 @@ button {
     <h2 id="panel-title"></h2>
     <p id="panel-content"></p>
   </div>
-   <script src="orbs.js"></script>
-  <script src="sendas.js"></script>
+  
   <script>
       // === CONFIGURACIÓN INICIAL ===
     const svg = document.getElementById("svgCanvas");
@@ -129,8 +130,6 @@ const nada = [
     { id: "orb-12", tipo: "orbital", x: 450, y: 250, color: "#eb018e", nombre: "Familia", frecuencia: "", situacion: "Orbita alrededor del hombro de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" }
 ];
 
-import { orbes } from 'orbs.js';
-import { conexiones } from 'sendas.js';
     let activeOrb = null;
 
     orbes.forEach((orb) => {

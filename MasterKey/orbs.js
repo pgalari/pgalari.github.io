@@ -57,7 +57,7 @@
   },
   {
     id: "orb-10", tipo: "orbital", x: 450, y: 350, color: "#00ff01",
-    nombre: "Pareja", descripcion: "Amor, intimidad"
+    nombre: "Pareja", descripcion: "Vinculo íntimo"
   },
   {
     id: "orb-11", tipo: "orbital", x: 250, y: 250, color: "#0800ff",

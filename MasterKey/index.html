@@ -40,9 +40,11 @@
 
 .orb-info-panel {
   position: fixed;
-  top: 160px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+//  transform: translateX(-50%);
   width: 90%;
   max-width: 600px;
   max-height: 60vh;
@@ -173,6 +175,7 @@ const conexiones = [
       circle.setAttribute("r", 30);
       circle.setAttribute("fill", orb.color);
       circle.setAttribute("id", orb.id);
+      circle.setAttribute("frecuencia", orb.frecuencia);
       circle.classList.add("orb");
 
       circle.addEventListener("click", () => showOrbDetails(orb, circle));
@@ -191,9 +194,10 @@ const conexiones = [
       document.body.appendChild(clone);
 
       orbContent.innerHTML = `
+        <p><em>ID:</em> ${orb.id}</p>
         <h2>${orb.nombre}</h2>
         <p>${orb.descripcion}</p>
-        <p><em>ID:</em> ${orb.id}</p>
+        <p>${orb.frecuencia}</p>
       `;
       orbInfo.classList.add("active");
       activeOrb = clone;

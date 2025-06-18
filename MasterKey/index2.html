@@ -220,11 +220,18 @@ window.addEventListener("DOMContentLoaded", () => {
     const total = ordenados.length;
 
     function activarSiguiente() {
-      if (index > 0) {
+    /*  if (index > 0) {
         const anterior = document.getElementById(ordenados[index - 1].id);
         anterior.classList.remove("active");
         anterior.classList.add("idle");
-      }
+      }*/
+      if (index > 0) {
+  const anterior = document.getElementById(ordenados[index - 1].id);
+  anterior.classList.remove("active");
+  anterior.classList.add("idle");
+  anterior.style.animation = "none"; // 🚫 Elimina la animación previa
+}
+
 
       if (index < total) {
         const actual = document.getElementById(ordenados[index].id);

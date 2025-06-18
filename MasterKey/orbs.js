@@ -1,4 +1,4 @@
-  const orbs = [
+  const orbes = [
   {
     id: "orb-1", tipo: "central", x: 350, y: 100, color: "#902692",
     nombre: "Conexión. Vibración",

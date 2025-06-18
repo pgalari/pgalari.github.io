@@ -316,18 +316,18 @@ window.addEventListener("DOMContentLoaded", () => {
 // Mostrar panel
 function showOrbDetails(orb, circleEl) {
       // Quitar cualquier orbe activo anterior
-      const prev = document.querySelector(".expanded-orb");
+      const prev = document.querySelector(".active");
       if (prev) prev.remove();
 
       const clone = circleEl.cloneNode(true);
-      clone.classList.add("expanded-orb");
+      clone.classList.add("active");
 
       document.body.appendChild(clone);
 
       orbContent.innerHTML = `
         <h2>${orb.nombre}</h2>
         <p>${orb.descripcion}</p>
-        <p><em>ID:</em> ${orb.id}</p>
+        <p><em></em> ${orb.frecuencia}</p>
       `;
       orbInfo.classList.add("active");
       activeOrb = clone;

@@ -1,4 +1,4 @@
-  export const orbes = [
+ const orbes = [
   {
     id: "orb-1", tipo: "central", x: 350, y: 100, color: "#902692", nombre: "Conexión", frecuencia: "Onda Gama", situacion: "Flota por encima de tu cabeza", conecta: "Glándula Pineal", mudra: "Love mudra", respiracion: "G Breath", breve: "Es el sistema principal.", ampliado: "Es el sistema de memoria vibracional. Es el sistema que hace posible que los demás sistemas estén activos en el cuerpo. Regula el sueño y el descanso, la conexión espiritual, habilidades extrasensoriales, DMT y conciencia elevada. En caso de necesitar regulación lo mejor es la respiración." 
   },
@@ -60,7 +60,7 @@
   }
 ];
 
- export const conexiones= [
+ const conexiones= [
   { de: "orb-1", a: "orb-2" },
   { de: "orb-2", a: "orb-3" },
   { de: "orb-3", a: "orb-4" },

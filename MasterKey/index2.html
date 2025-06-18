@@ -306,8 +306,33 @@ window.addEventListener("DOMContentLoaded", () => {
     activarSiguiente();
   });
 });
+// Mostrar panel
+function showOrbDetails(orb, circleEl) {
+      // Quitar cualquier orbe activo anterior
+      const prev = document.querySelector(".expanded-orb");
+      if (prev) prev.remove();
 
+      const clone = circleEl.cloneNode(true);
+      clone.classList.add("expanded-orb");
 
+      document.body.appendChild(clone);
+
+      orbContent.innerHTML = `
+        <h2>${orb.nombre}</h2>
+        <p>${orb.descripcion}</p>
+        <p><em>ID:</em> ${orb.id}</p>
+      `;
+      orbInfo.classList.add("active");
+      activeOrb = clone;
+    }
+
+    function closeOrb() {
+      orbInfo.classList.remove("active");
+      if (activeOrb) {
+        activeOrb.remove();
+        activeOrb = null;
+      }
+    }
 
 
 </script>

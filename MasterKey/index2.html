@@ -3,177 +3,227 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orbes Luminosas</title>
+  <title>Orbes Interactivas</title>
   <style>
     body {
       margin: 0;
-      background: #000;
+      background-color: black;
       overflow: hidden;
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
     }
+
     svg {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100vw;
       height: 100vh;
       z-index: 0;
     }
+
     .orb {
       position: absolute;
-      width: 40px;
-      height: 40px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-      transition: transform 0.4s ease;
       cursor: pointer;
-      z-index: 2;
+      transition: transform 0.5s ease, box-shadow 0.5s ease, filter 1s;
+      z-index: 1;
     }
+
     .orb.central {
-      width: 48px;
-      height: 48px;
+      width: 70px;
+      height: 70px;
     }
-    .orb.glow {
-      box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.6);
-      transform: scale(1.4);
+
+    .orb.off {
+      filter: brightness(10%) blur(1px);
     }
-    .orb-info-panel {
-      position: fixed;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 600px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 20px;
-      color: white;
-      z-index: 10;
-      display: none;
+
+    .orb.idle {
+      filter: brightness(50%) blur(1px);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     }
-    .orb-info-panel.active {
-      display: block;
+
+    .orb.active {
+      filter: brightness(100%) blur(0);
+      box-shadow: 0 0 30px white;
     }
-    .btn-recorrido {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      color: black;
+
+    .orb:hover.central {
+      animation: pulse 2s infinite;
+    }
+
+    .orb:hover.orbital {
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .line {
+      stroke-width: 3;
+      opacity: 0.4;
+      transition: opacity 0.5s;
+    }
+
+    .line.active {
+      opacity: 1;
+    }
+
+    .line.idle {
+      opacity: 0.5;
+    }
+
+    #start-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
       padding: 10px 20px;
+      background-color: white;
+      color: black;
       border: none;
-      border-radius: 20px;
+      border-radius: 10px;
       cursor: pointer;
-      z-index: 10;
+      z-index: 3;
     }
   </style>
 </head>
 <body>
-
+  <button id="start-button">Iniciar Recorrido</button>
   <svg id="lines"></svg>
-
-  <div id="orbs-container"></div>
-
-  <div class="orb-info-panel" id="orb-info"></div>
-
-  <button class="btn-recorrido" onclick="iniciarRecorrido()">Iniciar Recorrido</button>
-
   <script>
     const orbs = [
-      { id: "orb-1", nombre: "Orb 1", orden: 1, x: 350, y: 100, color: "#902692", descripcion: "Vibración", tipo: "central" },
-      { id: "orb-2", nombre: "Orb 2", orden: 2, x: 350, y: 200, color: "#0071bd", descripcion: "Química", tipo: "central" },
-      { id: "orb-3", nombre: "Orb 3", orden: 3, x: 350, y: 300, color: "#02a550", descripcion: "Emociones.", tipo: "central" },
-      { id: "orb-4", nombre: "Orb 4", orden: 4, x: 350, y: 400, color: "#fef200", descripcion: "Información", tipo: "central" },
-      { id: "orb-5", nombre: "Orb 5", orden: 5, x: 350, y: 500, color: "#f7941f", descripcion: "Comunicación", tipo: "central" },
-      { id: "orb-6", nombre: "Orb 6", orden: 6, x: 350, y: 600, color: "#fb0202", descripcion: "Interacción", tipo: "central" },
-      { id: "orb-7", nombre: "Orb 7", orden: 7, x: 250, y: 450, color: "#fb0202", descripcion: "Servicio", tipo: "orbital" },
-      { id: "orb-8", nombre: "Orb 8", orden: 8, x: 450, y: 450, color: "#fef200", descripcion: "Relaciones", tipo: "orbital" },
-      { id: "orb-9", nombre: "Orb 9", orden: 9, x: 250, y: 350, color: "#04adf0", descripcion: "Habilidades.", tipo: "orbital" },
-      { id: "orb-10", nombre: "Orb 10", orden: 10, x: 450, y: 350, color: "#00ff01", descripcion: "Pareja", tipo: "orbital" },
-      { id: "orb-11", nombre: "Orb 11", orden: 11, x: 250, y: 250, color: "#0800ff", descripcion: "Propósito", tipo: "orbital" },
-      { id: "orb-12", nombre: "Orb 12", orden: 12, x: 450, y: 250, color: "#eb018e", descripcion: "Familia", tipo: "orbital" }
+      { id: "orb-1", orden: 1, x: 350, y: 100, color: "#902692" },
+      { id: "orb-2", orden: 2, x: 350, y: 200, color: "#0071bd" },
+      { id: "orb-3", orden: 3, x: 350, y: 300, color: "#02a550" },
+      { id: "orb-4", orden: 4, x: 350, y: 400, color: "#fef200" },
+      { id: "orb-5", orden: 5, x: 350, y: 500, color: "#f7941f" },
+      { id: "orb-6", orden: 6, x: 350, y: 600, color: "#fb0202" },
+      { id: "orb-12", orden: 12, x: 450, y: 250, color: "#eb018e" },
+      { id: "orb-10", orden: 10, x: 450, y: 350, color: "#00ff01" },
+      { id: "orb-8", orden: 8, x: 450, y: 450, color: "#fef200" },
+      { id: "orb-11", orden: 11, x: 250, y: 250, color: "#0800ff" },
+      { id: "orb-9", orden: 9, x: 250, y: 350, color: "#04adf0" },
+      { id: "orb-7", orden: 7, x: 250, y: 450, color: "#fb0202" }
     ];
 
     const conexiones = [
-      { de: "orb-1", a: "orb-2" }, { de: "orb-2", a: "orb-3" }, { de: "orb-3", a: "orb-4" }, { de: "orb-4", a: "orb-5" }, { de: "orb-5", a: "orb-6" },
-      { de: "orb-1", a: "orb-11" }, { de: "orb-1", a: "orb-12" }, { de: "orb-2", a: "orb-11" }, { de: "orb-2", a: "orb-12" }, { de: "orb-11", a: "orb-12" },
-      { de: "orb-3", a: "orb-11" }, { de: "orb-3", a: "orb-12" }, { de: "orb-3", a: "orb-9" }, { de: "orb-3", a: "orb-10" }, { de: "orb-9", a: "orb-10" },
-      { de: "orb-4", a: "orb-9" }, { de: "orb-4", a: "orb-10" }, { de: "orb-4", a: "orb-7" }, { de: "orb-4", a: "orb-8" }, { de: "orb-7", a: "orb-8" },
-      { de: "orb-5", a: "orb-7" }, { de: "orb-5", a: "orb-8" }, { de: "orb-6", a: "orb-7" }, { de: "orb-6", a: "orb-8" }, { de: "orb-7", a: "orb-9" },
-      { de: "orb-8", a: "orb-10" }, { de: "orb-9", a: "orb-11" }, { de: "orb-10", a: "orb-12" }, { de: "orb-7", a: "orb-3" }, { de: "orb-8", a: "orb-3" },
-      { de: "orb-9", a: "orb-2" }, { de: "orb-10", a: "orb-2" }, { de: "orb-11", a: "orb-4" }, { de: "orb-12", a: "orb-4" }, { de: "orb-9", a: "orb-5" },
+      { de: "orb-1", a: "orb-2" },
+      { de: "orb-2", a: "orb-3" },
+      { de: "orb-3", a: "orb-4" },
+      { de: "orb-4", a: "orb-5" },
+      { de: "orb-5", a: "orb-6" },
+      { de: "orb-1", a: "orb-11" },
+      { de: "orb-1", a: "orb-12" },
+      { de: "orb-2", a: "orb-11" },
+      { de: "orb-2", a: "orb-12" },
+      { de: "orb-11", a: "orb-12" },
+      { de: "orb-3", a: "orb-11" },
+      { de: "orb-3", a: "orb-12" },
+      { de: "orb-3", a: "orb-9" },
+      { de: "orb-3", a: "orb-10" },
+      { de: "orb-9", a: "orb-10" },
+      { de: "orb-4", a: "orb-9" },
+      { de: "orb-4", a: "orb-10" },
+      { de: "orb-4", a: "orb-7" },
+      { de: "orb-4", a: "orb-8" },
+      { de: "orb-7", a: "orb-8" },
+      { de: "orb-5", a: "orb-7" },
+      { de: "orb-5", a: "orb-8" },
+      { de: "orb-6", a: "orb-7" },
+      { de: "orb-6", a: "orb-8" },
+      { de: "orb-7", a: "orb-9" },
+      { de: "orb-8", a: "orb-10" },
+      { de: "orb-9", a: "orb-11" },
+      { de: "orb-10", a: "orb-12" },
+      { de: "orb-7", a: "orb-3" },
+      { de: "orb-8", a: "orb-3" },
+      { de: "orb-9", a: "orb-2" },
+      { de: "orb-10", a: "orb-2" },
+      { de: "orb-11", a: "orb-4" },
+      { de: "orb-12", a: "orb-4" },
+      { de: "orb-9", a: "orb-5" },
       { de: "orb-10", a: "orb-5" }
     ];
 
-    const container = document.getElementById("orbs-container");
-    const panel = document.getElementById("orb-info");
-
-    orbs.forEach(({ id, x, y, color, tipo }) => {
-      const el = document.createElement("div");
-      el.className = `orb ${tipo}`;
-      el.id = id;
-      el.style.background = color;
-      el.style.left = `${x}px`;
-      el.style.top = `${y}px`;
-      el.addEventListener("click", () => mostrarPanel(id));
-      container.appendChild(el);
-    });
-
-    function mostrarPanel(id) {
-      const orb = orbs.find(o => o.id === id);
-      if (!orb) return;
-      panel.innerHTML = `<h2>${orb.nombre}</h2><p>${orb.descripcion}</p>`;
-      panel.classList.add("active");
-    }
-
-    function resetGlow() {
-      document.querySelectorAll(".orb").forEach(o => o.classList.remove("glow"));
-    }
-
-    async function iniciarRecorrido() {
-      resetGlow();
-      for (let i = 0; i < orbs.length; i++) {
-        const current = document.getElementById(orbs[i].id);
-        current.classList.add("glow");
-       /* if (i > 0) {
-          const prev = document.getElementById(orbs[i - 1].id);
-          setTimeout(() => prev.classList.remove("glow"), 600);
-        }*/
-        await new Promise(r => setTimeout(r, 800));
-      }
-      // al final las dejamos encendidas
-      orbs.forEach(({ id }) => document.getElementById(id).classList.add("glow"));
-    }
-
     const svg = document.getElementById("lines");
+    const orbElements = {};
+
+    // Crear líneas SVG
     conexiones.forEach(({ de, a }) => {
       const orbA = orbs.find(o => o.id === de);
       const orbB = orbs.find(o => o.id === a);
-      if (orbA && orbB) {
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("x1", orbA.x + 20);
-        line.setAttribute("y1", orbA.y + 20);
-        line.setAttribute("x2", orbB.x + 20);
-        line.setAttribute("y2", orbB.y + 20);
-        line.setAttribute("stroke", `url(#grad-${de}-${a})`);
-        line.setAttribute("stroke-width", "2");
-        svg.appendChild(line);
+      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      line.setAttribute("x1", orbA.x);
+      line.setAttribute("y1", orbA.y);
+      line.setAttribute("x2", orbB.x);
+      line.setAttribute("y2", orbB.y);
+      line.setAttribute("stroke", `url(#gradient-${de}-${a})`);
+      line.setAttribute("class", "line idle");
+      svg.appendChild(line);
 
-        const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
-        grad.setAttribute("id", `grad-${de}-${a}`);
-        grad.innerHTML = `
-          <stop offset="0%" stop-color="${orbA.color}"/>
-          <stop offset="100%" stop-color="${orbB.color}"/>
-        `;
-        const defs = svg.querySelector("defs") || (() => {
-          const d = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-          svg.prepend(d);
-          return d;
-        })();
-        defs.appendChild(grad);
+      const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+      grad.setAttribute("id", `gradient-${de}-${a}`);
+      grad.setAttribute("x1", "0%");
+      grad.setAttribute("y1", "0%");
+      grad.setAttribute("x2", "100%");
+      grad.setAttribute("y2", "0%");
+      grad.innerHTML = `
+        <stop offset="0%" stop-color="${orbA.color}" />
+        <stop offset="100%" stop-color="${orbB.color}" />
+      `;
+      svg.appendChild(grad);
+    });
+
+    // Crear orbes
+    orbs.forEach((orb) => {
+      const div = document.createElement("div");
+      div.className = `orb ${orb.orden <= 6 ? "central" : "orbital"} off`;
+      div.style.left = `${orb.x}px`;
+      div.style.top = `${orb.y}px`;
+      div.style.background = orb.color;
+      div.id = orb.id;
+      document.body.appendChild(div);
+      orbElements[orb.id] = div;
+    });
+
+    function activarRecorrido() {
+      let index = 0;
+      const ordenados = [...orbs].sort((a, b) => a.orden - b.orden);
+      function paso() {
+        if (index >= ordenados.length) {
+          ordenados.forEach(o => {
+            orbElements[o.id].classList.remove("active");
+            orbElements[o.id].classList.add("idle");
+          });
+          return;
+        }
+        if (index > 0) {
+          const prev = ordenados[index - 1];
+          setTimeout(() => {
+            orbElements[prev.id].classList.remove("active");
+            orbElements[prev.id].classList.add("idle");
+          }, 1000);
+        }
+        const actual = ordenados[index];
+        orbElements[actual.id].classList.remove("off", "idle");
+        orbElements[actual.id].classList.add("active");
+        index++;
+        setTimeout(paso, 1500);
       }
+      paso();
+    }
+
+    document.getElementById("start-button").addEventListener("click", () => {
+      document.querySelectorAll(".orb").forEach(o => o.classList.remove("idle", "active"));
+      document.querySelectorAll(".orb").forEach(o => o.classList.add("off"));
+      activarRecorrido();
     });
   </script>
 </body>

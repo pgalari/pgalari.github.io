@@ -96,14 +96,9 @@
 </head>
 <body>
   <button id="start-button">Iniciar Recorrido</button>
-  <!-- <svg id="lines"></svg> -->
-  <svg id="lines" width="100%" height="100%" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
-  <!-- Gradientes se insertarán aquí -->
-  </svg>
-
-
+  <svg id="lines"></svg>
   <script>
-    const orbs = [
+    const orbes = [
       { id: "orb-1", orden: 1, x: 350, y: 100, color: "#902692" },
       { id: "orb-2", orden: 2, x: 350, y: 200, color: "#0071bd" },
       { id: "orb-3", orden: 3, x: 350, y: 300, color: "#02a550" },
@@ -156,87 +151,25 @@
       { de: "orb-9", a: "orb-5" },
       { de: "orb-10", a: "orb-5" }
     ];
-    const svg = document.getElementById("lines");
-    // Creamos el bloque <defs> para los gradientes
-    const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-    svg.appendChild(defs);
 
-    const orbElements = {};
+    <svg id="lines" width="100%" height="100%" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradientes se insertarán aquí dinámicamente -->
+</svg>
 
-    // Crear líneas SVG
-/*    conexiones.forEach(({ de, a }) => {
-      const orbA = orbs.find(o => o.id === de);
-      const orbB = orbs.find(o => o.id === a);
-      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      line.setAttribute("x1", orbA.x);
-      line.setAttribute("y1", orbA.y);
-      line.setAttribute("x2", orbB.x);
-      line.setAttribute("y2", orbB.y);
-      line.setAttribute("stroke", `url(#gradient-${de}-${a})`);
-      line.setAttribute("class", "line idle");
-      svg.appendChild(line);
+<script>
+// Los arrays `orbes` y `conexiones` deben estar definidos arriba
 
-      const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
-      grad.setAttribute("id", `gradient-${de}-${a}`);
-      grad.setAttribute("x1", "0%");
-      grad.setAttribute("y1", "0%");
-      grad.setAttribute("x2", "100%");
-      grad.setAttribute("y2", "0%");
-      grad.innerHTML = `
-        <stop offset="0%" stop-color="${orbA.color}" />
-        <stop offset="100%" stop-color="${orbB.color}" />
-      `;
-      svg.appendChild(grad);
-    });
-*/
-    conexiones.forEach(([de, a]) => {
-  const orbA = orbes.find(o => o.id === de);
-  const orbB = orbes.find(o => o.id === a);
+const svg = document.getElementById("lines");
 
-  // Crear gradiente lineal único para esta conexión
-  const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
-  const gradId = `gradient-${de}-${a}`;
-  grad.setAttribute("id", gradId);
-  grad.setAttribute("x1", "0%");
-  grad.setAttribute("y1", "0%");
-  grad.setAttribute("x2", "100%");
-  grad.setAttribute("y2", "0%");
+// Crear <defs> si no existe
+let defs = svg.querySelector("defs");
+if (!defs) {
+  defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  svg.appendChild(defs);
+}
 
-  const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-  stop1.setAttribute("offset", "0%");
-  stop1.setAttribute("stop-color", orbA.color);
-  grad.appendChild(stop1);
-
-  const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-  stop2.setAttribute("offset", "100%");
-  stop2.setAttribute("stop-color", orbB.color);
-  grad.appendChild(stop2);
-
-  defs.appendChild(grad);
-
-  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  line.setAttribute("x1", orbA.x);
-  line.setAttribute("y1", orbA.y);
-  line.setAttribute("x2", orbB.x);
-  line.setAttribute("y2", orbB.y);
-  line.setAttribute("stroke", `url(#${gradId})`);
-  line.setAttribute("stroke-width", 3);
-  svg.insertBefore(line, svg.firstChild); // colocar debajo de los orbes
-});
-    
-
-    // Crear orbes
-   /* orbs.forEach((orb) => {
-      const div = document.createElement("div");
-      div.className = `orb ${orb.orden <= 6 ? "central" : "orbital"} off`;
-      div.style.left = `${orb.x}px`;
-      div.style.top = `${orb.y}px`;
-      div.style.background = orb.color;
-      div.id = orb.id;
-      document.body.appendChild(div);
-      orbElements[orb.id] = div;
-    });*/
-    orbes.forEach(orb => {
+// Dibujar orbes
+orbes.forEach(orb => {
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", orb.x);
   circle.setAttribute("cy", orb.y);
@@ -245,46 +178,43 @@
   svg.appendChild(circle);
 });
 
-    function activarRecorrido() {
-      let index = 0;
-      const ordenados = [...orbs].sort((a, b) => a.orden - b.orden);
-      function paso() {
-        if (index >= ordenados.length) {
-          ordenados.forEach(o => {
-            orbElements[o.id].classList.remove("active");
-            orbElements[o.id].classList.add("idle");
-          });
-          return;
-        }
-        if (index > 0) {
-          const prev = ordenados[index - 1];
-          setTimeout(() => {
-            orbElements[prev.id].classList.remove("active");
-            orbElements[prev.id].classList.add("idle");
-          }, 1000);
-        }
-        const actual = ordenados[index];
-        orbElements[actual.id].classList.remove("off", "idle");
-        orbElements[actual.id].classList.add("active");
-        index++;
-        setTimeout(paso, 1500);
-      }
-      paso();
-    }
+// Dibujar líneas con gradientes personalizados
+conexiones.forEach(([idA, idB]) => {
+  const orbA = orbes.find(o => o.id === idA);
+  const orbB = orbes.find(o => o.id === idB);
+  if (!orbA || !orbB) return;
 
-    document.getElementById("start-button").addEventListener("click", () => {
-      document.querySelectorAll(".orb").forEach(o => o.classList.remove("idle", "active"));
-      document.querySelectorAll(".orb").forEach(o => o.classList.add("off"));
-      activarRecorrido();
-    });
- 
+  const gradId = `grad-${idA}-${idB}`;
+  const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+  gradient.setAttribute("id", gradId);
+  gradient.setAttribute("gradientUnits", "userSpaceOnUse");
+  gradient.setAttribute("x1", orbA.x);
+  gradient.setAttribute("y1", orbA.y);
+  gradient.setAttribute("x2", orbB.x);
+  gradient.setAttribute("y2", orbB.y);
 
+  const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop1.setAttribute("offset", "0%");
+  stop1.setAttribute("stop-color", orbA.color);
+  gradient.appendChild(stop1);
 
+  const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop2.setAttribute("offset", "100%");
+  stop2.setAttribute("stop-color", orbB.color);
+  gradient.appendChild(stop2);
 
+  defs.appendChild(gradient);
 
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  line.setAttribute("x1", orbA.x);
+  line.setAttribute("y1", orbA.y);
+  line.setAttribute("x2", orbB.x);
+  line.setAttribute("y2", orbB.y);
+  line.setAttribute("stroke", `url(#${gradId})`);
+  line.setAttribute("stroke-width", 4);
 
-
-
+  svg.insertBefore(line, svg.firstChild); // Detrás de los orbes
+});
 </script>
 
 </body>

@@ -5,93 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Orbes Interactivas</title>
   <style>
-    body {
-      margin: 0;
-      background-color: black;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
+ 
+  body {
+  margin: 0;
+  background-color: black;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
 
-    svg {
-      position: absolute;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-    }
+svg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
 
-    .orb {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.5s ease, box-shadow 0.5s ease, filter 1s;
-      z-index: 1;
-    }
+.orb {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.5s ease, box-shadow 0.5s ease, filter 1s;
+  z-index: 1;
+  animation: gaseous 6s ease-in-out infinite alternate;
+}
 
-    .orb.central {
-      width: 70px;
-      height: 70px;
-    }
+.orb.central {
+  width: 70px;
+  height: 70px;
+  animation: gaseous 6s ease-in-out infinite alternate, pulse 2s infinite;
+}
 
-    .orb.off {
-      filter: brightness(10%) blur(1px);
-    }
+.orb.orbital {
+  animation: gaseous 6s ease-in-out infinite alternate, spin 20s linear infinite;
+}
 
-    .orb.idle {
-      filter: brightness(50%) blur(1px);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    }
+.orb.off {
+  filter: brightness(10%) blur(1px);
+}
 
-    .orb.active {
-      filter: brightness(100%) blur(0);
-      box-shadow: 0 0 30px white;
-    }
+.orb.idle {
+  filter: brightness(50%) blur(1px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
 
-    .orb:hover.central {
-      animation: pulse 2s infinite;
-    }
+.orb.active {
+  filter: brightness(100%) blur(0);
+  box-shadow: 0 0 30px white;
+}
 
-    .orb:hover.orbital {
-      animation: spin 3s linear infinite;
-    }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+@keyframes gaseous {
+  0% {
+    filter: blur(0.5px) brightness(0.9);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    filter: blur(1.2px) brightness(1.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: scale(1.03) translate(1px, -1px);
+  }
+}
 
-    .line {
-      stroke-width: 3;
-      opacity: 0.4;
-      transition: opacity 0.5s;
-    }
+.line {
+  stroke-width: 3;
+  opacity: 0.4;
+  transition: opacity 0.5s;
+}
 
-    .line.active {
-      opacity: 1;
-    }
+.line.active {
+  opacity: 1;
+}
 
-    .line.idle {
-      opacity: 0.5;
-    }
+.line.idle {
+  opacity: 0.5;
+}
 
-    #start-button {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 10px 20px;
-      background-color: white;
-      color: black;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      z-index: 3;
-    }
+#start-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 3;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+#start-button:hover {
+  background-color: #eee;
+  transform: scale(1.05);
+}
+
+/* Panel de información emergente */
+#info-panel {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  width: 260px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: 2px solid white;
+  border-radius: 12px;
+  z-index: 4;
+  display: none;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
+}
+
+#info-panel.active {
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
   </style>
 </head>
 <body>

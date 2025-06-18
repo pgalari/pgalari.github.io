@@ -93,11 +93,12 @@ button {
 <body>
   <svg id="svgCanvas" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet"></svg>
 
-  <div id="orbInfo" class="orb-info-panel">
-    <button class="close-btn" onclick="closeOrb()">Cerrar ✖</button>
-    <div id="orbContent"></div>
+  <div id="info-panel" class="hidden">
+    <button id="close-panel">X</button>
+    <h2 id="panel-title"></h2>
+    <p id="panel-content"></p>
   </div>
-
+  
   <script>
       // === CONFIGURACIÓN INICIAL ===
     const svg = document.getElementById("svgCanvas");

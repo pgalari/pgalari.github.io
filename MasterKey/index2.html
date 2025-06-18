@@ -211,44 +211,50 @@ orbes.forEach(orb => {
 });
 
 // Recorrido visual
-startButton.addEventListener("click", () => {
-  let index = 0;
-  const ordenados = [...orbes].sort((a, b) => a.orden - b.orden);
-  const total = ordenados.length;
+window.addEventListener("DOMContentLoaded", () => {
+  const startButton = document.getElementById("start-button");
 
-  function activarSiguiente() {
-    if (index > 0) {
-      const anterior = document.getElementById(ordenados[index - 1].id);
-      anterior.classList.remove("active");
-      anterior.classList.add("idle");
-    }
+  startButton.addEventListener("click", () => {
+    let index = 0;
+    const ordenados = [...orbes].sort((a, b) => a.orden - b.orden);
+    const total = ordenados.length;
 
-    if (index < total) {
-      const actual = document.getElementById(ordenados[index].id);
-      actual.classList.remove("off");
-      actual.classList.add("active");
-
-      if (actual.classList.contains("central")) {
-        actual.style.animation = "pulse 2s infinite";
-      } else {
-        actual.style.animation = "spin 3s linear infinite";
+    function activarSiguiente() {
+      if (index > 0) {
+        const anterior = document.getElementById(ordenados[index - 1].id);
+        anterior.classList.remove("active");
+        anterior.classList.add("idle");
       }
 
-      index++;
-      setTimeout(activarSiguiente, 1200);
-    } else {
-      // Final del recorrido: mantener animaciones
-      document.querySelectorAll(".orb.central").forEach(o => {
-        o.style.animation = "pulse 2s infinite";
-      });
-      document.querySelectorAll(".orb:not(.central)").forEach(o => {
-        o.style.animation = "spin 10s linear infinite";
-      });
-    }
-  }
+      if (index < total) {
+        const actual = document.getElementById(ordenados[index].id);
+        actual.classList.remove("off");
+        actual.classList.add("active");
 
-  activarSiguiente();
+        if (actual.classList.contains("central")) {
+          actual.style.animation = "pulse 2s infinite";
+        } else {
+          actual.style.animation = "spin 3s linear infinite";
+        }
+
+        index++;
+        setTimeout(activarSiguiente, 1200);
+      } else {
+        // Final del recorrido: mantener animaciones
+        document.querySelectorAll(".orb.central").forEach(o => {
+          o.style.animation = "pulse 2s infinite";
+        });
+        document.querySelectorAll(".orb:not(.central)").forEach(o => {
+          o.style.animation = "spin 10s linear infinite";
+        });
+      }
+    }
+
+    activarSiguiente();
+  });
 });
+
+
 
 
 </script>

@@ -1,0 +1,192 @@
+<html>
+<css>
+// Variables
+// Only generate rules up to the max tabs desired
+$max-tabs: 8;
+$tab-width: 40px;
+
+// Theming
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+$clr-bg: #1C1F2B;
+$clr-bg-light: lighten($clr-bg, 10%);
+$clr-bg-lighter: lighten($clr-bg, 15%);
+$clr-bg-dark: darken($clr-bg, 2.5%);
+$clr-bg-darker: darken($clr-bg, 5%);
+$clr-text: $clr-white;
+$clr-text-hint: rgba($clr-text, .6);
+$clr-primary: $clr-blue;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: $clr-bg;
+  color: $clr-text;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* LIST */
+ul {
+  list-style: none;
+}
+
+/* FORM */
+// Hide the input
+input {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+// Make the label a vertical bar
+label {
+  display: block;
+  float: left;
+  height: 100vh;
+  width: $tab-width;
+  overflow: hidden;
+
+  background: $clr-bg-light;
+  text-align: center;
+  font-size: 14px;
+  line-height: $tab-width + 10;
+
+  transition: background 300ms ease;
+  
+  &:hover { transition-duration: 0s }
+}
+
+li:nth-child(even) > input + label {
+  background: $clr-bg-lighter;
+}
+
+label:hover,
+li:nth-child(even) > input + label:hover {
+  background: $clr-primary;
+  color: #fff;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked ~ label {
+  background: $clr-primary;
+  color: #fff;
+  cursor: default !important;
+}
+
+/* SLIDES */
+.accslide {
+  display: block;
+  height: 100%;
+  width: 0px;
+  padding: 10px 0;
+  float: left;
+  overflow-x: hidden;
+
+  font-sizes: 12px;
+  line-height: 1.5;
+  
+  // Prevents text "squishing", but will cut off text if it is too long
+  white-space: nowrap;
+
+  transition: all 700ms ease;
+
+  * { padding-left: 10px }
+  img { margin-top: 10px  }
+}
+
+input[type="radio"]:not(:checked) ~ label > * {
+  padding-left: 7px;
+  font-size: 1.2em;
+  white-space: nowrap;
+	transform: rotate(90deg);
+}
+
+input[type="radio"]:checked ~ label > * {
+  display: none;
+}
+
+@for $i from 2 through $max-tabs {
+  @for $j from 1 through $i {
+    li:nth-child(#{$j}):nth-last-child(#{$i - $j + 1}) input[type="radio"]:checked ~ .accslide {
+      width: calc(100% - #{$i * $tab-width});
+    }
+  }
+}
+
+</css>
+
+</head>
+<body>
+// These variables help keep track of the input name and ID
+// currentTab helps keep track of each individual input
+- var currentTab = 1
+// tabControlName is used as a unique identifier for the accordion
+- var tabControlName = 'rad'
+mixin tab(title, checked)
+  li&attributes(attributes)
+    - var tabId = tabControlName + currentTab++
+    // Using radio inputs means only one can be selected at a time
+    // The ID must be unique so the label will point to the input
+    input(id=tabId type='radio' name=tabControlName checked=checked)
+    label(for=tabId): div=title
+    .accslide
+      .content
+        block
+    
+ul
+  +tab('Just keep going with longer text', true)
+    h1 Just keep going with longer text
+    p Lorem ipsum...
+  +tab('Second panel')
+    h1 Second panel
+    p Lorem ipsum...
+  +tab('Third panel')
+    h1 Third panel
+    p Lorem ipsum...
+  +tab('Fourth panel')
+    h1 Fourth panel
+    p Lorem ipsum...// These variables help keep track of the input name and ID
+// currentTab helps keep track of each individual input
+- var currentTab = 1
+// tabControlName is used as a unique identifier for the accordion
+- var tabControlName = 'rad'
+mixin tab(title, checked)
+  li&attributes(attributes)
+    - var tabId = tabControlName + currentTab++
+    // Using radio inputs means only one can be selected at a time
+    // The ID must be unique so the label will point to the input
+    input(id=tabId type='radio' name=tabControlName checked=checked)
+    label(for=tabId): div=title
+    .accslide
+      .content
+        block
+    
+ul
+  +tab('Just keep going with longer text', true)
+    h1 Just keep going with longer text
+    p Lorem ipsum...
+  +tab('Second panel')
+    h1 Second panel
+    p Lorem ipsum...
+  +tab('Third panel')
+    h1 Third panel
+    p Lorem ipsum...
+  +tab('Fourth panel')
+    h1 Fourth panel
+    p Lorem ipsum...
+
+</body>
+</html>
+
+
+
+    

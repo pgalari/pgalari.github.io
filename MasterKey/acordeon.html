@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum</title>
+  <title>Acordeon</title>
   <style>
 // Variables
 // Only generate rules up to the max tabs desired
@@ -127,10 +127,7 @@ input[type="radio"]:checked ~ label > * {
   }
 }
 
-</style>
 
-</head>
-<body>
 // These variables help keep track of the input name and ID
 // currentTab helps keep track of each individual input
 - var currentTab = 1
@@ -146,50 +143,137 @@ mixin tab(title, checked)
     .accslide
       .content
         block
-    
-ul
-  +tab('Just keep going with longer text', true)
-    h1 Just keep going with longer text
-    p Lorem ipsum...
-  +tab('Second panel')
-    h1 Second panel
-    p Lorem ipsum...
-  +tab('Third panel')
-    h1 Third panel
-    p Lorem ipsum...
-  +tab('Fourth panel')
-    h1 Fourth panel
-    p Lorem ipsum...// These variables help keep track of the input name and ID
-// currentTab helps keep track of each individual input
-- var currentTab = 1
-// tabControlName is used as a unique identifier for the accordion
-- var tabControlName = 'rad'
-mixin tab(title, checked)
-  li&attributes(attributes)
-    - var tabId = tabControlName + currentTab++
-    // Using radio inputs means only one can be selected at a time
-    // The ID must be unique so the label will point to the input
-    input(id=tabId type='radio' name=tabControlName checked=checked)
-    label(for=tabId): div=title
-    .accslide
-      .content
-        block
-    
-ul
-  +tab('Just keep going with longer text', true)
-    h1 Just keep going with longer text
-    p Lorem ipsum...
-  +tab('Second panel')
-    h1 Second panel
-    p Lorem ipsum...
-  +tab('Third panel')
-    h1 Third panel
-    p Lorem ipsum...
-  +tab('Fourth panel')
-    h1 Fourth panel
-    p Lorem ipsum...
+</style>
 
+</head>
+<body>
+  
+<!-- These variables help keep track of the input name and ID-->
+<!-- currentTab helps keep track of each individual input-->
+<!-- tabControlName is used as a unique identifier for the accordion-->
+<ul>
+  <li>
+    <!-- Using radio inputs means only one can be selected at a time-->
+    <!-- The ID must be unique so the label will point to the input-->
+    <input id="rad1" type="radio" name="rad" checked="checked"/>
+    <label for="rad1">
+      <div>Just keep going with longer text</div>
+    </label>
+    <div class="accslide">
+      <div class="content">
+        <h1>Just keep going with longer text</h1>
+        <p>Lorem ipsum...</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    <!-- Using radio inputs means only one can be selected at a time-->
+    <!-- The ID must be unique so the label will point to the input-->
+    <input id="rad2" type="radio" name="rad"/>
+    <label for="rad2">
+      <div>Second panel</div>
+    </label>
+    <div class="accslide">
+      <div class="content">
+        <h1>Second panel</h1>
+        <p>Lorem ipsum...</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    <!-- Using radio inputs means only one can be selected at a time-->
+    <!-- The ID must be unique so the label will point to the input-->
+    <input id="rad3" type="radio" name="rad"/>
+    <label for="rad3">
+      <div>Third panel</div>
+    </label>
+    <div class="accslide">
+      <div class="content">
+        <h1>Third panel</h1>
+        <p>Lorem ipsum...</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    <!-- Using radio inputs means only one can be selected at a time-->
+    <!-- The ID must be unique so the label will point to the input-->
+    <input id="rad4" type="radio" name="rad"/>
+    <label for="rad4">
+      <div>Fourth panel</div>
+    </label>
+    <div class="accslide">
+      <div class="content">
+        <h1>Fourth panel</h1>
+        <p>Lorem ipsum...// These variables help keep track of the input name and ID</p>
+      </div>
+    </div>
+  </li>
+</ul>
+<!-- currentTab helps keep track of each individual input-->
+<!-- tabControlName is used as a unique identifier for the accordion-->
+<ul>
+  <li>
+    <!-- Using radio inputs means only one can be selected at a time-->
+    <!-- The ID must be unique so the label will point to the input-->
+    <input id="rad1" type="radio" name="rad" checked="checked"/>
+    <label for="rad1">
+      <div>Just keep going with longer text</div>
+    </label>
+    <div class="accslide">
+      <div class="content">
+        <h1>Just keep going with longer text</h1>
+        <p>Lorem ipsum...</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    <!-- Using radio inputs means only one can be selected at a time-->
+    <!-- The ID must be unique so the label will point to the input-->
+    <input id="rad2" type="radio" name="rad"/>
+    <label for="rad2">
+      <div>Second panel</div>
+    </label>
+    <div class="accslide">
+      <div class="content">
+        <h1>Second panel</h1>
+        <p>Lorem ipsum...</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    <!-- Using radio inputs means only one can be selected at a time-->
+    <!-- The ID must be unique so the label will point to the input-->
+    <input id="rad3" type="radio" name="rad"/>
+    <label for="rad3">
+      <div>Third panel</div>
+    </label>
+    <div class="accslide">
+      <div class="content">
+        <h1>Third panel</h1>
+        <p>Lorem ipsum...</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    <!-- Using radio inputs means only one can be selected at a time-->
+    <!-- The ID must be unique so the label will point to the input-->
+    <input id="rad4" type="radio" name="rad"/>
+    <label for="rad4">
+      <div>Fourth panel</div>
+    </label>
+    <div class="accslide">
+      <div class="content">
+        <h1>Fourth panel</h1>
+        <p>Lorem ipsum...</p>
+      </div>
+    </div>
+  </li>
+</ul>
+  
+  
 </body>
+
+</html>
 </html>
 
 

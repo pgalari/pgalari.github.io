@@ -3,58 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neon Glow Effect Using CSS Drop Shadows and Clip Paths</title>
-  <style>
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: hsl(210, 50%, 14%);
-  height: 100vh
+  <title>Sphere</title>
+  <style>body {
+    background: #333;
 }
-
-$vw-width: 30vw;
-$vw-height: calc(#{$vw-width} / (1/ 1));
-$tod-tri: #ff00ff;
-$gold-tri: #fccc47;
-
-.shadow {
-  filter: drop-shadow(10px 10px 200px $tod-tri) drop-shadow(-10px -10px 50px $tod-tri);
-}
-
-.triangle-wrapper {
-  width: $vw-width;
-  height: $vw-height;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  background-color: $tod-tri;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.triangle {
-  width: calc(#{$vw-width} - 30px);
-  height: calc(#{$vw-width} - 30px);
-  background-color: hsl(210, 50%, 14%);
-  background-color: $gold-tri;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  margin-top: 10px;
-  filter: blur(115px) drop-shadow(-10px -10px 75px $tod-tri);
-  p {
+.sphere {
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    position: absolute;
+    margin: -100px;
+    border-radius: 100%;
+    box-shadow: inset 0 0 80px #FFF;
     color: #FFF;
-  }
+}
+.a {
+    top: 10%;
+    left: 20%;
+}
+.b {
+    top: 30%;
+    left: 60%;
+}
+.c {
+    top: 60%;
+    left: 40%;
+}
+.d {
+    top: 80%;
+    left: 70%;
 }
 </style>
 </head>
   <body>
 
-    <div class="shadow">
-  <div class="triangle-wrapper">
-    <div class="triangle">
-      <p>Todrick</p>
-    </div>
-  </div>
-</div>
+<div class = "sphere a">This</div>
+<div class = "sphere b">Is</div>
+<div class = "sphere c">A</div>
+<div class = "sphere d">Test</div>
 
   </body>
 </html>

@@ -53,11 +53,6 @@ const conexiones = [
   { de: "orb10", a: "orb5" }
 ];
 
-const conexiones = [
-  { de: "orb1", a: "orb2" },
-  { de: "orb2", a: "orb3" },
-  { de: "orb3", a: "orb1" }
-];
 const contenidos = {
   que: {
     textos: {

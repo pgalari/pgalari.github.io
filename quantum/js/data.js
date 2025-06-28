@@ -56,17 +56,17 @@ const conexiones = [
 const contenidos = {
   que: {
     textos: {
-      orb1: "Qué 1", orb2: "Qué 2", orb3: "Qué 3", orb4: "Qué 1", orb5: "Qué 2", orb6: "Qué 3",
-      orb7: "Cuándo 1", orb8: "Cuándo 2", orb9: "Cuándo 3", orb10: "Cuándo 5", orb11: "Cuándo 2", orb12: "Cuándo 3",
+      orb1: "Gamma", orb2: "Beta", orb3: "Alpha", orb4: "Theta", orb5: "Delta", orb6: "Segundo Beta",
+      orb7: "Servicio", orb8: "Cuándo 2", orb9: "Cuándo 3", orb10: "Cuándo 5", orb11: "Cuándo 2", orb12: "Cuándo 3",
     },
-    descripcion: "Esto es el apartado QUÉ."
+    descripcion: "Las orbs son energía pulsando en onda y partícula"
   },
   cuando: {
     textos: {
-      orb1: "Cuándo 1", orb2: "Cuándo 2", orb3: "Cuándo 3", orb4: "Cuándo 5", orb5: "Cuándo 2", orb6: "Cuándo 3",
-      orb7: "Cuándo 1", orb8: "Cuándo 2", orb9: "Cuándo 3", orb10: "Cuándo 5", orb11: "Cuándo 2", orb12: "Cuándo 3",
+      orb1: "Luz", orb2: "Química", orb3: "Emociones", orb4: "Pensamiento", orb5: "Interacciones", orb6: "Físico",
+      orb7: "Trabajo", orb8: "Relaciones", orb9: "Pareja", orb10: "Habilidades", orb11: "Familia", orb12: "Propósito",
     },
-    descripcion: "Esto es el apartado CUÁNDO."
+    descripcion: "Cuerpo donde se expresa"
   },
   donde: {
     textos: {
@@ -77,9 +77,9 @@ const contenidos = {
   },
   como: {
     textos: {
-      orb1: "Cómo 1", orb2: "Cómo 2", orb3: "Cómo 3",  orb4: "Qué 1", orb5: "Qué 2", orb6: "Qué 3",
+      orb1: "Aliento G", orb2: "Beta", orb3: "Theta",  orb4: "Alfa", orb5: "Delta", orb6: "Segundo Beta",
       orb7: "Cómo 1", orb8: "Cómo 2", orb9: "Cómo 3",  orb10: "Qué 1", orb11: "Qué 2", orb12: "Qué 3"
     },
-    descripcion: "Esto es el apartado CÓMO."
+    descripcion: "Aliento y Mudra"
   }
 };

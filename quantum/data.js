@@ -15,6 +15,25 @@ const datos = {
     orbes: ["Fluir", "Crear", "Sentir", "Conectar", "Ser"],
     texto: "En esta sección vemos el modo de interactuar: CÓMO."
   }
+const contenidos = {
+  que: {
+    titulo: '¿Qué es?',
+    descripcion: 'Esta sección explica el propósito y contenido del proyecto.'
+  },
+  cuando: {
+    titulo: '¿Cuándo?',
+    descripcion: 'Aquí detallamos los momentos claves del desarrollo y uso.'
+  },
+  donde: {
+    titulo: '¿Dónde?',
+    descripcion: 'Se describe el lugar o contexto donde aplica este conocimiento.'
+  },
+  como: {
+    titulo: '¿Cómo?',
+    descripcion: 'Explicación sobre el funcionamiento y aplicación práctica.'
+  }
+};
+  
   
 };
 
@@ -26,11 +45,11 @@ const orbes = [
     { id: "orb-5", tipo: "central", x: 350, y: 500, color: "#f7941f", nombre: "Comunicación", frecuencia: "Delta", situacion: "Flota frente a las rodillas", conecta: "Lóbulos parietal, occipital y temporal", mudra: "Buddhi Mudra", respiracion: "Theta", breve: "Es el sistema de memoria de comunicación", ampliado: "Regula la comunicación porque es el puente que conecta tu realidad interior con el mundo externo. Este sistema es peculiar porque actúa como el puente entre lo que sientes y piensas con la realidad tridimensional." },
     { id: "orb-6", tipo: "central", x: 350, y: 600, color: "#fb0202", nombre: "Interacción", frecuencia: "Segundo Beta", situacion: "Flota frente a los pies", conecta: "Cerebelo", mudra: "Anjali Mudra", respiracion: "Beta", breve: "Es el sistema de memoria muscular", ampliado: "Este sistema regula la motricidad y cualquier movimiento. Personas con poca energía física, que necesitan estimulantes o tienen problemas con energía sexual o recuperación de lesiones, hay que incrementar la energía en este sistema." },
     { id: "orb-7", tipo: "orbital", x: 250, y: 450, color: "#fb0202", nombre: "Servicio", frecuencia: "", situacion: "Orbita alrededor de la muñeca de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
-    { id: "orb-8", tipo: "orbital", x: 450, y: 450, color: "#fef200", nombre: "Relaciones", frecuencia: "", situacion: "Orbita alrededor de la muñeca de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est"  },
-    { id: "orb-9", tipo: "orbital", x: 250, y: 350, color: "#04adf0", nombre: "Habilidades", frecuencia: "", situacion: "Orbita alrededor del codo de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
-    { id: "orb-10", tipo: "orbital", x: 450, y: 350, color: "#00ff01", nombre: "Pareja", frecuencia: "", situacion: "Orbita alrededor del codo de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
-    { id: "orb-11", tipo: "orbital", x: 250, y: 250, color: "#0800ff", nombre: "Propósito", frecuencia: "", situacion: "Orbita alrededor del hombro de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
-    { id: "orb-12", tipo: "orbital", x: 450, y: 250, color: "#eb018e", nombre: "Familia", frecuencia: "", situacion: "Orbita alrededor del hombro de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" }
+    { id: "orb-8", tipo: "orbital", x: 450, y: 450, color: "#f7941f", nombre: "Relaciones", frecuencia: "", situacion: "Orbita alrededor de la muñeca de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est"  },
+    { id: "orb-9", tipo: "orbital", x: 250, y: 350, color: "#f7941f", nombre: "Habilidades", frecuencia: "", situacion: "Orbita alrededor del codo de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
+    { id: "orb-10", tipo: "orbital", x: 450, y: 350, color: "#02a550", nombre: "Pareja", frecuencia: "", situacion: "Orbita alrededor del codo de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
+    { id: "orb-11", tipo: "orbital", x: 250, y: 250, color: "#0071bd", nombre: "Propósito", frecuencia: "", situacion: "Orbita alrededor del hombro de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
+    { id: "orb-12", tipo: "orbital", x: 450, y: 250, color: "#902692", nombre: "Familia", frecuencia: "", situacion: "Orbita alrededor del hombro de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" }
 ];
 
 const conexiones = [

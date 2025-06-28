@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.menu {
+  display: flex;
+  justify-content: space-around;
+  background-color: #222;
+  padding: 10px;
+}
+.menu button {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.menu button.active {
+  text-decoration: underline;
+}
+.orb-container {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.orbes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 20px;
+  max-width: 600px;
+  width: 100%;
+}
+.orb {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #333;
+  transition: transform 0.3s;
+}
+footer {
+  padding: 1rem;
+  text-align: center;
+  background: #ddd;
+}

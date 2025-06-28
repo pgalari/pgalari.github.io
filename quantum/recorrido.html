@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbes Interactivas</title>
+  <style>
+ 
+  body {
+  margin: 0;
+  background-color: black;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+svg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.5s ease, box-shadow 0.5s ease, filter 1s;
+  z-index: 1;
+  animation: gaseous 6s ease-in-out infinite alternate;
+}
+
+.orb.central {
+  width: 65px;
+  height: 65px;
+  animation: gaseous 6s ease-in-out infinite alternate, pulse 2s infinite;
+}
+
+.orb.orbital {
+  animation: gaseous 6s ease-in-out infinite alternate, spin 20s linear infinite;
+}
+
+.orb.off {
+  filter: brightness(50%) blur(1px);
+}
+
+.orb.idle {
+  filter: brightness(75%) blur(4px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.orb.active {
+  filter: brightness(100%) blur(0.5);
+  box-shadow: 0 0 30px white;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.9); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes gaseous {
+  0% {
+    filter: blur(0.5px) brightness(0.9);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    filter: blur(1.2px) brightness(1.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: scale(0.9) translate(1px, -1px);
+  }
+}
+
+.line {
+  stroke-width: 3;
+  opacity: 0.4;
+  transition: opacity 0.5s;
+}
+
+.line.active {
+  opacity: 1;
+}
+
+.line.idle {
+  opacity: 0.75;
+}
+
+#start-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 3;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+#start-button:hover {
+  background-color: #eee;
+  transform: scale(1.05);
+}
+
+/* Panel de información emergente */
+#info-panel {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  width: 260px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: 2px solid white;
+  border-radius: 12px;
+  z-index: 4;
+  display: none;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
+}
+
+#info-panel.active {
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+  </style>
+</head>
+<body>
+  <button id="start-button">Iniciar Recorrido</button>
+  <svg id="lines"></svg>
+   <div id="info-panel" >
+    <button class="close-btn" onclick="closeOrb()">Cerrar ✖</button>
+    <div id="orbContent"></div>
+  </div>
+  
+  <script>
+
+// === CONFIGURACIÓN INICIAL ===
+const orbes = [
+    { id: "orb-1", tipo: "central", x: 350, y: 100, color: "#902692", nombre: "Conexión", frecuencia: "Gama", situacion: "Flota por encima de tu cabeza", conecta: "Pineal", mudra: "Mudra L.O.V.E", respiracion: "G Breath", breve: "Es el sistema principal.", ampliado: "Es el sistema de memoria vibracional. Es el sistema que hace posible que los demás sistemas estén activos en el cuerpo. Regula el sueño y el descanso, la conexión espiritual, habilidades extrasensoriales, DMT y conciencia elevada. En caso de necesitar regulación lo mejor es la respiración." },
+    { id: "orb-2", tipo: "central", x: 350, y: 200, color: "#0071bd", nombre: "Química", frecuencia: "Beta", situacion: "Flota frente a la cabeza", conecta: "Hipotálamo e Hipófisis", mudra: "Gyan Mudra", respiracion: "Beta", breve: "Es el sistema de memoria nutricional.", ampliado: "Es el sistema que hace posible la digestión, el balance hormonal, el equilibrio hidro-electrólitico y el ph. Si el cuerpo está bien nutrido, dispondrá de energía para iniciar, gestionar y terminar proyectos, si hay desbalance pueden existir alergias y adicciones. En caso de necesitar regulación lo mejor es el movimiento." },
+    { id: "orb-3", tipo: "central", x: 350, y: 300, color: "#02a550", nombre: "Emociones", frecuencia: "Alpha", situacion: "Flota frente al pecho", conecta: "Amígdala y el hipocampo", mudra: "Shuni Mudra", respiracion: "Alpha", breve: "Es el sistema de memoria emocional", ampliado: "El sistema límbico. Es decir, convierte la química cerebral en vibración y de esta forma sientas en el cuerpo la emoción. Este sistema es básicamente un GPS, conectado a todo tu cuerpo es un sistema intuitivo diseñado para indicarte si vas bien, o debes cambiar de dirección o decisiones. En caso de necesitar regulación lo mejor es el arte." },
+    { id: "orb-4", tipo: "central", x: 350, y: 400, color: "#fef200", nombre: "Información", frecuencia: "Theta", situacion: "Flota frente al vientre", conecta: "Lóbulo Frontal", mudra: "Surya Mudra", respiracion: "Theta", breve: "Es el sistema de creencias y valores.", ampliado: "Este sistema de información es básicamente la personalidad y se emplea en la solución de problemas, la toma de decisiones. Generando habilidades y confianza. Problemas de personalidad, desórdenes obsesivo-compulsivos, la hipocondría, o la falta de decisión para solucionar problemas o hacer cosas nuevas  se trabajan en este sistema." },
+    { id: "orb-5", tipo: "central", x: 350, y: 500, color: "#f7941f", nombre: "Comunicación", frecuencia: "Delta", situacion: "Flota frente a las rodillas", conecta: "Lóbulos parietal, occipital y temporal", mudra: "Buddhi Mudra", respiracion: "Theta", breve: "Es el sistema de memoria de comunicación", ampliado: "Regula la comunicación porque es el puente que conecta tu realidad interior con el mundo externo. Este sistema es peculiar porque actúa como el puente entre lo que sientes y piensas con la realidad tridimensional." },
+    { id: "orb-6", tipo: "central", x: 350, y: 600, color: "#fb0202", nombre: "Interacción", frecuencia: "Segundo Beta", situacion: "Flota frente a los pies", conecta: "Cerebelo", mudra: "Anjali Mudra", respiracion: "Beta", breve: "Es el sistema de memoria muscular", ampliado: "Este sistema regula la motricidad y cualquier movimiento. Personas con poca energía física, que necesitan estimulantes o tienen problemas con energía sexual o recuperación de lesiones, hay que incrementar la energía en este sistema." },
+    { id: "orb-7", tipo: "orbital", x: 250, y: 450, color: "#fb0202", nombre: "Servicio", frecuencia: "", situacion: "Orbita alrededor de la muñeca de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
+    { id: "orb-8", tipo: "orbital", x: 450, y: 450, color: "#fef200", nombre: "Relaciones", frecuencia: "", situacion: "Orbita alrededor de la muñeca de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est"  },
+    { id: "orb-9", tipo: "orbital", x: 250, y: 350, color: "#04adf0", nombre: "Habilidades", frecuencia: "", situacion: "Orbita alrededor del codo de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
+    { id: "orb-10", tipo: "orbital", x: 450, y: 350, color: "#00ff01", nombre: "Pareja", frecuencia: "", situacion: "Orbita alrededor del codo de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
+    { id: "orb-11", tipo: "orbital", x: 250, y: 250, color: "#0800ff", nombre: "Propósito", frecuencia: "", situacion: "Orbita alrededor del hombro de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
+    { id: "orb-12", tipo: "orbital", x: 450, y: 250, color: "#eb018e", nombre: "Familia", frecuencia: "", situacion: "Orbita alrededor del hombro de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" }
+];
+
+const conexiones = [
+  { de: "orb-1", a: "orb-2" },
+  { de: "orb-2", a: "orb-3" },
+  { de: "orb-3", a: "orb-4" },
+  { de: "orb-4", a: "orb-5" },
+  { de: "orb-5", a: "orb-6" },
+  { de: "orb-1", a: "orb-11" },
+  { de: "orb-1", a: "orb-12" },
+  { de: "orb-2", a: "orb-11" },
+  { de: "orb-2", a: "orb-12" },
+  { de: "orb-11", a: "orb-12" },
+  { de: "orb-3", a: "orb-11" },
+  { de: "orb-3", a: "orb-12" },
+  { de: "orb-3", a: "orb-9" },
+  { de: "orb-3", a: "orb-10" },
+  { de: "orb-9", a: "orb-10" },
+  { de: "orb-4", a: "orb-9" },
+  { de: "orb-4", a: "orb-10" },
+  { de: "orb-4", a: "orb-7" },
+  { de: "orb-4", a: "orb-8" },
+  { de: "orb-7", a: "orb-8" },
+  { de: "orb-5", a: "orb-7" },
+  { de: "orb-5", a: "orb-8" },
+  { de: "orb-6", a: "orb-7" },
+  { de: "orb-6", a: "orb-8" },
+  { de: "orb-7", a: "orb-9" },
+  { de: "orb-8", a: "orb-10" },
+  { de: "orb-9", a: "orb-11" },
+  { de: "orb-10", a: "orb-12" },
+  { de: "orb-7", a: "orb-3" },
+  { de: "orb-8", a: "orb-3" },
+  { de: "orb-9", a: "orb-2" },
+  { de: "orb-10", a: "orb-2" },
+  { de: "orb-11", a: "orb-4" },
+  { de: "orb-12", a: "orb-4" },
+  { de: "orb-9", a: "orb-5" },
+  { de: "orb-10", a: "orb-5" }
+];
+
+const svg = document.getElementById("lines");
+const startButton = document.getElementById("start-button");
+const orbContent = document.getElementById("orbContent");
+
+
+// Crear gradientes y líneas SVG
+const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+svg.appendChild(defs);
+
+conexiones.forEach(({ de, a }) => {
+  const orbA = orbes.find(o => o.id === de);
+  const orbB = orbes.find(o => o.id === a);
+  if (!orbA || !orbB) return;
+
+  const gradId = `grad-${de}-${a}`;
+  const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+  gradient.setAttribute("id", gradId);
+  gradient.setAttribute("gradientUnits", "userSpaceOnUse");
+  gradient.setAttribute("x1", orbA.x);
+  gradient.setAttribute("y1", orbA.y);
+  gradient.setAttribute("x2", orbB.x);
+  gradient.setAttribute("y2", orbB.y);
+
+  const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop1.setAttribute("offset", "0%");
+  stop1.setAttribute("stop-color", orbA.color);
+  gradient.appendChild(stop1);
+
+  const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop2.setAttribute("offset", "100%");
+  stop2.setAttribute("stop-color", orbB.color);
+  gradient.appendChild(stop2);
+
+  defs.appendChild(gradient);
+
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  line.setAttribute("x1", orbA.x);
+  line.setAttribute("y1", orbA.y);
+  line.setAttribute("x2", orbB.x);
+  line.setAttribute("y2", orbB.y);
+  line.setAttribute("stroke", `url(#${gradId})`);
+  line.setAttribute("stroke-width", 4);
+  line.classList.add("line");
+  svg.appendChild(line);
+});
+
+// Crear orbes HTML
+orbes.forEach(orb => {
+  const div = document.createElement("div");
+  div.className = "orb" + (orb.orden < 7 ? " central" : "");
+  div.id = orb.id;
+  div.style.backgroundColor = orb.color;
+  div.style.left = `${orb.x - 30}px`;
+  div.style.top = `${orb.y - 30}px`;
+  div.classList.add("off");
+  document.body.appendChild(div);
+});
+
+// Recorrido visual
+window.addEventListener("DOMContentLoaded", () => {
+  const startButton = document.getElementById("start-button");
+
+  startButton.addEventListener("click", () => {
+    let index = 0;
+    const ordenados = [...orbes].sort((a, b) => a.orden - b.orden);
+    const total = ordenados.length;
+
+    function activarSiguiente() {
+    /*  if (index > 0) {
+        const anterior = document.getElementById(ordenados[index - 1].id);
+        anterior.classList.remove("active");
+        anterior.classList.add("idle");
+      }*/
+      if (index > 0) {
+  const anterior = document.getElementById(ordenados[index - 1].id);
+  anterior.classList.remove("active");
+  anterior.classList.add("idle");
+  anterior.style.animation = "none"; // 🚫 Elimina la animación previa
+}
+
+
+      if (index < total) {
+        const actual = document.getElementById(ordenados[index].id);
+        actual.classList.remove("off");
+        actual.classList.add("active");
+
+        if (actual.classList.contains("central")) {
+          actual.style.animation = "pulse 2s infinite";
+        } else {
+          actual.style.animation = "spin 3s linear infinite";
+        }
+
+        index++;
+        setTimeout(activarSiguiente, 1200);
+      } else {
+        // Final del recorrido: mantener animaciones
+        document.querySelectorAll(".orb.central").forEach(o => {
+          o.style.animation = "pulse 2s infinite";
+        });
+        document.querySelectorAll(".orb:not(.central)").forEach(o => {
+          o.style.animation = "spin 10s linear infinite";
+        });
+      }
+    }
+
+    activarSiguiente();
+  });
+});
+// Mostrar panel
+function showOrbDetails(orb, circleEl) {
+      // Quitar cualquier orbe activo anterior
+      const prev = document.querySelector(".active");
+      if (prev) prev.remove();
+
+      const clone = circleEl.cloneNode(true);
+      clone.classList.add("active");
+
+      document.body.appendChild(clone);
+
+      orbContent.innerHTML = `
+        <h2>${orb.nombre}</h2>
+        <p>${orb.descripcion}</p>
+        <p><em></em> ${orb.frecuencia}</p>
+      `;
+      orbInfo.classList.add("active");
+      activeOrb = clone;
+    }
+
+    function closeOrb() {
+      orbInfo.classList.remove("active");
+      if (activeOrb) {
+        activeOrb.remove();
+        activeOrb = null;
+      }
+    }
+
+
+</script>
+
+</body>
+</html>

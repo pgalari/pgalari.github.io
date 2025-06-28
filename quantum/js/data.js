@@ -3,7 +3,7 @@ const orbes = [
     { id: "orb1", tipo: "central", x: 350, y: 100, color: "#902692", orden:1, nombre: "Conexión", frecuencia: "Gama", situacion: "Flota por encima de tu cabeza", conecta: "Pineal", mudra: "Mudra L.O.V.E", respiracion: "G Breath", breve: "Es el sistema principal.", ampliado: "Es el sistema de memoria vibracional. Es el sistema que hace posible que los demás sistemas estén activos en el cuerpo. Regula el sueño y el descanso, la conexión espiritual, habilidades extrasensoriales, DMT y conciencia elevada. En caso de necesitar regulación lo mejor es la respiración." },
     { id: "orb2", tipo: "central", x: 350, y: 200, color: "#0071bd", orden:2, nombre: "Química", frecuencia: "Beta", situacion: "Flota frente a la cabeza", conecta: "Hipotálamo e Hipófisis", mudra: "Gyan Mudra", respiracion: "Beta", breve: "Es el sistema de memoria nutricional.", ampliado: "Es el sistema que hace posible la digestión, el balance hormonal, el equilibrio hidro-electrólitico y el ph. Si el cuerpo está bien nutrido, dispondrá de energía para iniciar, gestionar y terminar proyectos, si hay desbalance pueden existir alergias y adicciones. En caso de necesitar regulación lo mejor es el movimiento." },
     { id: "orb3", tipo: "central", x: 350, y: 300, color: "#02a550", orden:3, nombre: "Emociones", frecuencia: "Alpha", situacion: "Flota frente al pecho", conecta: "Amígdala y el hipocampo", mudra: "Shuni Mudra", respiracion: "Alpha", breve: "Es el sistema de memoria emocional", ampliado: "El sistema límbico. Es decir, convierte la química cerebral en vibración y de esta forma sientas en el cuerpo la emoción. Este sistema es básicamente un GPS, conectado a todo tu cuerpo es un sistema intuitivo diseñado para indicarte si vas bien, o debes cambiar de dirección o decisiones. En caso de necesitar regulación lo mejor es el arte." },
-    { id: "orb4", tipo: "central", x: 350, y: 400, color: "#fef200", orden:4, nombre: "Información", frecuencia: "Theta", situacion: "Flota frente al vientre", conecta: "Lóbulo Frontal", mudra: "Surya Mudra", respiracion: "Theta", breve: "Es el sistema de creencias y valores.", ampliado: "Este sistema de información es básicamente la personalidad y se emplea en la solución de problemas, la toma de decisiones. Generando habilidades y confianza. Problemas de personalidad, desórdenes obsesivo-compulsivos, la hipocondría, o la falta de decisión para solucionar problemas o hacer cosas nuevas  se trabajan en este sistema." },
+    { id: "orb4", tipo: "central", x: 350, y: 400, color: "#CCCC00", orden:4, nombre: "Información", frecuencia: "Theta", situacion: "Flota frente al vientre", conecta: "Lóbulo Frontal", mudra: "Surya Mudra", respiracion: "Theta", breve: "Es el sistema de creencias y valores.", ampliado: "Este sistema de información es básicamente la personalidad y se emplea en la solución de problemas, la toma de decisiones. Generando habilidades y confianza. Problemas de personalidad, desórdenes obsesivo-compulsivos, la hipocondría, o la falta de decisión para solucionar problemas o hacer cosas nuevas  se trabajan en este sistema." },
     { id: "orb5", tipo: "central", x: 350, y: 500, color: "#f7941f", orden:5, nombre: "Comunicación", frecuencia: "Delta", situacion: "Flota frente a las rodillas", conecta: "Lóbulos parietal, occipital y temporal", mudra: "Buddhi Mudra", respiracion: "Theta", breve: "Es el sistema de memoria de comunicación", ampliado: "Regula la comunicación porque es el puente que conecta tu realidad interior con el mundo externo. Este sistema es peculiar porque actúa como el puente entre lo que sientes y piensas con la realidad tridimensional." },
     { id: "orb6", tipo: "central", x: 350, y: 600, color: "#fb0202", orden:6, nombre: "Interacción", frecuencia: "Segundo Beta", situacion: "Flota frente a los pies", conecta: "Cerebelo", mudra: "Anjali Mudra", respiracion: "Beta", breve: "Es el sistema de memoria muscular", ampliado: "Este sistema regula la motricidad y cualquier movimiento. Personas con poca energía física, que necesitan estimulantes o tienen problemas con energía sexual o recuperación de lesiones, hay que incrementar la energía en este sistema." },
     { id: "orb7", tipo: "orbital", x: 250, y: 450, color: "#fb0202", orden:7, nombre: "Servicio", frecuencia: "", situacion: "Orbita alrededor de la muñeca de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
@@ -63,17 +63,18 @@ const contenidos = {
   },
   cuando: {
     textos: {
-      orb1: "Luz", orb2: "Química", orb3: "Emociones", orb4: "Pensamiento", orb5: "Interacciones", orb6: "Físico",
+      orb1: "Luz", orb2: "Química", orb3: "Emoción", orb4: "Información", orb5: "Comunicación", orb6: "Acción",
       orb7: "Trabajo", orb8: "Relaciones", orb9: "Pareja", orb10: "Habilidades", orb11: "Familia", orb12: "Propósito",
     },
     descripcion: "Cuerpo donde se expresa"
   },
   donde: {
     textos: {
-      orb1: "Dónde 1", orb2: "Dónde 2", orb3: "Dónde 3", orb4: "Qué 1", orb5: "Qué 2", orb6: "Qué 3",
-      orb7: "Cómo 1", orb8: "Cómo 2", orb9: "Cómo 3",  orb10: "Qué 1", orb11: "Qué 2", orb12: "Qué 3"
+      orb1: "Encima de la cabeza", orb2: "Frente al rostro", orb3: "Frente al pecho", orb4: "Frente al abdomen", orb5: "Frente a las rodillas",
+        orb6: "Delante de los pies",
+      orb7: "Muñeca dominate", orb8: "Muñeca no dominante", orb9: "Codo dominante",  orb10: "Codo no dominante", orb11: "Hombro dominante", orb12: "Hombro no dominante"
     },
-    descripcion: "Esto es el apartado DÓNDE."
+    descripcion: "Las orbes centrales pulsan por delante del cuerpo, a un codo de distancia. Las laterales, son mas pequeñas y orbitan alrededor de una parte de los brazos"
   },
   como: {
     textos: {

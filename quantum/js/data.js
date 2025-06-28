@@ -56,25 +56,29 @@ const conexiones = [
 const contenidos = {
   que: {
     textos: {
-      orb1: "Qué 1", orb2: "Qué 2", orb3: "Qué 3"
+      orb1: "Qué 1", orb2: "Qué 2", orb3: "Qué 3", orb4: "Qué 1", orb5: "Qué 2", orb6: "Qué 3",
+      orb7: "Cuándo 1", orb8: "Cuándo 2", orb9: "Cuándo 3", orb10: "Cuándo 5", orb11: "Cuándo 2", orb12: "Cuándo 3",
     },
     descripcion: "Esto es el apartado QUÉ."
   },
   cuando: {
     textos: {
-      orb1: "Cuándo 1", orb2: "Cuándo 2", orb3: "Cuándo 3"
+      orb1: "Cuándo 1", orb2: "Cuándo 2", orb3: "Cuándo 3", orb4: "Cuándo 5", orb5: "Cuándo 2", orb6: "Cuándo 3",
+      orb7: "Cuándo 1", orb8: "Cuándo 2", orb9: "Cuándo 3", orb10: "Cuándo 5", orb11: "Cuándo 2", orb12: "Cuándo 3",
     },
     descripcion: "Esto es el apartado CUÁNDO."
   },
   donde: {
     textos: {
-      orb1: "Dónde 1", orb2: "Dónde 2", orb3: "Dónde 3"
+      orb1: "Dónde 1", orb2: "Dónde 2", orb3: "Dónde 3", orb4: "Qué 1", orb5: "Qué 2", orb6: "Qué 3",
+      orb7: "Cómo 1", orb8: "Cómo 2", orb9: "Cómo 3",  orb10: "Qué 1", orb11: "Qué 2", orb12: "Qué 3"
     },
     descripcion: "Esto es el apartado DÓNDE."
   },
   como: {
     textos: {
-      orb1: "Cómo 1", orb2: "Cómo 2", orb3: "Cómo 3"
+      orb1: "Cómo 1", orb2: "Cómo 2", orb3: "Cómo 3",  orb4: "Qué 1", orb5: "Qué 2", orb6: "Qué 3",
+      orb7: "Cómo 1", orb8: "Cómo 2", orb9: "Cómo 3",  orb10: "Qué 1", orb11: "Qué 2", orb12: "Qué 3"
     },
     descripcion: "Esto es el apartado CÓMO."
   }

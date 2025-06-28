@@ -76,10 +76,12 @@ footer {
   padding: 1em;
   cursor: pointer;
 }
+
 main {
   position: relative;
   width: 100vw;
   height: calc(100vh - 50px);
+  overflow: hidden;
 }
 #conexiones {
   position: absolute;
@@ -117,4 +119,5 @@ main {
   background: rgba(255, 255, 255, 0.7);
   padding: 10px;
 }
+
 

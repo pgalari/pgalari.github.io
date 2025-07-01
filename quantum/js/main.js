@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   crearSVG();
   crearOrbes();
   actualizarContenido("que");
+
   document.querySelectorAll("nav a").forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
@@ -12,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function crearSVG() {
-  const svg = document.getElementById("conexiones");
   const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
   svg.appendChild(defs);
 
@@ -48,29 +48,35 @@ function crearSVG() {
     line.setAttribute("x2", orbB.x);
     line.setAttribute("y2", orbB.y);
     line.setAttribute("stroke", `url(#${gradId})`);
-    line.setAttribute("stroke-width", 4);
+    line.setAttribute("stroke-width", 3);
     svg.appendChild(line);
   });
 }
 
 function crearOrbes() {
-  const container = document.getElementById("orbes-container");
+  orbesContainer.innerHTML = "";
+
   orbes.forEach(orb => {
     const div = document.createElement("div");
-    div.className = "orb";
+    div.className = "orb" + (orb.orden < 7 ? " central" : "");
     div.id = orb.id;
     div.style.backgroundColor = orb.color;
-    div.style.left = `${orb.x - 30}px`;
-    div.style.top = `${orb.y - 30}px`;
-    container.appendChild(div);
+    div.style.left = `${orb.x}px`;
+    div.style.top = `${orb.y}px`;
+    div.textContent = orb.titulos["que"] || "";
+    div.addEventListener("click", () => {
+      footerText.textContent = orb.descripcion;
+    });
+    orbesContainer.appendChild(div);
   });
 }
 
 function actualizarContenido(tab) {
-  const data = contenidos[tab];
   orbes.forEach(orb => {
-    const orbDiv = document.getElementById(orb.id);
-    orbDiv.textContent = data.textos[orb.id] || "";
+    const el = document.getElementById(orb.id);
+    if (el) {
+      el.textContent = orb.titulos[tab] || "";
+    }
   });
-  document.getElementById("descripcion").textContent = data.descripcion;
+  footerText.textContent = "Toca una orbe para ver información.";
 }

@@ -67,3 +67,21 @@ main {
   background: rgba(255, 255, 255, 0.8);
   padding: 1em;
 }
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 767px) {
+    /* Ajustar tamaño de fuente */
+    body {
+        font-size: 16px;
+    }
+
+    /* Reorganizar elementos */
+    .columnas {
+        flex-direction: column;
+    }
+
+    /* Ajustar espaciado */
+    .elemento {
+        margin-bottom: 10px;
+    }
+}

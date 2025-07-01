@@ -56,31 +56,31 @@ const conexiones = [
 const contenidos = {
   que: {
     textos: {
-      orb1: "Gamma", orb2: "Beta", orb3: "Alpha", orb4: "Theta", orb5: "Delta", orb6: "Segundo Beta",
-      orb7: "Servicio", orb8: "Cuándo 2", orb9: "Cuándo 3", orb10: "Cuándo 5", orb11: "Cuándo 2", orb12: "Cuándo 3",
+      orb1: "Vibracional", orb2: "Nutricional", orb3: "Sensacional", orb4: "Neurológico", orb5: "Expresional", orb6: "Experiencial",
+      orb7: "Vocacional", orb8: "Social", orb9: "Motivacional", orb10: "Marital", orb11: "Filantrópico", orb12: "Supervivencia",
     },
-    descripcion: "Las orbs son energía pulsando en onda y partícula"
+    descripcion: "Las orbs son energía pulsando en onda y partícula, movilizando la memoría de los distintos sistemas."
   },
   cuando: {
     textos: {
-      orb1: "Luz", orb2: "Química", orb3: "Emoción", orb4: "Información", orb5: "Comunicación", orb6: "Acción",
+      orb1: "Espiritual", orb2: "Químico", orb3: "Límbico", orb4: "Neurológico", orb5: "Comunicativo", orb6: "Físico",
       orb7: "Trabajo", orb8: "Relaciones", orb9: "Pareja", orb10: "Habilidades", orb11: "Familia", orb12: "Propósito",
     },
     descripcion: "Cuerpo donde se expresa"
   },
   donde: {
     textos: {
-      orb1: "Encima de la cabeza", orb2: "Frente al rostro", orb3: "Frente al pecho", orb4: "Frente al abdomen", orb5: "Frente a las rodillas",
-        orb6: "Delante de los pies",
-      orb7: "Muñeca dominate", orb8: "Muñeca no dominante", orb9: "Codo dominante",  orb10: "Codo no dominante", orb11: "Hombro dominante", orb12: "Hombro no dominante"
+      orb1: "Sobre la cabeza", orb2: "Cabeza", orb3: "Pecho", orb4: "Abdomen", orb5: "Rodillas",
+        orb6: "Pies",
+      orb7: "Mano dominate", orb8: "Mano no dominante", orb9: "Codo dominante",  orb10: "Codo no dominante", orb11: "Hombro dominante", orb12: "Hombro no dominante"
     },
-    descripcion: "Las orbes centrales pulsan por delante del cuerpo, a un codo de distancia. Las laterales, son mas pequeñas y orbitan alrededor de una parte de los brazos"
+    descripcion: "Las orbes centrales se ubican por delante del cuerpo, a un codo de distancia. Las laterales, son mas pequeñas y orbitan alrededor de una parte de los brazos"
   },
   como: {
     textos: {
-      orb1: "Aliento G", orb2: "Beta", orb3: "Theta",  orb4: "Alfa", orb5: "Delta", orb6: "Segundo Beta",
-      orb7: "Cómo 1", orb8: "Cómo 2", orb9: "Cómo 3",  orb10: "Qué 1", orb11: "Qué 2", orb12: "Qué 3"
+      orb1: "Gamma", orb2: "Beta", orb3: "Alpha",  orb4: "Theta", orb5: "Delta", orb6: "Zeta",
+      orb7: "Alpha", orb8: "Alpha", orb9: "Theta",  orb10: "Theta", orb11: "Delta", orb12: "Delta"
     },
-    descripcion: "Aliento y Mudra"
+    descripcion: "Frecuencia cerebrales. Las orbes centrales son pulsantes y las exteriores orbitan, dan vueltas."
   }
 };

@@ -69,6 +69,13 @@ main {
 }
 
 /* Media Query para dispositivos móviles */
+//iphone
+@media (max-width: 375px) {
+  body {
+    background-color: navy;
+    font-size: 16px;
+  }
+}
 @media (max-width: 600px) {
   body {
     background-color: lightblue;

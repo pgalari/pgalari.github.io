@@ -69,6 +69,14 @@ main {
 }
 
 /* Media Query para dispositivos móviles */
+@media (max-width: 600px) {
+  body {
+    background-color: lightblue;
+    font-size: 16px;
+  }
+}
+
+
 @media (max-width: 767px) {
     /* Ajustar tamaño de fuente */
     body {

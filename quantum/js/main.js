@@ -74,3 +74,38 @@ function actualizarContenido(tab) {
   });
   document.getElementById("descripcion").textContent = data.descripcion;
 }
+const orbes = datos.orbes;
+const container = document.getElementById("orbes-container");
+
+// Limpia contenedor
+container.innerHTML = "";
+
+const totalOrbes = orbes.length;
+const centerX = window.innerWidth / 2;
+const centerY = window.innerHeight / 2;
+
+// Escala dinámica para móviles
+const scaleFactor = window.innerWidth < 600 ? 0.6 : 1;
+
+// Radio del círculo
+const radius = 200 * scaleFactor;
+
+orbes.forEach((orbData, index) => {
+  const angle = (2 * Math.PI / totalOrbes) * index;
+
+  const x = centerX + Math.cos(angle) * radius;
+  const y = centerY + Math.sin(angle) * radius;
+
+  const orb = document.createElement("div");
+  orb.classList.add("orb");
+  orb.style.left = `${x - 30}px`; // Centrado horizontal
+  orb.style.top = `${y - 30}px`;  // Centrado vertical
+
+  orb.textContent = orbData.nombre;
+
+  if (orbData.color) {
+    orb.style.backgroundColor = orbData.color;
+  }
+
+  container.appendChild(orb);
+});

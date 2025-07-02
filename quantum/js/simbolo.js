@@ -1,3 +1,4 @@
+// 🌳 Modo simbolo con coordenadas
 window.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById("orbes-container");
 
@@ -9,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
   container.innerHTML = "";
 
  
-    // 🌳 Modo simbolo con coordenadas
+    
     orbes.forEach((orbData) => {
       const orb = document.createElement("div");
       orb.classList.add("orb");

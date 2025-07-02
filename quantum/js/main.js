@@ -8,9 +8,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   container.innerHTML = "";
 
-/*  const urlParams = new URLSearchParams(window.location.search);
-  const pagina = parseInt(urlParams.get('pagina')) || 1;*/
+  const urlParams = new URLSearchParams(window.location.search);
+  const pagina = parseInt(urlParams.get('pagina')) || 1;
 
+  if (pagina === 1) {
+    // 🔵 Modo mandala
   const totalOrbes = orbes.length;
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
@@ -21,7 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const angle = (2 * Math.PI / totalOrbes) * index;
     const x = centerX + Math.cos(angle) * radius;
     const y = centerY + Math.sin(angle) * radius;
-
+/*
     const orb = document.createElement("div");
     orb.classList.add("orb");
     orb.style.left = `${x - 30}px`;
@@ -31,18 +33,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (orbData.color) {
       orb.style.backgroundColor = orbData.color;
     }
+*/
 
-    container.appendChild(orb);
- });   
-});
-/*
-  if (pagina === 1) {
-    // 🔵 Modo mandala
-      const totalOrbes = orbes.length;
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const scaleFactor = window.innerWidth < 600 ? 0.6 : 1;
-      const radius = 200 * scaleFactor;
 
     // Reorganiza: empieza desde la segunda, termina con la primera
     const reorganizados = [...orbes.slice(1), orbes[0]];
@@ -108,6 +100,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     container.appendChild(orb);
-
-
+ });   
+});
 */

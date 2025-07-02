@@ -8,98 +8,84 @@ window.addEventListener('DOMContentLoaded', () => {
 
   container.innerHTML = "";
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const pagina = parseInt(urlParams.get('pagina')) || 1;
+const svg = document.getElementById("conexiones");
+const orbesContainer = document.getElementById("orbes-container");
+const descripcion = document.getElementById("descripcion");
 
-  if (pagina === 1|| pagina = ''|| pagina = null) {
-    // 🔵 Modo mandala 
-  const totalOrbes = orbes.length;
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
-  const scaleFactor = window.innerWidth < 600 ? 0.6 : 1;
-  const radius = 200 * scaleFactor;
+function crearSVG() {
+  const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  svg.appendChild(defs);
 
-  orbes.forEach((orbData, index) => {
-    const angle = (2 * Math.PI / totalOrbes) * index;
-    const x = centerX + Math.cos(angle) * radius;
-    const y = centerY + Math.sin(angle) * radius;
-/*
-    const orb = document.createElement("div");
-    orb.classList.add("orb");
-    orb.style.left = `${x - 30}px`;
-    orb.style.top = `${y - 30}px`;
-    orb.textContent = orbData.nombre || orbData.id;
+  conexiones.forEach(({ de, a }) => {
+    const orbA = orbes.find(o => o.id === de);
+    const orbB = orbes.find(o => o.id === a);
+    if (!orbA || !orbB) return;
 
-    if (orbData.color) {
-      orb.style.backgroundColor = orbData.color;
-    }
-*/
+    const gradId = `grad-${de}-${a}`;
+    const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+    gradient.setAttribute("id", gradId);
+    gradient.setAttribute("gradientUnits", "userSpaceOnUse");
+    gradient.setAttribute("x1", orbA.x);
+    gradient.setAttribute("y1", orbA.y);
+    gradient.setAttribute("x2", orbB.x);
+    gradient.setAttribute("y2", orbB.y);
 
+    const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop1.setAttribute("offset", "0%");
+    stop1.setAttribute("stop-color", orbA.color);
+    gradient.appendChild(stop1);
 
-    // Reorganiza: empieza desde la segunda, termina con la primera
-    const reorganizados = [...orbes.slice(1), orbes[0]];
+    const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop2.setAttribute("offset", "100%");
+    stop2.setAttribute("stop-color", orbB.color);
+    gradient.appendChild(stop2);
 
-    reorganizados.forEach((orbData, index) => {
-      // Sentido antihorario
-      const angle = (2 * Math.PI / totalOrbes) * index;
-      const x = centerX + Math.cos(Math.PI - angle) * radius;
-      const y = centerY + Math.sin(Math.PI - angle) * radius;
+    defs.appendChild(gradient);
 
-      const orb = document.createElement("div");
-      orb.classList.add("orb");
-      orb.style.left = `${x - 30}px`;
-      orb.style.top = `${y - 30}px`;
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("x1", orbA.x);
+    line.setAttribute("y1", orbA.y);
+    line.setAttribute("x2", orbB.x);
+    line.setAttribute("y2", orbB.y);
+    line.setAttribute("stroke", `url(#${gradId})`);
+    line.setAttribute("stroke-width", 3);
+    svg.appendChild(line);
+  });
+}
 
-      const texto = contenidos?.que?.textos?.[orbData.id] || orbData.nombre || orbData.id;
-      orb.textContent = texto;
+function crearOrbes() {
+  orbesContainer.innerHTML = "";
+  orbes.forEach(orb => {
+    const div = document.createElement("div");
+    div.className = "orb";
+    div.id = orb.id;
+    div.style.left = `${orb.x - 30}px`;
+    div.style.top = `${orb.y - 30}px`;
+    div.style.backgroundColor = orb.color;
 
-      if (orbData.color) orb.style.backgroundColor = orbData.color;
+    const label = document.createElement("span");
+    label.className = "orb-label";
+    label.textContent = "-";
+    div.appendChild(label);
 
-      container.appendChild(orb);
-    });
+    orbesContainer.appendChild(div);
+  });
+}
 
-  } else {
-    // 🌳 Modo árbol clásico con coordenadas
-    orbes.forEach((orbData) => {
-      const orb = document.createElement("div");
-      orb.classList.add("orb");
-      orb.style.left = `${orbData.x}px`;
-      orb.style.top = `${orbData.y}px`;
+function actualizarContenido(tab) {
+  const { titulo, descripcion: desc } = contenidos[tab];
+  document.querySelectorAll(".orb-label").forEach(label => label.textContent = titulo);
+  descripcion.textContent = desc;
+}
 
-      const texto = contenidos?.que?.textos?.[orbData.id] || orbData.nombre || orbData.id;
-      orb.textContent = texto;
-
-      if (orbData.color) orb.style.backgroundColor = orbData.color;
-
-      container.appendChild(orb);
-    });
-  }
+document.querySelectorAll("nav button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tab = btn.dataset.tab;
+    actualizarContenido(tab);
+  });
 });
-/*
 
-
-  const totalOrbes = orbes.length;
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
-  const scaleFactor = window.innerWidth < 600 ? 0.6 : 1;
-  const radius = 200 * scaleFactor;
-
-  orbes.forEach((orbData, index) => {
-    const angle = (2 * Math.PI / totalOrbes) * index;
-    const x = centerX + Math.cos(angle) * radius;
-    const y = centerY + Math.sin(angle) * radius;
-
-    const orb = document.createElement("div");
-    orb.classList.add("orb");
-    orb.style.left = `${x - 30}px`;
-    orb.style.top = `${y - 30}px`;
-    orb.textContent = orbData.nombre || orbData.id;
-
-    if (orbData.color) {
-      orb.style.backgroundColor = orbData.color;
-    }
-
-    container.appendChild(orb);
- });   
-});
-*/
+// Inicialización
+crearSVG();
+crearOrbes();
+actualizarContenido("que");

@@ -67,7 +67,13 @@ main {
   background: rgba(255, 255, 255, 0.8);
   padding: 1em;
 }
-
+/* Centrar horizontal y verticalmente */
+#orbes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 /* Media Query para dispositivos móviles */
 
 @media (max-width: 768px) {

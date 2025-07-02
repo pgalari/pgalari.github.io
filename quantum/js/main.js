@@ -11,8 +11,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const pagina = parseInt(urlParams.get('pagina')) || 1;
 
-  if (pagina === 1|| pagina = ''|| pagina = null) {
-    // 🔵 Modo mandala
+  if (pagina < 2) {
+    // 🔵 Modo mandala  if (pagina === 1|| pagina = ''|| pagina = null) {
   const totalOrbes = orbes.length;
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;

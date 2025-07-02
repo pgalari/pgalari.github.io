@@ -69,34 +69,41 @@ main {
 }
 
 /* Media Query para dispositivos móviles */
+
+@media (max-width: 768px) {
+  .orb {
+    width: 40px;
+    height: 40px;
+    font-size: 8px;
+  }
+
+  #descripcion {
+    font-size: 0.9em;
+    padding: 0.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .orb {
+    width: 30px;
+    height: 30px;
+    font-size: 7px;
+  }
 //iphone
 @media (max-width: 375px) {
-  body {
-    background-color: navy;
-    font-size: 16px;
+ .orb {
+    width: 20px;
+    height: 20px;
+    font-size: 7px;
   }
 }
-@media (max-width: 600px) {
-  body {
-    background-color: lightblue;
-    font-size: 16px;
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav li {
+    margin: 0.5em 0;
   }
 }
 
-
-@media (max-width: 767px) {
-    /* Ajustar tamaño de fuente */
-    body {
-        font-size: 16px;
-    }
-
-    /* Reorganizar elementos */
-    .columnas {
-        flex-direction: column;
-    }
-
-    /* Ajustar espaciado */
-    .elemento {
-        margin-bottom: 10px;
-    }
-}

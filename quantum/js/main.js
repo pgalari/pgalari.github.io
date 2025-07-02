@@ -1,18 +1,12 @@
+// 🔵 Modo mandala 
 window.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById("orbes-container");
-
   if (!orbes || !Array.isArray(orbes) || !container) {
-    console.error("No se encontraron los orbes o el contenedor.");
+      console.error("No se encontraron los orbes o el contenedor.");
     return;
   }
-
   container.innerHTML = "";
-/*
-  const urlParams = new URLSearchParams(window.location.search);
-  const pagina = parseInt(urlParams.get('pagina')) || 1;
 
-  // //if (pagina === 1|| pagina = ''|| pagina = null) {*/
-    // 🔵 Modo mandala 
   const totalOrbes = orbes.length;
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
@@ -23,9 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const angle = (2 * Math.PI / totalOrbes) * index;
     const x = centerX + Math.cos(angle) * radius;
     const y = centerY + Math.sin(angle) * radius;
-
-    // Reorganiza: empieza desde la segunda, termina con la primera
-    const reorganizados = [...orbes.slice(1), orbes[0]];
+    const reorganizados = [...orbes.slice(1), orbes[0]];// Reorganiza: empieza desde la segunda, termina con la primera
 
     reorganizados.forEach((orbData, index) => {
       // Sentido antihorario
@@ -45,3 +37,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
       container.appendChild(orb);
     });
+ });   
+});   

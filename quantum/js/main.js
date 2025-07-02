@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
       console.error("No se encontraron los orbes o el contenedor.");
     return;
   }
+  
   container.innerHTML = "";
 
   const totalOrbes = orbes.length;
@@ -37,5 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       container.appendChild(orb);
     });
- });   
-});   
+  });   
+});
+
+

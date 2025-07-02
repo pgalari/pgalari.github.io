@@ -8,8 +8,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   container.innerHTML = "";
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const pagina = parseInt(urlParams.get('pagina')) || 1;
+/*  const urlParams = new URLSearchParams(window.location.search);
+  const pagina = parseInt(urlParams.get('pagina')) || 1;*/
 
   const totalOrbes = orbes.length;
   const centerX = window.innerWidth / 2;

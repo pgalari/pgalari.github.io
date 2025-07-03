@@ -86,7 +86,6 @@ main {
   padding: 4px;
 }
 
-/* Menú hamburguesa 
 /* === MENÚ LATERAL VISIBLE EN TODAS LAS PANTALLAS === */
 .menu-icon {
   font-size: 2em;
@@ -137,6 +136,9 @@ main {
 #menu-toggle:checked + .menu-icon + .sidebar {
   left: 0;
 }
+
+
+
 
 /* Móviles */
 @media (max-width: 768px) {

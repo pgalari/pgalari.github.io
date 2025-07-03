@@ -1,31 +1,13 @@
-/*body {
+body {
   margin: 0;
+//  background: radial-gradient(circle, #1a1a2e, #0f0f1a);
   font-family: sans-serif;
-  background: #f0f0f0;
+  overflow: hidden;
 }
-
 header {
   background: #222;
   color: white;
   padding: 0.5em;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-}
-
-nav li {
-  margin: 0 1em;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
 }
 
 main {
@@ -33,9 +15,9 @@ main {
   width: 100vw;
   height: calc(100vh - 50px);
   overflow: hidden;
-}*/
+}
 
-*/
+
 .orb {
   position: absolute;
   width: 60px;
@@ -46,24 +28,14 @@ main {
   color: white;
   font-size: 12px;
   transition: transform 0.3s ease;
-}
-
-
-/*
-.orb {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  /*
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 10px;
   text-align: center;
-  pointer-events: auto;
+  pointer-events: auto;*/
 }
-*/
+
 #descripcion {
   position: absolute;
   bottom: 10px;
@@ -74,13 +46,14 @@ main {
   padding: 1em;
 }
 /* Centrar horizontal y verticalmente */
-/*#orbes-container {
+
+#orbes-container {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
 }
-
+/*
 #orbes-container {
   position: absolute;
   top: 0;
@@ -94,19 +67,8 @@ main {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-}*/
-body {
-  margin: 0;
-  background: radial-gradient(circle, #1a1a2e, #0f0f1a);
-  font-family: sans-serif;
-  overflow: hidden;
 }
-
-#orbes-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
+*/
 
 .orb {
   position: absolute;
@@ -124,7 +86,7 @@ body {
   padding: 4px;
 }
 
-/* Menú hamburguesa */
+/* Menú hamburguesa 
 .menu-toggle {
   position: fixed;
   top: 1rem;
@@ -160,7 +122,7 @@ body {
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
 }
-
+*/
 /* Móviles */
 @media (max-width: 768px) {
   .menu-toggle {
@@ -198,16 +160,75 @@ body {
   .orb {
     width: 30px;
     height: 30px;
-    font-size: 7px;
+    font-size: 8px;
   }
 //iphone
 @media (max-width: 375px) {
  .orb {
-    width: 20px;
-    height: 20px;
-    font-size: 7px;
+    width: 25px;
+    height: 25px;
+    font-size: 8px;
   }
 }
+
+/* === MENÚ LATERAL PURE CSS === */
+.menu-icon {
+  display: none;
+  font-size: 2em;
+  padding: 10px;
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.sidebar {
+  position: fixed;
+  left: -250px;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: #222;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding-top: 60px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 15px;
+  text-align: center;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+#menu-toggle:checked + .menu-icon + .sidebar {
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+}
+  /*
   nav ul {
     flex-direction: column;
     align-items: center;
@@ -217,4 +238,4 @@ body {
     margin: 0.5em 0;
   }
 }
-
+*/

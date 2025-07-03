@@ -4,12 +4,24 @@ body {
   font-family: sans-serif;
   overflow: hidden;
 }
-header {
-  background: #222;
-  color: white;
-  padding: 0.5em;
+.svg-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding-top: 50px; /* para no tapar el icono ☰ */
 }
 
+.svg-wrapper svg {
+  width: 90vmin;
+  height: 90vmin;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
 main {
   position: relative;
   width: 100vw;

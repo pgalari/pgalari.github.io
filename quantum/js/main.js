@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
   let modo = "mandala";
 
   if (filename === "simbolo.html") modo = "simbolo";
-  alert(filename);
+ // alert(filename);
   container.innerHTML = "";
 
   if (modo === "mandala") {

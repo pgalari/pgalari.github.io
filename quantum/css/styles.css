@@ -1,4 +1,4 @@
-body {
+/*body {
   margin: 0;
   font-family: sans-serif;
   background: #f0f0f0;
@@ -93,6 +93,90 @@ main {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}*/
+body {
+  margin: 0;
+  background: radial-gradient(circle, #1a1a2e, #0f0f1a);
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+#orbes-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.orb {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #888;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+  padding: 4px;
+}
+
+/* Menú hamburguesa */
+.menu-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1001;
+  color: white;
+  background: rgba(0,0,0,0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  display: none;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: -200px;
+  width: 180px;
+  height: 100vh;
+  background: rgba(20, 20, 30, 0.95);
+  padding-top: 4rem;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 1000;
+  transition: left 0.3s ease;
+  display: none;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .menu {
+    display: flex;
+  }
+  .orb {
+    width: 45px;
+    height: 45px;
+    font-size: 0.6rem;
+  }
+}
+
+.menu.open {
+  left: 0;
 }
 /* Media Query para dispositivos móviles */
 

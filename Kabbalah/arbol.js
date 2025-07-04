@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   crearOrbesArbol(); 
 });
+
 // Función para crear orbes y conexiones
 function crearOrbesArbol() {
   const svg = document.getElementById("simbolo");

@@ -97,7 +97,22 @@ main {
   box-shadow: 0 0 10px rgba(255,255,255,0.3);
   padding: 4px;
 }
-
+.orbe {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--color, #ccc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
 /* === MENÚ LATERAL VISIBLE EN TODAS LAS PANTALLAS === */
 .menu-icon {
   font-size: 2em;

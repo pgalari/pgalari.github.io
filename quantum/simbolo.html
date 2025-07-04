@@ -4,25 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cuerpo de luz</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  <input type="checkbox" id="menu-toggle"/>
+  <input type="checkbox" id="menu-toggle">
   <label for="menu-toggle" class="menu-icon">&#9776;</label>
-
-  <nav class="sidebar">
+  <nav class="sidebar-menu">
     <ul>
-      <li><label for="menu-toggle"><a href="index.html">Cuerpo de luz</a></label></li>
-      <li><label for="menu-toggle"><a href="simbolo.html">Cómo</a></label></li>
+      <li><a href="index.html">Mandala</a></li>
+      <li><a href="simbolo.html">Símbolo</a></li>
     </ul>
   </nav>
+
   <div class="svg-wrapper">
     <svg id="simbolo" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg"></svg>
   </div>
-  <main>
-    <div id="descripcion"></div>
-  </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
+
+  <script src="datos.js"></script>
+  <script src="arbol.js"></script>
 </body>
 </html>

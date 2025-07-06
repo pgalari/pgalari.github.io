@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Símbolo de Orbes</title>
+  <title>Símbolo Maestro</title>
   <link rel="stylesheet" href="estilo.css"/>
     <style>
     body {
@@ -125,7 +125,7 @@
 
     const svg = document.getElementById("svgSM");
 
-    circulos.forEach(c => {
+    orbes.forEach(c => {
       const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
       g.setAttribute("class", `orb ${c.orden <= 6 ? "central" : "satelite"}`);
       g.setAttribute("id", c.id);
@@ -154,7 +154,7 @@
       });
       g.addEventListener("click", () => {
         document.getElementById("overlay-title").textContent = nombre;
-        document.getElementById("overlay-description").textContent = descripcion;
+        document.getElementById("overlay-description").textContent = nombre;
         document.getElementById("overlay").style.display = "flex";
       });
     });

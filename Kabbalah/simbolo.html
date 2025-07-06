@@ -24,3 +24,151 @@
   <script src="arbol.js" defer></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de memoria</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    svg {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .orb {
+      filter: url(#glow);
+      transform-origin: center;
+      transition: transform 0.3s ease;
+    }
+
+    .orb text {
+      pointer-events: none;
+    }
+
+    /* Vibración para orbes centrales */
+    .orb.central:hover circle {
+      animation: vibrate 0.2s linear infinite;
+    }
+
+    @keyframes vibrate {
+      0% { transform: scale(1.02); }
+      50% { transform: scale(0.98); }
+      100% { transform: scale(1.02); }
+    }
+
+    /* Rotación para satélites */
+    .orb.satelite:hover circle {
+      animation: rotate 2s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Iluminación constante (gaseoso) */
+    circle {
+      stroke: white;
+      stroke-width: 0.5;
+      filter: url(#glow);
+    }
+
+    .orb circle {
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+   <div id="titulo" class="overlay" style="display: none">
+    <h3 id="title">Simbolo Maestro</h3>
+    </div>
+  <svg id="svgCanvas" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <!-- Las orbes se insertarán por JS -->
+  </svg>
+ <div id="overlay" class="overlay" style="display: none">
+    <h2 id="overlay-title"></h2>
+    <p id="overlay-description"></p>
+    <p id="overlay-extra">Aquí irían mudra, respiración y texto adicional resumido.</p>
+    <button onclick="closeOverlay()">Cerrar</button>
+  </div>
+  <script>
+    const circulos = [
+      { id: "orb-1", nombre: "Orb 1", orden: 1, x: 350, y: 100, color: "#902692", descripcion: "Gama. Vibración" },
+      { id: "orb-2", nombre: "Orb 2", orden: 2, x: 350, y: 200, color: "#0071bd", descripcion: "Beta. Química" },
+      { id: "orb-3", nombre: "Orb 3", orden: 3, x: 350, y: 300, color: "#02a550", descripcion: "Alpha. Emociones." },
+      { id: "orb-4", nombre: "Orb 4", orden: 4, x: 350, y: 400, color: "#fef200", descripcion: "Theta. Información" },
+      { id: "orb-5", nombre: "Orb 5", orden: 5, x: 350, y: 500, color: "#f7941f", descripcion: "Delta. Comunicación" },
+      { id: "orb-6", nombre: "Orb 6", orden: 6, x: 350, y: 600, color: "#fb0202", descripcion: "Segundo Beta. Interacción" },
+      { id: "orb-12", nombre: "Orb 12", orden: 12, x: 450, y: 250, color: "#eb018e", descripcion: "Familia" },
+      { id: "orb-10", nombre: "Orb 10", orden: 10, x: 450, y: 350, color: "#00ff01", descripcion: "Pareja" },
+      { id: "orb-8", nombre: "Orb 8", orden: 8, x: 450, y: 450, color: "#fef200", descripcion: "Relaciones" },
+      { id: "orb-11", nombre: "Orb 11", orden: 11, x: 250, y: 250, color: "#0800ff", descripcion: "Propósito" },
+      { id: "orb-9", nombre: "Orb 9", orden: 9, x: 250, y: 350, color: "#04adf0", descripcion: "Habilidades." },
+      { id: "orb-7", nombre: "Orb 7", orden: 7, x: 250, y: 450, color: "#fb0202", descripcion: "Servicio" }
+    ];
+
+    const svg = document.getElementById("svgCanvas");
+
+    circulos.forEach(c => {
+      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.setAttribute("class", `orb ${c.orden <= 6 ? "central" : "satelite"}`);
+      g.setAttribute("id", c.id);
+      g.setAttribute("transform", `translate(${c.x}, ${c.y})`);
+
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("r", 30);
+      circle.setAttribute("fill", c.color);
+      g.appendChild(circle);
+
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", 0);
+      text.setAttribute("y", 5);
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("fill", "#fff");
+      text.textContent = c.nombre;
+      g.appendChild(text);
+
+      svg.appendChild(g);
+
+      g.addEventListener("mouseenter", () => {
+        circle.classList.add("glow");
+      });
+      g.addEventListener("mouseleave", () => {
+        circle.classList.remove("glow");
+      });
+      g.addEventListener("click", () => {
+        document.getElementById("overlay-title").textContent = nombre;
+        document.getElementById("overlay-description").textContent = descripcion;
+        document.getElementById("overlay").style.display = "flex";
+      });
+    });
+    function closeOverlay() {
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeOverlay();
+    });
+  </script>
+</body>
+</html>

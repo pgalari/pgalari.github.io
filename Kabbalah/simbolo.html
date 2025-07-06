@@ -117,7 +117,7 @@
       g.setAttribute("transform", `translate(${c.x}, ${c.y})`);
 
       const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      circle.setAttribute("r", 40);
+      circle.setAttribute("r", 33);
       circle.setAttribute("fill", c.color);
       g.appendChild(circle);
 
@@ -126,7 +126,7 @@
       text.setAttribute("y", 5);
       text.setAttribute("text-anchor", "middle");
       text.setAttribute("fill", "#fff");
-      text.textContent = c.id;
+      text.textContent = c.nombre;
       g.appendChild(text);
 
       svg.appendChild(g);
@@ -139,7 +139,7 @@
       });
       g.addEventListener("click", () => {
         document.getElementById("overlay-title").textContent = nombre;
-        document.getElementById("overlay-description").textContent = nombre;
+        document.getElementById("overlay-description").textContent = descripcion;
         document.getElementById("overlay").style.display = "flex";
       });
     });

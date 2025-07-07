@@ -21,11 +21,19 @@
   <main>
     <div id="mandala"></div>
     
-   
-    
-    <div id="descripcion">
+    <div id="overlay" class="overlay" style="display: none">
+      <div id="descripcion">
          <h2 id="title">Todo lo que existe es energia. Memorias.</h2>
     </div>
+      <h2 id="overlay-title"></h2>
+      <p id="overlay-description"></p>
+      <p id="overlay-extra">Aquí irían mudra, respiración y texto adicional resumido.</p>
+      <button onclick="closeOverlay()">Cerrar</button>
+  </div>
+
+   
+    
+    
   </main>
 
   <script src="datos.js"></script>

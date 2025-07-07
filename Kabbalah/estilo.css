@@ -41,7 +41,13 @@ body {
   position: relative;
   padding: 1 em;
 }
-
+.lay{
+  position: absolute;
+  padding: 1 em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 #mandala {
   position: absolute;
   padding: 1 em;

@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
 //  const centerX = container.offsetWidth / 2;
 //  const centerY = container.offsetHeight / 2;
   const centerX = ancho / 2;
-  const centerY = alto.offsetHeight / 2;
+  const centerY = alto / 2;
 
   orbes.forEach((orbe, i) => {
     const angle = (2 * Math.PI * i) / total;

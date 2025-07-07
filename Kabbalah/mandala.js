@@ -2,7 +2,7 @@
 window.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("mandala");
   const total = orbes.length;
-  const radius = 160; //minimo, maximo 300
+  const radius = 180; //minimo, maximo 300
   const centerX = container.offsetWidth / 2;
   const centerY = container.offsetHeight / 2;
 
@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
     div.style.left = `${x}px`;
     div.style.top = `${y}px`;
     div.style.backgroundColor = orbe.color;
-    div.textContent = orbe.descripcion;
+    div.textContent = orbe.mandala;
     container.appendChild(div);
   });
 });

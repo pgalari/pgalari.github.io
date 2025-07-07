@@ -3,6 +3,7 @@ body {
   margin: 0;
   font-family: sans-serif;
 }
+/*** menu ***/
 .menu-icon {
   position: fixed;
   top: 10px;
@@ -34,6 +35,9 @@ body {
   text-decoration: none;
   font-weight: bold;
   font-size: 1.2rem;
+}
+#main {
+  padding: 1 em;
 }
 #mandala {
  /* position: relative;

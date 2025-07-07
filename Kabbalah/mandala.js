@@ -1,5 +1,9 @@
 
 window.addEventListener("DOMContentLoaded", () => {
+  var altura = screen.height;
+  var ancho = screen.width;
+  alert (ancho);
+ // innerHeight y innerWidth
   const container = document.getElementById("mandala");
   const total = orbes.length;
   const radius = 150; //minimo 150, maximo 300?

@@ -1,8 +1,8 @@
 
 window.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("orbes-container");
+  const container = document.getElementById("mandala");
   const total = orbes.length;
-  const radius = 200;
+  const radius = 180;
   const centerX = container.offsetWidth / 2;
   const centerY = container.offsetHeight / 2;
 

@@ -38,9 +38,11 @@ body {
 }
 #main {
   padding: 1 em;
+  margin-top: 5px;
 }
 #mandala {
- /* position: relative;
+  top:5px;
+  position: relative;
   width: 100vw;
   height: 100vh;*/
   padding: 1 em;

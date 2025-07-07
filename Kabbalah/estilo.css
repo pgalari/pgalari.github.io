@@ -85,6 +85,10 @@ circle {
 }
 /* Ajustes para móviles */
 @media screen and (max-width: 600px) {
+   body{
+     top: 10px;
+    left: 10px;
+  }
   #orbes-container {
     width: 100%;
     height: 100vh;

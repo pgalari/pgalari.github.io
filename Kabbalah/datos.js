@@ -11,7 +11,7 @@ const orbes = [
     { id: "orb9", tipo: "orbital", x: 250, y: 350, color: "#FFDE21", orden:9, caos:9, nombre: "Orb 9", mandala: "Motivación", descripcion: "Habilidades", frecuencia: "", situacion: "Orbita alrededor del codo de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
     { id: "orb10", tipo: "orbital", x: 450, y: 350, color: "#02a550", orden:10, caos:10, nombre: "Orb 10", mandala: "Pareja", descripcion: "Pareja", frecuencia: "", situacion: "Orbita alrededor del codo de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
     { id: "orb11", tipo: "orbital", x: 250, y: 250, color: "#0071bd", orden:11, caos:11, nombre: "Orb 11", mandala: "Propósito", descripcion: "Propósito", frecuencia: "", situacion: "Orbita alrededor del hombro de la mano dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" },
-    { id: "orb12", tipo: "orbital", x: 450, y: 250, color: "#902692", orden:12, caos:12, nombre: "Orb 12", mandala: "Pertenencia", descripcion: "Familia", frecuencia: "", situacion: "Orbita alrededor del hombro de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" }
+    { id: "orb12", tipo: "orbital", x: 450, y: 250, color: "#902692", orden:12, caos:12, nombre: "Orb 12", mandala: "Tribu", descripcion: "Familia", frecuencia: "", situacion: "Orbita alrededor del hombro de la mano no dominante", conecta: "", mudra: "", respiracion: "", breve: "Es el sistema de memoria de servicio", ampliado: "Est" }
 ];
 
 const conexiones = [

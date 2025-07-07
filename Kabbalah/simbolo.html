@@ -74,11 +74,12 @@
   <div id="titulo" class="overlay" style="display: none">
     <h3 id="title">Simbolo Maestro</h3>
     </div>
+      <!-- El contenido se inserta por JS -->
   <div class="svg-wrapper">
       <!--  <svg id="simbolo" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
        <svg id="svgCanvas" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet">-->
 
-      <svg id="svgSM" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet">
+      <svg id="svgSM" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid meet">
          <defs>
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
         <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
@@ -91,20 +92,14 @@
     </defs>
       </svg>
   </div>
-
-
-
-   
-
-    <!-- Las orbes se insertarán por JS -->
-
  <div id="overlay" class="overlay" style="display: none">
     <h2 id="overlay-title"></h2>
     <p id="overlay-description"></p>
     <p id="overlay-extra">Aquí irían mudra, respiración y texto adicional resumido.</p>
     <button onclick="closeOverlay()">Cerrar</button>
   </div>
-    <script src="datos.js"></script>
+
+  <script src="datos.js"></script>
   <!--  <script src="arbol.js" defer></script>-->
 
   <script>

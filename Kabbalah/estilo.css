@@ -84,10 +84,10 @@ circle {
   cursor: pointer;
 }
 /* Ajustes para móviles */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 300px) {
    body{
-     top: 10px;
-    left: 10px;
+     top: 1px;
+    left: 1px;
   }
   #orbes-container {
     width: 100%;

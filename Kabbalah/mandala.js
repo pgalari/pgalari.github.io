@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
   var alto = screen.height;
   var ancho = screen.width;
   alert (ancho);
+    alert (alto);
  // innerHeight y innerWidth
   const container = document.getElementById("mandala");
   const total = orbes.length;

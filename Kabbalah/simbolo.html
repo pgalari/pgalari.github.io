@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Símbolo Maestro</title>
   <link rel="stylesheet" href="estilo.css"/>
-    <style>
- body {
-      margin: 0;
-     // background: black;
-      overflow: hidden;
-      font-family: sans-serif;
+   <style type="text/css" media="screen">
+    body { background:#eee; margin:0 }
+    svg {
+      display:block; border:1px solid #ccc; position:absolute;
+      top:5%; left:5%; width:90%; height:90%; background:#fff;
     }
+    .face { stroke:#000; stroke-width:20px; stroke-linecap:round }
+
 
     svg {
       display: block;
@@ -98,7 +99,29 @@
     <p id="overlay-extra">Aquí irían mudra, respiración y texto adicional resumido.</p>
     <button onclick="closeOverlay()">Cerrar</button>
   </div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-350 -250 700 500">
+    <circle r="200" class="face" fill="red" />
+  </svg>
+  <script type="text/javascript"><![CDATA[
+    var svg  = document.getElementsByTagName('svg')[0];
+    var svgNS = svg.getAttribute('xmlns');
 
+    function createOn( root, name, attrs ){
+      var el = document.createElementNS(svgNS,name);
+      for (var attr in attrs){
+        if (attrs.hasOwnProperty(attr)) el.setAttribute(attr,attrs[attr]);
+      }
+      return root.appendChild(el);
+    }
+    
+    createOn( svg, 'path', {
+      fill:"none", "class":"face", transform:"translate(-396,-230)",
+      d:"M487.41,282.411c-15.07,36.137-50.735,61.537-92.333,61.537 \
+        c-41.421,0-76.961-25.185-92.142-61.076"
+    });
+    createOn( svg, 'circle', { cx:-60, cy:-50, r:20, fill:'#000' });
+    createOn( svg, 'circle', { cx: 60, cy:-50, r:20, fill:'#000' });
+  ]]></script>
   <script src="datos.js"></script>
   <!--  <script src="arbol.js" defer></script>-->
 

@@ -1,15 +1,17 @@
 
 window.addEventListener("DOMContentLoaded", () => {
-  var alto = screen.height;
-  var ancho = screen.width;
-  alert (ancho);
-    alert (alto);
- // innerHeight y innerWidth
+
   const container = document.getElementById("mandala");
   const total = orbes.length;
   const radius = 150; //minimo 150, maximo 300?
 //  const centerX = container.offsetWidth / 2;
 //  const centerY = container.offsetHeight / 2;
+
+    var alto = container.offsetWidth;
+    var ancho = container.offsetHeight;
+  alert (ancho);
+    alert (alto);
+ // innerHeight y innerWidth
   const centerX = ancho / 2;
   const centerY = alto / 2;
 

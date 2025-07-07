@@ -2,14 +2,14 @@
 window.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("mandala");
   const total = orbes.length;
-  const radius = 160; //minimo, maximo 300
+  const radius = 150; //minimo, maximo 300
   const centerX = container.offsetWidth / 2;
   const centerY = container.offsetHeight / 2;
 
   orbes.forEach((orbe, i) => {
     const angle = (2 * Math.PI * i) / total;
-    const x = centerX + radius * Math.cos(angle) - 30;
-    const y = centerY + radius * Math.sin(angle) - 30;
+    const x = centerX + radius * Math.cos(angle) - 33;
+    const y = centerY + radius * Math.sin(angle) - 33;
 
     const div = document.createElement("div");
     div.className = "orbe";

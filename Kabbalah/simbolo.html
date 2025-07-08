@@ -2,188 +2,146 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Símbolo Maestro</title>
-  <link  type="text/css" media="screen" rel="stylesheet" href="estilo.css"/>
-   <style type="text/css" media="screen">
-    body { background:#eee; margin:0 }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de memoria</title>
+  <style>
+    body {
+      margin: 0;
+      background: #EAECEE;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
     svg {
-      display:block; border:1px solid #ccc; position:absolute;
-      top:5%; left:15%; width:90%; height:90%; 
-      width: 99vw;
-      height: 99vh;}
-    .orb { stroke:#000; stroke-width:20px; stroke-linecap:round 
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+    .orb {
       filter: url(#glow);
       transform-origin: center;
       transition: transform 0.3s ease;
     }
-
     .orb text {
       pointer-events: none;
     }
-
-    /* Vibración para orbes centrales */
     .orb.central:hover circle {
       animation: vibrate 0.2s linear infinite;
     }
-
     @keyframes vibrate {
       0% { transform: scale(1.02); }
       50% { transform: scale(0.98); }
       100% { transform: scale(1.02); }
     }
-
-    /* Rotación para satélites */
     .orb.satelite:hover circle {
       animation: rotate 2s linear infinite;
     }
-
     @keyframes rotate {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    /* Iluminación constante (gaseoso) */
     circle {
       stroke: white;
       stroke-width: 0.5;
       filter: url(#glow);
     }
-
     .orb circle {
       transition: transform 0.3s ease;
+    }
+
+    /*** menu ***/
+    .menu-icon {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    #menu-toggle {
+      display: none;
+    }
+    .menu {
+      position: fixed;
+      top: 50px;
+      left: 10px;
+    }
+    #menu-toggle:checked + .menu-icon + .menu {
+      display: block;
+      color: #4b0082;
+    }
+    .menu ul {
+      list-style: none;
+      padding: 0;
+    }
+    .menu li {
+      margin: 10px 0;
+    }
+    .menu a {
+      color: #4b0082;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      max-height: 80%;
+      background: white;
+      border: 2px solid #4b0082;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      overflow-y: auto;
+      z-index: 999;
+      display: none;
+      flex-direction: column;
+    }
+
+    .close-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      cursor: pointer;
+      align-self: flex-end;
+    }
+
+    .line {
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
-  <input type="checkbox" id="menu-toggle" />
-  <label for="menu-toggle" class="menu-icon">&#9776;</label>
-  <nav class="menu">
-    <ul>
-      <li><a href="index.html">Mandala</a></li>
-      <li><a href="simbolo.html">Símbolo</a></li>
-      <li><a href="simbolo.html">Técnicas</a></li>
-      <li><a href="simbolo.html">Activadoras</a></li>
-    </ul>
-  </nav>
-  <div id="titulo" class="overlay" style="display: none">
-    <h3 id="title">Simbolo Maestro</h3>
-    </div>
-      <!-- El contenido se inserta por JS -->
-  
-  <div class="svg-wrapper">
-      <!--  <svg id="simbolo" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-       <svg id="svgCanvas" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet">-->
-      <svg id="lines"></svg>
-      <svg id="svgSM" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid meet">
-         <defs>
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
-        <feMerge>
-          <feMergeNode in="blur"/>
-            <!-- <feMergeNode in="blur"/>-->
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
-      </svg>
-  </div>
- <div id="overlay" class="overlay" style="display: none">
-    <h2 id="overlay-title"></h2>
-    <p id="overlay-description"></p>
-    <p id="overlay-extra">Aquí irían mudra, respiración y texto adicional resumido.</p>
-    <button onclick="closeOverlay()">Cerrar</button>
-  </div>
 
-  <script type="text/javascript" src="datos.js"></script>
-  <!--  <script src="arbol.js" defer></script>-->
+<input type="checkbox" id="menu-toggle" />
+<label for="menu-toggle" class="menu-icon">&#9776;</label>
+<nav class="menu">
+  <ul>
+    <li><a href="index.html">Mandala</a></li>
+    <li><a href="simbolo.html">Símbolo</a></li>
+    <li><a href="simbolo.html">Técnicas</a></li>
+    <li><a href="simbolo.html">Activadoras</a></li>
+  </ul>
+</nav>
 
-  <script>
-    const svg = document.getElementById("svgSM");
-    const svg = document.getElementById("lines");
+<svg id="svglines" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet"></svg>
+<svg id="svgCanvas" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
 
-
-
-// Crear gradientes y líneas SVG
-const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-svg.appendChild(defs);
-
-conexiones.forEach(({ de, a }) => {
-  const orbA = orbes.find(o => o.id === de);
-  const orbB = orbes.find(o => o.id === a);
-  if (!orbA || !orbB) return;
-
-  const gradId = `grad-${de}-${a}`;
-  const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
-  gradient.setAttribute("id", gradId);
-  gradient.setAttribute("gradientUnits", "userSpaceOnUse");
-  gradient.setAttribute("x1", orbA.x);
-  gradient.setAttribute("y1", orbA.y);
-  gradient.setAttribute("x2", orbB.x);
-  gradient.setAttribute("y2", orbB.y);
-
-  const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-  stop1.setAttribute("offset", "0%");
-  stop1.setAttribute("stop-color", orbA.color);
-  gradient.appendChild(stop1);
-
-  const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-  stop2.setAttribute("offset", "100%");
-  stop2.setAttribute("stop-color", orbB.color);
-  gradient.appendChild(stop2);
-
-  defs.appendChild(gradient);
-
-  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  line.setAttribute("x1", orbA.x);
-  line.setAttribute("y1", orbA.y);
-  line.setAttribute("x2", orbB.x);
-  line.setAttribute("y2", orbB.y);
-  line.setAttribute("stroke", `url(#${gradId})`);
-  line.setAttribute("stroke-width", 4);
-  line.classList.add("line");
-  svg.appendChild(line);
-});
-    orbes.forEach(c => {
-      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-      g.setAttribute("class", `orb ${c.orden <= 6 ? "central" : "satelite"}`);
-      g.setAttribute("id", c.id);
-      g.setAttribute("transform", `translate(${c.x}, ${c.y})`);
-
-      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      circle.setAttribute("r", 33);
-      circle.setAttribute("fill", c.color);
-      g.appendChild(circle);
-
-      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      text.setAttribute("x", 0);
-      text.setAttribute("y", 5);
-      text.setAttribute("text-anchor", "middle");
-      text.setAttribute("fill", "#fff");
-      text.textContent = c.nombre;
-      g.appendChild(text);
-
-      svg.appendChild(g);
-
-      g.addEventListener("mouseenter", () => {
-        circle.classList.add("glow");
-      });
-      g.addEventListener("mouseleave", () => {
-        circle.classList.remove("glow");
-      });
-      g.addEventListener("click", () => {
-        document.getElementById("overlay-title").textContent = nombre;
-        document.getElementById("overlay-description").textContent = descripcion;
-        document.getElementById("overlay").style.display = "flex";
-      });
-    });
-    function closeOverlay() {
-      document.getElementById("overlay").style.display = "none";
-    }
-
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeOverlay();
-    });
-  </script>
-</body>
-</html>
+<div class="overlay" id="overlay">
+  <h2 id="overlay-title">Título</h2>
+  <p><strong>Frecuencia:</strong> <span id="frecuencia"></span></p>
+  <p><strong>Situación:</strong> <span id="situacion"></span></p>
+  <p><strong>Activado p

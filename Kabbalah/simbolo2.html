@@ -138,13 +138,14 @@
       g.appendChild(text);
       
       svg.appendChild(g);
-      g.addEventListener("click", () => mostrarOverlay(c));
+      
       g.addEventListener("mouseenter", () => {
         circle.classList.add("glow");
       });
       g.addEventListener("mouseleave", () => {
         circle.classList.remove("glow");
       });
+      g.addEventListener("click", () => mostrarOverlay(c));
     });
 
     function mostrarOverlay(orb) {

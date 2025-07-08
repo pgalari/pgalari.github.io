@@ -101,23 +101,22 @@ function crearGradiente(id, color1, color2) {
 }
 
 function dibujarConexiones() {
-  conexiones.forEach(({ de, a }, i) => {
+  conexiones.forEach(({ de, a }) => {
     const orb1 = orbes.find(o => o.id === de);
     const orb2 = orbes.find(o => o.id === a);
+    if (!orb1 || !orb2) return;
 
-    if (orb1 && orb2) {
-      const gradID = `grad-${de}-${a}`;
-      crearGradiente(gradID, orb1.color, orb2.color);
+    const gradID = `grad-${de}-${a}`;
+    crearGradiente(gradID, orb1.color, orb2.color);
 
-      const linea = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      linea.setAttribute("x1", orb1.x);
-      linea.setAttribute("y1", orb1.y);
-      linea.setAttribute("x2", orb2.x);
-      linea.setAttribute("y2", orb2.y);
-      linea.setAttribute("stroke", `url(#${gradID})`);
-      linea.setAttribute("stroke-width", "2");
-      svg.appendChild(linea);
-    }
+    const linea = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    linea.setAttribute("x1", orb1.x);
+    linea.setAttribute("y1", orb1.y);
+    linea.setAttribute("x2", orb2.x);
+    linea.setAttribute("y2", orb2.y);
+    linea.setAttribute("stroke", `url(#${gradID})`);
+    linea.setAttribute("stroke-width", "2");
+    svg.appendChild(linea);
   });
 }
 
@@ -129,6 +128,8 @@ function dibujarOrbes() {
     circle.setAttribute("cy", orb.y);
     circle.setAttribute("r", 20);
     circle.setAttribute("fill", orb.color);
+    circle.setAttribute("stroke", "white");
+    circle.setAttribute("stroke-width", "1");
     circle.style.cursor = "pointer";
 
     circle.addEventListener("click", () => {
@@ -143,17 +144,18 @@ function dibujarOrbes() {
     // texto
     const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
     label.setAttribute("x", orb.x);
-    label.setAttribute("y", orb.y + 4);
+    label.setAttribute("y", orb.y + 30); // debajo del círculo
     label.setAttribute("text-anchor", "middle");
+    label.setAttribute("fill", "white");
     label.textContent = orb.nombre;
     svg.appendChild(label);
   });
 }
 
-// Inicializar todo
+// Asegura que las conexiones se dibujan primero
 dibujarConexiones();
 dibujarOrbes();
-  });
+
 </script>
 </body>
 </html>

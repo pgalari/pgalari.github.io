@@ -118,10 +118,18 @@
         const gradId = `grad-${index}`;
         const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
         grad.setAttribute("id", gradId);
+grad.setAttribute("x1", origen.x);
+grad.setAttribute("y1", origen.y);
+grad.setAttribute("x2", destino.x);
+grad.setAttribute("y2", destino.y);
+grad.setAttribute("gradientUnits", "userSpaceOnUse"); // ⚠️ Esto es clave
+
+        
+   /*     grad.setAttribute("id", gradId);
         grad.setAttribute("x1", "0%");
         grad.setAttribute("y1", "0%");
         grad.setAttribute("x2", "100%");
-        grad.setAttribute("y2", "0%");
+        grad.setAttribute("y2", "0%");*/
         grad.innerHTML = `
           <stop offset="0%" stop-color="${orbA.color}" />
           <stop offset="100%" stop-color="${orbB.color}" />

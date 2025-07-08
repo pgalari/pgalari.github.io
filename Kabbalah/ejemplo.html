@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Árbol de Orbes</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: white;
+    }
+
+    #svg-container {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      text-align: center;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    #simbolo {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    text {
+      font-family: sans-serif;
+      font-size: 14px;
+      fill: white;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="svg-container">
+    <svg id="simbolo" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Orbes de ejemplo -->
+      <circle cx="300" cy="100" r="40" fill="#7B1FA2" />
+      <text x="300" y="105" text-anchor="middle">orb1</text>
+
+      <circle cx="300" cy="200" r="40" fill="#1976D2" />
+      <text x="300" y="205" text-anchor="middle">orb2</text>
+
+      <circle cx="300" cy="300" r="40" fill="#388E3C" />
+      <text x="300" y="305" text-anchor="middle">orb3</text>
+
+      <circle cx="230" cy="400" r="40" fill="#FBC02D" />
+      <text x="230" y="405" text-anchor="middle">orb4</text>
+
+      <circle cx="370" cy="400" r="40" fill="#FFA000" />
+      <text x="370" y="405" text-anchor="middle">orb5</text>
+
+      <circle cx="300" cy="500" r="40" fill="#D32F2F" />
+      <text x="300" y="505" text-anchor="middle">orb6</text>
+
+      <!-- Conexiones -->
+      <line x1="300" y1="100" x2="300" y2="200" stroke="#7B1FA2" stroke-width="3"/>
+      <line x1="300" y1="200" x2="300" y2="300" stroke="#1976D2" stroke-width="3"/>
+      <line x1="300" y1="300" x2="230" y2="400" stroke="#388E3C" stroke-width="3"/>
+      <line x1="300" y1="300" x2="370" y2="400" stroke="#388E3C" stroke-width="3"/>
+      <line x1="230" y1="400" x2="300" y2="500" stroke="#FBC02D" stroke-width="3"/>
+      <line x1="370" y1="400" x2="300" y2="500" stroke="#FFA000" stroke-width="3"/>
+
+    </svg>
+  </div>
+</body>
+</html>

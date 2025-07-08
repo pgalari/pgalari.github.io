@@ -146,7 +146,7 @@
         circle.classList.remove("glow");
       });
 
-        g.addEventListener("click", () => mostrarOverlay(orb));
+        g.addEventListener("click", () => mostrarOverlay(c));
       });
     });
 
@@ -155,10 +155,10 @@
       document.getElementById("titulo").innerText = orb.nombre || "";
       document.getElementById("frecuencia").innerText = orb.frecuencia || "";
       document.getElementById("situacion").innerText = orb.situacion || "";
-      document.getElementById("glandula").innerText = orb.glandula || "";
-      document.getElementById("mudra").innerText = orb.mudra || "";
+    //  document.getElementById("glandula").innerText = orb.glandula || "";
+    //  document.getElementById("mudra").innerText = orb.mudra || "";
       document.getElementById("respiracion").innerText = orb.respiracion || "";
-      document.getElementById("breve").innerText = orb.breve || "";
+   //   document.getElementById("breve").innerText = orb.breve || "";
       document.getElementById("ampliado").innerText = orb.ampliado || orb.descripcion || "";
       overlay.style.display = "flex";
     }

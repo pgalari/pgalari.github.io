@@ -110,42 +110,37 @@
     const svg = document.getElementById("simbolo");
 
     // Dibujar conexiones con degradado
-    conexiones.forEach((conn, index) => {
-      const orbA = orbes.find(o => o.id === conn.de);
-      const orbB = orbes.find(o => o.id === conn.a);
+   // Dibujar conexiones con degradado
+conexiones.forEach((conn, index) => {
+  const orbA = orbes.find(o => o.id === conn.de);
+  const orbB = orbes.find(o => o.id === conn.a);
 
-      if (orbA && orbB) {
-        const gradId = `grad-${index}`;
-        const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
-        grad.setAttribute("id", gradId);
-grad.setAttribute("x1", origen.x);
-grad.setAttribute("y1", origen.y);
-grad.setAttribute("x2", destino.x);
-grad.setAttribute("y2", destino.y);
-grad.setAttribute("gradientUnits", "userSpaceOnUse"); // ⚠️ Esto es clave
+  if (orbA && orbB) {
+    const gradId = `grad-${index}`;
+    const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+    grad.setAttribute("id", gradId);
+    grad.setAttribute("x1", orbA.x);
+    grad.setAttribute("y1", orbA.y);
+    grad.setAttribute("x2", orbB.x);
+    grad.setAttribute("y2", orbB.y);
+    grad.setAttribute("gradientUnits", "userSpaceOnUse");
 
-        
-   /*     grad.setAttribute("id", gradId);
-        grad.setAttribute("x1", "0%");
-        grad.setAttribute("y1", "0%");
-        grad.setAttribute("x2", "100%");
-        grad.setAttribute("y2", "0%");*/
-        grad.innerHTML = `
-          <stop offset="0%" stop-color="${orbA.color}" />
-          <stop offset="100%" stop-color="${orbB.color}" />
-        `;
-        svg.appendChild(grad);
+    grad.innerHTML = `
+      <stop offset="0%" stop-color="${orbA.color}" />
+      <stop offset="100%" stop-color="${orbB.color}" />
+    `;
+    svg.appendChild(grad);
 
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("x1", orbA.x);
-        line.setAttribute("y1", orbA.y);
-        line.setAttribute("x2", orbB.x);
-        line.setAttribute("y2", orbB.y);
-        line.setAttribute("stroke", `url(#${gradId})`);
-        line.setAttribute("stroke-width", "3");
-        svg.appendChild(line);
-      }
-    });
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("x1", orbA.x);
+    line.setAttribute("y1", orbA.y);
+    line.setAttribute("x2", orbB.x);
+    line.setAttribute("y2", orbB.y);
+    line.setAttribute("stroke", `url(#${gradId})`);
+    line.setAttribute("stroke-width", "3");
+    svg.appendChild(line);
+  }
+});
 
     // Dibujar orbes
     orbes.forEach(orb => {

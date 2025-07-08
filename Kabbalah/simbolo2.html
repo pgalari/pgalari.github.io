@@ -78,6 +78,7 @@
    <div id="titulo" class="overlay" style="display: none">
     <h3 id="title">Simbolo Maestro</h3>
     </div>
+  <svg id="svglines"></svg>
   <svg id="svgCanvas" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet">
     <defs>
       <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
@@ -92,29 +93,29 @@
 
     <!-- Las orbes se insertarán por JS -->
   </svg>
- <div id="overlay" class="overlay" style="display: none">
+  <div class="overlay" id="overlay">
+    <h2 id="titulo"></h2>
+    <p><strong>Frecuencia:</strong> <span id="frecuencia"></span></p>
+    <p><strong>Situación:</strong> <span id="situacion"></span></p>
+    <p><strong>Activado por:</strong> <span id="glandula"></span></p>
+    <p><strong>Mudra:</strong> <span id="mudra"></span></p>
+    <p><strong>Respiración:</strong> <span id="respiracion"></span></p>
+    <p><strong>Descripción:</strong> <span id="breve"></span></p>
+    <p><strong>Contenido ampliado:</strong> <span id="ampliado"></span></p>
+    <button class="close-btn" onclick="cerrarOverlay()">Cerrar</button>
+  </div>
+  
+ <div id="over" class="overlay" style="display: none">
     <h2 id="overlay-title"></h2>
     <p id="overlay-description"></p>
     <p id="overlay-extra">Aquí irían mudra, respiración y texto adicional resumido.</p>
     <button onclick="closeOverlay()">Cerrar</button>
   </div>
+  
   <script type="text/javascript" src="datos.js"></script>
   <script>
-  /*  const circulos = [
-      { id: "orb-1", nombre: "Orb 1", orden: 1, x: 350, y: 100, color: "#902692", descripcion: "Gama. Vibración" },
-      { id: "orb-2", nombre: "Orb 2", orden: 2, x: 350, y: 200, color: "#0071bd", descripcion: "Beta. Química" },
-      { id: "orb-3", nombre: "Orb 3", orden: 3, x: 350, y: 300, color: "#02a550", descripcion: "Alpha. Emociones." },
-      { id: "orb-4", nombre: "Orb 4", orden: 4, x: 350, y: 400, color: "#fef200", descripcion: "Theta. Información" },
-      { id: "orb-5", nombre: "Orb 5", orden: 5, x: 350, y: 500, color: "#f7941f", descripcion: "Delta. Comunicación" },
-      { id: "orb-6", nombre: "Orb 6", orden: 6, x: 350, y: 600, color: "#fb0202", descripcion: "Segundo Beta. Interacción" },
-      { id: "orb-12", nombre: "Orb 12", orden: 12, x: 450, y: 250, color: "#eb018e", descripcion: "Familia" },
-      { id: "orb-10", nombre: "Orb 10", orden: 10, x: 450, y: 350, color: "#00ff01", descripcion: "Pareja" },
-      { id: "orb-8", nombre: "Orb 8", orden: 8, x: 450, y: 450, color: "#fef200", descripcion: "Relaciones" },
-      { id: "orb-11", nombre: "Orb 11", orden: 11, x: 250, y: 250, color: "#0800ff", descripcion: "Propósito" },
-      { id: "orb-9", nombre: "Orb 9", orden: 9, x: 250, y: 350, color: "#04adf0", descripcion: "Habilidades." },
-      { id: "orb-7", nombre: "Orb 7", orden: 7, x: 250, y: 450, color: "#fb0202", descripcion: "Servicio" }
-    ];
-*/
+    const overlay = document.getElementById("overlay");
+    const lineas = document.getElementById("svglines");
     const svg = document.getElementById("svgCanvas");
 
      orbes.forEach(c => {
@@ -144,18 +145,31 @@
       g.addEventListener("mouseleave", () => {
         circle.classList.remove("glow");
       });
-      g.addEventListener("click", () => {
-        document.getElementById("overlay-title").textContent = nombre;
-        document.getElementById("overlay-description").textContent = descripcion;
-        document.getElementById("overlay").style.display = "flex";
+
+        g.addEventListener("click", () => mostrarOverlay(orb));
       });
     });
-    function closeOverlay() {
-      document.getElementById("overlay").style.display = "none";
+
+
+    function mostrarOverlay(orb) {
+      document.getElementById("titulo").innerText = orb.nombre || "";
+      document.getElementById("frecuencia").innerText = orb.frecuencia || "";
+      document.getElementById("situacion").innerText = orb.situacion || "";
+      document.getElementById("glandula").innerText = orb.glandula || "";
+      document.getElementById("mudra").innerText = orb.mudra || "";
+      document.getElementById("respiracion").innerText = orb.respiracion || "";
+      document.getElementById("breve").innerText = orb.breve || "";
+      document.getElementById("ampliado").innerText = orb.ampliado || orb.descripcion || "";
+      overlay.style.display = "flex";
     }
 
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeOverlay();
+    function cerrarOverlay() {
+      overlay.style.display = "none";
+      //document.getElementById("overlay").style.display = "none";
+    }
+
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape") cerrarOverlay();
     });
   </script>
 </body>

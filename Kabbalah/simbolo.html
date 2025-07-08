@@ -149,15 +149,18 @@ function dibujarOrbes() {
     });
 
     svg.appendChild(circle);
+    
 
-    // texto
-    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    label.setAttribute("x", orb.x);
-    label.setAttribute("y", orb.y + 30); // debajo del círculo
-    label.setAttribute("text-anchor", "middle");
-    label.setAttribute("fill", "white");
-    label.textContent = orb.nombre;
-    svg.appendChild(label);
+    // texto centrado dentro del círculo
+const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+label.setAttribute("x", orb.x);
+label.setAttribute("y", orb.y);
+label.setAttribute("text-anchor", "middle");
+label.setAttribute("dominant-baseline", "middle");
+label.setAttribute("fill", "white");
+label.setAttribute("font-size", "12px");
+label.textContent = orb.nombre; // muestra el ID dentro del círculo
+svg.appendChild(label);
   });
 }
 

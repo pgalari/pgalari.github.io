@@ -144,4 +144,105 @@
   <h2 id="overlay-title">Título</h2>
   <p><strong>Frecuencia:</strong> <span id="frecuencia"></span></p>
   <p><strong>Situación:</strong> <span id="situacion"></span></p>
-  <p><strong>Activado p
+  <p><strong>Activado por:</strong> <span id="glandula"></span></p>
+  <p><strong>Mudra:</strong> <span id="mudra"></span></p>
+  <p><strong>Respiración:</strong> <span id="respiracion"></span></p>
+  <p><strong>Descripción:</strong> <span id="breve"></span></p>
+  <p><strong>Contenido ampliado:</strong> <span id="ampliado"></span></p>
+  <button class="close-btn" onclick="cerrarOverlay()">Cerrar</button>
+</div>
+
+<script src="datos.js"></script>
+<script>
+  const svg = document.getElementById("svgCanvas");
+  const lineSvg = document.getElementById("svglines");
+  const overlay = document.getElementById("overlay");
+
+  // Dibujar orbes
+  orbes.forEach(c => {
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    g.setAttribute("class", `orb ${c.orden <= 6 ? "central" : "satelite"}`);
+    g.setAttribute("id", c.id);
+    g.setAttribute("transform", `translate(${c.x}, ${c.y})`);
+
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("r", 30);
+    circle.setAttribute("fill", c.color);
+    g.appendChild(circle);
+
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("x", 0);
+    text.setAttribute("y", 5);
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("fill", "#fff");
+    text.textContent = c.nombre;
+    g.appendChild(text);
+
+    svg.appendChild(g);
+
+    g.addEventListener("click", () => mostrarOverlay(c));
+  });
+
+  function mostrarOverlay(orb) {
+    document.getElementById("overlay-title").innerText = orb.nombre || "";
+    document.getElementById("frecuencia").innerText = orb.frecuencia || "";
+    document.getElementById("situacion").innerText = orb.situacion || "";
+    document.getElementById("glandula").innerText = orb.glandula || "";
+    document.getElementById("mudra").innerText = orb.mudra || "";
+    document.getElementById("respiracion").innerText = orb.respiracion || "";
+    document.getElementById("breve").innerText = orb.breve || "";
+    document.getElementById("ampliado").innerText = orb.ampliado || orb.descripcion || "";
+    overlay.style.display = "flex";
+  }
+
+  function cerrarOverlay() {
+    overlay.style.display = "none";
+  }
+
+  window.addEventListener("keydown", e => {
+    if (e.key === "Escape") cerrarOverlay();
+  });
+
+  // Dibujar conexiones entre orbes
+  const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  lineSvg.appendChild(defs);
+
+  conexiones.forEach(({ de, a }) => {
+    const orbA = orbes.find(o => o.id === de);
+    const orbB = orbes.find(o => o.id === a);
+    if (!orbA || !orbB) return;
+
+    const gradId = `grad-${de}-${a}`;
+    const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+    gradient.setAttribute("id", gradId);
+    gradient.setAttribute("gradientUnits", "userSpaceOnUse");
+    gradient.setAttribute("x1", orbA.x);
+    gradient.setAttribute("y1", orbA.y);
+    gradient.setAttribute("x2", orbB.x);
+    gradient.setAttribute("y2", orbB.y);
+
+    const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop1.setAttribute("offset", "0%");
+    stop1.setAttribute("stop-color", orbA.color);
+    gradient.appendChild(stop1);
+
+    const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop2.setAttribute("offset", "100%");
+    stop2.setAttribute("stop-color", orbB.color);
+    gradient.appendChild(stop2);
+
+    defs.appendChild(gradient);
+
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("x1", orbA.x);
+    line.setAttribute("y1", orbA.y);
+    line.setAttribute("x2", orbB.x);
+    line.setAttribute("y2", orbB.y);
+    line.setAttribute("stroke", `url(#${gradId})`);
+    line.setAttribute("stroke-width", 4);
+    line.classList.add("line");
+    lineSvg.appendChild(line);
+  });
+</script>
+</body>
+</html>

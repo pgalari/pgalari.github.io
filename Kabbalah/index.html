@@ -7,31 +7,26 @@
   <link rel="stylesheet" href="estilo.css"/>
 </head>
 <body>
-  <input type="checkbox" id="menu-toggle" />
+   <input type="checkbox" id="menu-toggle" />
   <label for="menu-toggle" class="menu-icon">&#9776;</label>
   <nav class="menu">
-    <ul><h3 id="title">Memorias</h3>
+    <ul>
       <li><a href="index.html">Mandala</a></li>
       <li><a href="simbolo.html">Símbolo</a></li>
     </ul>
   </nav>
-
   <main>
-    
     <div id="mandala"></div>
-    
     <div id="overlay" class="overlay" style="display: none">
       <div id="descripcion">
-         <h2 id="title">Todo lo que existe es energia. Memorias.</h2>
-    </div>
-      <h2 id="overlay-title"></h2>
+         <h2 id="title">Memorias.</h2>
+      </div>
+      <h2 id="overlay-title">Todo lo que existe es energia. </h2>
       <p id="overlay-description"></p>
       <p id="overlay-extra">Aquí irían mudra, respiración y texto adicional resumido.</p>
       <button onclick="closeOverlay()">Cerrar</button>
-  </div>
-
+    </div>
   </main>
-
   <script src="datos.js"></script>
   <script src="mandala.js" defer></script>
 </body>

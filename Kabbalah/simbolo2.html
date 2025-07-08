@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sistema de memoria</title>
-
   <style>
     body {
       margin: 0;
@@ -12,53 +11,45 @@
       overflow: hidden;
       font-family: sans-serif;
     }
-
     svg {
       display: block;
       width: 100vw;
       height: 100vh;
     }
-
     .orb {
       filter: url(#glow);
       transform-origin: center;
       transition: transform 0.3s ease;
     }
-
     .orb text {
       pointer-events: none;
     }
-
     /* Vibración para orbes centrales */
     .orb.central:hover circle {
       animation: vibrate 0.2s linear infinite;
     }
-
     @keyframes vibrate {
       0% { transform: scale(1.02); }
       50% { transform: scale(0.98); }
       100% { transform: scale(1.02); }
     }
-
     /* Rotación para satélites */
     .orb.satelite:hover circle {
       animation: rotate 2s linear infinite;
     }
-
     @keyframes rotate {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
     /* Iluminación constante (gaseoso) */
     circle {
       stroke: white;
       stroke-width: 0.5;
       filter: url(#glow);
     }
-
     .orb circle {
       transition: transform 0.3s ease;
+      }
     /*** menu ***/
 .menu-icon {
   position: fixed;
@@ -92,7 +83,7 @@
   font-weight: bold;
   font-size: 1.2rem;
 }
-    }
+    
   </style>
 </head>
 <body>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orbes Interactivos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #0a0a0a;
+      color: white;
+      overflow: hidden;
+    }
+
+    #menu {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+
+    #menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    #menu-items {
+      display: none;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    #menu-items a {
+      color: white;
+      text-decoration: none;
+      margin: 5px 0;
+    }
+
+    #menu.open #menu-items {
+      display: flex;
+    }
+
+    svg {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .orb-text {
+      pointer-events: none;
+      font-size: 14px;
+      font-weight: bold;
+      fill: white;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      color: white;
+      padding: 30px;
+      box-sizing: border-box;
+      z-index: 20;
+      overflow-y: auto;
+    }
+
+    .overlay h2 { margin-top: 0; }
+
+    .close-overlay {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Menú -->
+  <div id="menu">
+    <button id="menu-toggle">☰</button>
+    <div id="menu-items">
+      <a href="#">Inicio</a>
+      <a href="#">Mapa</a>
+      <a href="#">Contacto</a>
+    </div>
+  </div>
+
+  <!-- SVG con orbes -->
+  <svg id="simbolo"></svg>
+
+  <!-- Overlay para información -->
+  <div id="overlay" class="overlay">
+    <div class="close-overlay" onclick="cerrarOverlay()">×</div>
+    <div id="overlay-content"></div>
+  </div>
+
+  <!-- Script con datos y lógica -->
+   <script src="datos.js"></script>
+  <script>
+
+    const svg = document.getElementById("simbolo");
+
+    // Dibujar conexiones con degradado
+    conexiones.forEach((conn, index) => {
+      const orbA = orbes.find(o => o.id === conn.de);
+      const orbB = orbes.find(o => o.id === conn.a);
+
+      if (orbA && orbB) {
+        const gradId = `grad-${index}`;
+        const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+        grad.setAttribute("id", gradId);
+        grad.setAttribute("x1", "0%");
+        grad.setAttribute("y1", "0%");
+        grad.setAttribute("x2", "100%");
+        grad.setAttribute("y2", "0%");
+        grad.innerHTML = `
+          <stop offset="0%" stop-color="${orbA.color}" />
+          <stop offset="100%" stop-color="${orbB.color}" />
+        `;
+        svg.appendChild(grad);
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", orbA.x);
+        line.setAttribute("y1", orbA.y);
+        line.setAttribute("x2", orbB.x);
+        line.setAttribute("y2", orbB.y);
+        line.setAttribute("stroke", `url(#${gradId})`);
+        line.setAttribute("stroke-width", "3");
+        svg.appendChild(line);
+      }
+    });
+
+    // Dibujar orbes
+    orbes.forEach(orb => {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", orb.x);
+      circle.setAttribute("cy", orb.y);
+      circle.setAttribute("r", "30");
+      circle.setAttribute("fill", orb.color);
+      circle.style.cursor = "pointer";
+      circle.addEventListener("click", () => mostrarOverlay(orb));
+      svg.appendChild(circle);
+
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", orb.x);
+      text.setAttribute("y", orb.y);
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("dominant-baseline", "middle");
+      text.classList.add("orb-text");
+      text.textContent = orb.nombre;
+      svg.appendChild(text);
+    });
+
+    function mostrarOverlay(orb) {
+      const overlay = document.getElementById("overlay");
+      const content = document.getElementById("overlay-content");
+      content.innerHTML = `
+        <h2>${orb.nombre} – ${orb.mandala}</h2>
+        <p><strong>${orb.descripcion}</strong></p>
+        <p><em>${orb.breve}</em></p>
+        <p>${orb.ampliado}</p>
+        <ul>
+          <li><strong>Frecuencia:</strong> ${orb.frecuencia}</li>
+          <li><strong>Conecta:</strong> ${orb.conecta}</li>
+          <li><strong>Respiración:</strong> ${orb.respiracion}</li>
+          <li><strong>Mudra:</strong> ${orb.mudra}</li>
+        </ul>
+      `;
+      overlay.style.display = "block";
+    }
+
+    function cerrarOverlay() {
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    // Menú hamburguesa
+    document.getElementById("menu-toggle").addEventListener("click", () => {
+      document.getElementById("menu").classList.toggle("open");
+    });
+  </script>
+</body>
+</html>

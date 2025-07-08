@@ -98,6 +98,7 @@
     <p id="overlay-extra">Aquí irían mudra, respiración y texto adicional resumido.</p>
     <button onclick="closeOverlay()">Cerrar</button>
   </div>
+  <script type="text/javascript" src="datos.js"></script>
   <script>
     const circulos = [
       { id: "orb-1", nombre: "Orb 1", orden: 1, x: 350, y: 100, color: "#902692", descripcion: "Gama. Vibración" },
@@ -116,7 +117,7 @@
 
     const svg = document.getElementById("svgCanvas");
 
-    circulos.forEach(c => {
+     orbes.forEach(c => {
       const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
       g.setAttribute("class", `orb ${c.orden <= 6 ? "central" : "satelite"}`);
       g.setAttribute("id", c.id);

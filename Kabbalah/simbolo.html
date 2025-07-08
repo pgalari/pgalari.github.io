@@ -3,245 +3,156 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sistema de memoria</title>
+  <title>Orbes Interactivos</title>
   <style>
     body {
       margin: 0;
-      background: #EAECEE;
+      background: #111;
       overflow: hidden;
-      font-family: sans-serif;
     }
     svg {
-      display: block;
       width: 100vw;
       height: 100vh;
+      display: block;
     }
-    .orb {
-      filter: url(#glow);
-      transform-origin: center;
-      transition: transform 0.3s ease;
-    }
-    .orb text {
+    text {
+      font-family: sans-serif;
+      font-size: 12px;
+      fill: white;
       pointer-events: none;
     }
-    .orb.central:hover circle {
-      animation: vibrate 0.2s linear infinite;
-    }
-    @keyframes vibrate {
-      0% { transform: scale(1.02); }
-      50% { transform: scale(0.98); }
-      100% { transform: scale(1.02); }
-    }
-    .orb.satelite:hover circle {
-      animation: rotate 2s linear infinite;
-    }
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    circle {
+    circle:hover {
       stroke: white;
-      stroke-width: 0.5;
-      filter: url(#glow);
-    }
-    .orb circle {
-      transition: transform 0.3s ease;
-    }
-
-    /*** menu ***/
-    .menu-icon {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      font-size: 30px;
+      stroke-width: 2;
       cursor: pointer;
     }
-    #menu-toggle {
-      display: none;
-    }
-    .menu {
+    #overlay {
       position: fixed;
-      top: 50px;
-      left: 10px;
-    }
-    #menu-toggle:checked + .menu-icon + .menu {
-      display: block;
-      color: #4b0082;
-    }
-    .menu ul {
-      list-style: none;
-      padding: 0;
-    }
-    .menu li {
-      margin: 10px 0;
-    }
-    .menu a {
-      color: #4b0082;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 10%;
-      left: 10%;
-      width: 80%;
-      max-height: 80%;
-      background: white;
-      border: 2px solid #4b0082;
-      padding: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      overflow-y: auto;
-      z-index: 999;
-      display: none;
-      flex-direction: column;
-    }
-
-    .close-btn {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background-color: #4b0082;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
       color: white;
-      border: none;
-      cursor: pointer;
-      align-self: flex-end;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem;
+      text-align: center;
+      z-index: 10;
     }
-
-    .line {
-      opacity: 0.7;
+    #overlay button {
+      margin-top: 2rem;
+      background: none;
+      border: 1px solid white;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
+  <svg id="simbolo">
+    <defs id="gradientes"></defs>
+  </svg>
 
-<input type="checkbox" id="menu-toggle" />
-<label for="menu-toggle" class="menu-icon">&#9776;</label>
-<nav class="menu">
-  <ul>
-    <li><a href="index.html">Mandala</a></li>
-    <li><a href="simbolo.html">Símbolo</a></li>
-    <li><a href="simbolo.html">Técnicas</a></li>
-    <li><a href="simbolo.html">Activadoras</a></li>
-  </ul>
-</nav>
+  <div id="overlay">
+    <h2 id="overlay-titulo"></h2>
+    <h4 id="overlay-clave"></h4>
+    <p id="overlay-descripcion"></p>
+    <button onclick="document.getElementById('overlay').style.display='none'">Cerrar</button>
+  </div>
 
-<svg id="svglines" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet"></svg>
-<svg id="svgCanvas" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet">
-  <defs>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
-</svg>
-
-<div class="overlay" id="overlay">
-  <h2 id="overlay-title">Título</h2>
-  <p><strong>Frecuencia:</strong> <span id="frecuencia"></span></p>
-  <p><strong>Situación:</strong> <span id="situacion"></span></p>
-  <p><strong>Activado por:</strong> <span id="glandula"></span></p>
-  <p><strong>Mudra:</strong> <span id="mudra"></span></p>
-  <p><strong>Respiración:</strong> <span id="respiracion"></span></p>
-  <p><strong>Descripción:</strong> <span id="breve"></span></p>
-  <p><strong>Contenido ampliado:</strong> <span id="ampliado"></span></p>
-  <button class="close-btn" onclick="cerrarOverlay()">Cerrar</button>
-</div>
-
+  <script src="datos.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
 <script src="datos.js"></script>
 <script>
-  const svg = document.getElementById("svgCanvas");
-  const lineSvg = document.getElementById("svglines");
-  const overlay = document.getElementById("overlay");
+const svg = document.getElementById("simbolo");
+const defs = document.getElementById("gradientes");
 
-  // Dibujar orbes
-  orbes.forEach(c => {
-    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    g.setAttribute("class", `orb ${c.orden <= 6 ? "central" : "satelite"}`);
-    g.setAttribute("id", c.id);
-    g.setAttribute("transform", `translate(${c.x}, ${c.y})`);
+// Overlay
+const overlay = document.getElementById("overlay");
+const overlayTitulo = document.getElementById("overlay-titulo");
+const overlayClave = document.getElementById("overlay-clave");
+const overlayDescripcion = document.getElementById("overlay-descripcion");
 
+function crearGradiente(id, color1, color2) {
+  const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+  grad.setAttribute("id", id);
+  grad.setAttribute("x1", "0%");
+  grad.setAttribute("y1", "0%");
+  grad.setAttribute("x2", "100%");
+  grad.setAttribute("y2", "0%");
+
+  const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop1.setAttribute("offset", "0%");
+  stop1.setAttribute("stop-color", color1);
+
+  const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop2.setAttribute("offset", "100%");
+  stop2.setAttribute("stop-color", color2);
+
+  grad.appendChild(stop1);
+  grad.appendChild(stop2);
+  defs.appendChild(grad);
+}
+
+function dibujarConexiones() {
+  conexiones.forEach(({ de, a }, i) => {
+    const orb1 = orbes.find(o => o.id === de);
+    const orb2 = orbes.find(o => o.id === a);
+
+    if (orb1 && orb2) {
+      const gradID = `grad-${de}-${a}`;
+      crearGradiente(gradID, orb1.color, orb2.color);
+
+      const linea = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      linea.setAttribute("x1", orb1.x);
+      linea.setAttribute("y1", orb1.y);
+      linea.setAttribute("x2", orb2.x);
+      linea.setAttribute("y2", orb2.y);
+      linea.setAttribute("stroke", `url(#${gradID})`);
+      linea.setAttribute("stroke-width", "2");
+      svg.appendChild(linea);
+    }
+  });
+}
+
+function dibujarOrbes() {
+  orbes.forEach(orb => {
+    // círculo
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("r", 30);
-    circle.setAttribute("fill", c.color);
-    g.appendChild(circle);
+    circle.setAttribute("cx", orb.x);
+    circle.setAttribute("cy", orb.y);
+    circle.setAttribute("r", 20);
+    circle.setAttribute("fill", orb.color);
+    circle.style.cursor = "pointer";
 
-    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    text.setAttribute("x", 0);
-    text.setAttribute("y", 5);
-    text.setAttribute("text-anchor", "middle");
-    text.setAttribute("fill", "#fff");
-    text.textContent = c.nombre;
-    g.appendChild(text);
+    circle.addEventListener("click", () => {
+      overlayTitulo.textContent = orb.nombre;
+      overlayClave.textContent = orb.palabraClave;
+      overlayDescripcion.textContent = orb.descripcion;
+      overlay.style.display = "flex";
+    });
 
-    svg.appendChild(g);
+    svg.appendChild(circle);
 
-    g.addEventListener("click", () => mostrarOverlay(c));
+    // texto
+    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    label.setAttribute("x", orb.x);
+    label.setAttribute("y", orb.y + 4);
+    label.setAttribute("text-anchor", "middle");
+    label.textContent = orb.nombre;
+    svg.appendChild(label);
   });
+}
 
-  function mostrarOverlay(orb) {
-    document.getElementById("overlay-title").innerText = orb.nombre || "";
-    document.getElementById("frecuencia").innerText = orb.frecuencia || "";
-    document.getElementById("situacion").innerText = orb.situacion || "";
-    document.getElementById("glandula").innerText = orb.glandula || "";
-    document.getElementById("mudra").innerText = orb.mudra || "";
-    document.getElementById("respiracion").innerText = orb.respiracion || "";
-    document.getElementById("breve").innerText = orb.breve || "";
-    document.getElementById("ampliado").innerText = orb.ampliado || orb.descripcion || "";
-    overlay.style.display = "flex";
-  }
-
-  function cerrarOverlay() {
-    overlay.style.display = "none";
-  }
-
-  window.addEventListener("keydown", e => {
-    if (e.key === "Escape") cerrarOverlay();
-  });
-
-  // Dibujar conexiones entre orbes
-  const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-  lineSvg.appendChild(defs);
-
-  conexiones.forEach(({ de, a }) => {
-    const orbA = orbes.find(o => o.id === de);
-    const orbB = orbes.find(o => o.id === a);
-    if (!orbA || !orbB) return;
-
-    const gradId = `grad-${de}-${a}`;
-    const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
-    gradient.setAttribute("id", gradId);
-    gradient.setAttribute("gradientUnits", "userSpaceOnUse");
-    gradient.setAttribute("x1", orbA.x);
-    gradient.setAttribute("y1", orbA.y);
-    gradient.setAttribute("x2", orbB.x);
-    gradient.setAttribute("y2", orbB.y);
-
-    const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-    stop1.setAttribute("offset", "0%");
-    stop1.setAttribute("stop-color", orbA.color);
-    gradient.appendChild(stop1);
-
-    const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-    stop2.setAttribute("offset", "100%");
-    stop2.setAttribute("stop-color", orbB.color);
-    gradient.appendChild(stop2);
-
-    defs.appendChild(gradient);
-
-    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("x1", orbA.x);
-    line.setAttribute("y1", orbA.y);
-    line.setAttribute("x2", orbB.x);
-    line.setAttribute("y2", orbB.y);
-    line.setAttribute("stroke", `url(#${gradId})`);
-    line.setAttribute("stroke-width", 4);
-    line.classList.add("line");
-    lineSvg.appendChild(line);
+// Inicializar todo
+dibujarConexiones();
+dibujarOrbes();
   });
 </script>
 </body>

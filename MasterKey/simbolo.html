@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbes Interactivos con Tema</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #222222;
+      --orb-glow: rgba(144, 38, 146, 0.3);
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #eeeeee;
+      --orb-glow: rgba(144, 38, 146, 0.6);
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    #theme-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 26px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #66bb6a;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+
+    /* Aquí puedes añadir el resto de estilos del proyecto */
+
+    svg {
+      display: block;
+      margin: auto;
+      width: 100%;
+      height: auto;
+      max-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <!-- Botón deslizable para cambiar tema -->
+  <div id="theme-toggle">
+    <label class="switch">
+      <input type="checkbox" id="theme-switch">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Aquí iría el SVG generado por JavaScript -->
+  <svg id="simbolo" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid meet"></svg>
+
+  <script src="datos.js"></script>
+  <script>
+    // Aplicar tema al cargar
+    (function () {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const useDark = saved === 'dark' || (!saved && prefersDark);
+
+      document.body.classList.toggle('dark', useDark);
+      document.getElementById('theme-switch').checked = useDark;
+    })();
+
+    // Cambiar tema con el switch
+    document.getElementById('theme-switch').addEventListener('change', (e) => {
+      const isDark = e.target.checked;
+      document.body.classList.toggle('dark', isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // Generar orbes y conexiones (simplificado)
+    const svg = document.getElementById("simbolo");
+
+    orbes.forEach((orb) => {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", orb.x);
+      circle.setAttribute("cy", orb.y);
+      circle.setAttribute("r", 28);
+      circle.setAttribute("fill", orb.color);
+      circle.setAttribute("class", "orbe");
+      svg.appendChild(circle);
+    });
+
+    conexiones.forEach((conn, index) => {
+      const orbA = orbes.find(o => o.id === conn.de);
+      const orbB = orbes.find(o => o.id === conn.a);
+
+      if (orbA && orbB) {
+        const gradId = `grad-${index}`;
+        const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+        grad.setAttribute("id", gradId);
+        grad.setAttribute("x1", orbA.x);
+        grad.setAttribute("y1", orbA.y);
+        grad.setAttribute("x2", orbB.x);
+        grad.setAttribute("y2", orbB.y);
+        grad.setAttribute("gradientUnits", "userSpaceOnUse");
+        grad.innerHTML = `
+          <stop offset="0%" stop-color="${orbA.color}" />
+          <stop offset="100%" stop-color="${orbB.color}" />
+        `;
+        svg.appendChild(grad);
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", orbA.x);
+        line.setAttribute("y1", orbA.y);
+        line.setAttribute("x2", orbB.x);
+        line.setAttribute("y2", orbB.y);
+        line.setAttribute("stroke", `url(#${gradId})`);
+        line.setAttribute("stroke-width", (conn.tipo === "fina" ? "1.5" : "3"));
+        svg.appendChild(line);
+      }
+    });
+  </script>
+</body>
+</html>

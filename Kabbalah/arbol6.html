@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Árbol de Orbes</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+      background-color: #111;
+    }
+
+    #simbolo {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    @media (orientation: landscape) {
+      #simbolo {
+        height: 100vh;
+        width: auto;
+      }
+    }
+
+    @media (orientation: portrait) {
+      #simbolo {
+        width: 100vw;
+        height: auto;
+      }
+    }
+
+    #menu {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+
+    .menu-button {
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #menu-options {
+      display: none;
+      background: #222;
+      color: white;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+    }
+
+    #menu.open #menu-options {
+      display: block;
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+      z-index: 20;
+    }
+
+    #overlay.active {
+      display: flex;
+    }
+
+    #overlay button {
+      margin-top: 20px;
+      background: #555;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    text {
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="menu">
+    <button class="menu-button" onclick="toggleMenu()">☰ Menú</button>
+    <div id="menu-options">
+      <p>Opción 1</p>
+      <p>Opción 2</p>
+    </div>
+  </div>
+
+  <svg id="simbolo" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid meet"></svg>
+
+  <div id="overlay">
+    <h2 id="overlay-title"></h2>
+    <p id="overlay-content"></p>
+    <button onclick="cerrarOverlay()">Cerrar</button>
+  </div>
+
+  <script src="datos.js"></script>
+  <script>
+    const svg = document.getElementById("simbolo");
+
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("open");
+    }
+
+    function cerrarOverlay() {
+      document.getElementById("overlay").classList.remove("active");
+    }
+
+    function mostrarOverlay(orb) {
+      document.getElementById("overlay-title").textContent = orb.id.toUpperCase();
+      document.getElementById("overlay-content").textContent = orb.descripcion || "Contenido adicional de la orbe.";
+      document.getElementById("overlay").classList.add("active");
+    }
+
+    // Dibujar conexiones con degradado
+    conexiones.forEach((conn, index) => {
+      const orbA = orbes.find(o => o.id === conn.de);
+      const orbB = orbes.find(o => o.id === conn.a);
+
+      if (orbA && orbB) {
+        const gradId = `grad-${index}`;
+        const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+        grad.setAttribute("id", gradId);
+        grad.setAttribute("x1", orbA.x);
+        grad.setAttribute("y1", orbA.y);
+        grad.setAttribute("x2", orbB.x);
+        grad.setAttribute("y2", orbB.y);
+        grad.setAttribute("gradientUnits", "userSpaceOnUse");
+
+        grad.innerHTML = `
+          <stop offset="0%" stop-color="${orbA.color}" />
+          <stop offset="100%" stop-color="${orbB.color}" />
+        `;
+        svg.appendChild(grad);
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", orbA.x);
+        line.setAttribute("y1", orbA.y);
+        line.setAttribute("x2", orbB.x);
+        line.setAttribute("y2", orbB.y);
+        line.setAttribute("stroke", `url(#${gradId})`);
+
+        // Líneas especiales más finas
+        const especiales = [
+          ["orb7", "orb9"], ["orb7", "orb11"],
+          ["orb8", "orb10"], ["orb8", "orb12"]
+        ];
+        const esFina = especiales.some(pair =>
+          (pair[0] === conn.de && pair[1] === conn.a) ||
+          (pair[1] === conn.de && pair[0] === conn.a)
+        );
+        line.setAttribute("stroke-width", esFina ? "1.5" : "3");
+
+        svg.appendChild(line);
+      }
+    });
+
+    // Dibujar orbes
+    orbes.forEach(orb => {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", orb.x);
+      circle.setAttribute("cy", orb.y);
+      circle.setAttribute("r", 25);
+      circle.setAttribute("fill", orb.color);
+      circle.style.cursor = "pointer";
+      circle.addEventListener("click", () => mostrarOverlay(orb));
+      svg.appendChild(circle);
+
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", orb.x);
+      text.setAttribute("y", orb.y + 5);
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("fill", "#fff");
+      text.setAttribute("font-size", "12");
+      text.textContent = orb.id.toUpperCase();
+      svg.appendChild(text);
+    });
+  </script>
+</body>
+</html>

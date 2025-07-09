@@ -21,7 +21,7 @@
 
     text {
       font-size: 14px;
-      fill: white;
+      fill: dark;
       pointer-events: none;
       text-anchor: middle;
       dominant-baseline: middle;
@@ -89,8 +89,22 @@
   </style>
 </head>
 <body>
-
-  <button id="menu-toggle" onclick="alert('Aquí irá el menú')">☰</button>
+    <!-- Menú hamburguesa y navegación -->
+  <input type="checkbox" id="menu-toggle" />
+  <label class="menu-icon" for="menu-toggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </label>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="simbolo.html">Símbolo</a>
+    <a href="arbol1.html">Árbol 1</a>
+    <a href="arbol2.html">Árbol 2</a>
+     <a href="arbol3.html">Árbol 3</a>
+     <a href="arbol4.html">Árbol 4</a>
+  </nav>
+ <!--  <button id="menu-toggle" onclick="alert('Aquí irá el menú')">☰</button>-->
 
   <svg id="simbolo"></svg>
 

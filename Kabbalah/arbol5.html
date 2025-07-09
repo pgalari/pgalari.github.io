@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Árbol de Orbes</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: sans-serif;
+      background: white;
+    }
+
+    /* Menú hamburguesa */
+    #menu-toggle {
+      display: none;
+    }
+
+    .menu-icon {
+      display: none;
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    .menu-icon div {
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+      margin: 5px 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      background: #eee;
+      padding: 1rem;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #menu-toggle:checked + .menu-icon + nav {
+        display: flex;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+    }
+
+    /* SVG container */
+    #svg-container {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      text-align: center;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    #simbolo {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    text {
+      fill: white;
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      z-index: 100;
+      box-sizing: border-box;
+    }
+
+    .overlay.active {
+      display: flex;
+    }
+
+    .overlay h2 {
+      margin-top: 0;
+    }
+
+    .overlay button {
+      margin-top: 1.5rem;
+      padding: 0.5rem 1rem;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menú hamburguesa y navegación -->
+  <input type="checkbox" id="menu-toggle" />
+  <label class="menu-icon" for="menu-toggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </label>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="simbolo.html">Símbolo</a>
+    <a href="arbol1.html">Árbol 1</a>
+    <a href="arbol2.html">Árbol 2</a>
+  </nav>
+
+  <!-- Contenedor SVG -->
+  <div id="svg-container">
+    <svg id="simbolo" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <!-- Círculos (orbes de ejemplo)
+      <circle cx="300" cy="100" r="40" fill="#7B1FA2" onclick="showOverlay('orb1')" />
+      <text x="300" y="105" text-anchor="middle">orb1</text>
+
+      <circle cx="300" cy="200" r="40" fill="#1976D2" onclick="showOverlay('orb2')" />
+      <text x="300" y="205" text-anchor="middle">orb2</text>
+
+      <circle cx="300" cy="300" r="40" fill="#388E3C" onclick="showOverlay('orb3')" />
+      <text x="300" y="305" text-anchor="middle">orb3</text>
+
+      <circle cx="230" cy="400" r="40" fill="#FBC02D" onclick="showOverlay('orb4')" />
+      <text x="230" y="405" text-anchor="middle">orb4</text>
+
+      <circle cx="370" cy="400" r="40" fill="#FFA000" onclick="showOverlay('orb5')" />
+      <text x="370" y="405" text-anchor="middle">orb5</text>
+
+      <circle cx="300" cy="500" r="40" fill="#D32F2F" onclick="showOverlay('orb6')" />
+      <text x="300" y="505" text-anchor="middle">orb6</text>
+
+      <circle cx="300" cy="600" r="40" fill="#512DA8" onclick="showOverlay('orb7')" />
+      <text x="300" y="605" text-anchor="middle">orb7</text>
+
+      <circle cx="300" cy="700" r="40" fill="#0288D1" onclick="showOverlay('orb8')" />
+      <text x="300" y="705" text-anchor="middle">orb8</text>
+
+      <circle cx="250" cy="780" r="40" fill="#4CAF50" onclick="showOverlay('orb9')" />
+      <text x="250" y="785" text-anchor="middle">orb9</text>
+
+      <circle cx="350" cy="780" r="40" fill="#FDD835" onclick="showOverlay('orb10')" />
+      <text x="350" y="785" text-anchor="middle">orb10</text>
+
+      <circle cx="200" cy="860" r="40" fill="#E64A19" onclick="showOverlay('orb11')" />
+      <text x="200" y="865" text-anchor="middle">orb11</text>
+
+      <circle cx="400" cy="860" r="40" fill="#C2185B" onclick="showOverlay('orb12')" />
+      <text x="400" y="865" text-anchor="middle">orb12</text> -->
+
+      <!-- Líneas 
+      <line x1="300" y1="100" x2="300" y2="200" stroke="#7B1FA2" stroke-width="3"/>
+      <line x1="300" y1="200" x2="300" y2="300" stroke="#1976D2" stroke-width="3"/>
+      <line x1="300" y1="300" x2="230" y2="400" stroke="#388E3C" stroke-width="3"/>
+      <line x1="300" y1="300" x2="370" y2="400" stroke="#388E3C" stroke-width="3"/>
+      <line x1="230" y1="400" x2="300" y2="500" stroke="#FBC02D" stroke-width="3"/>
+      <line x1="370" y1="400" x2="300" y2="500" stroke="#FFA000" stroke-width="3"/>
+      <line x1="300" y1="500" x2="300" y2="600" stroke="#D32F2F" stroke-width="3"/>
+      <line x1="300" y1="600" x2="300" y2="700" stroke="#512DA8" stroke-width="3"/>-->
+      <!-- Líneas más finas del 7 al 9 y 11 
+      <line x1="300" y1="700" x2="250" y2="780" stroke="#0288D1" stroke-width="2"/>
+      <line x1="300" y1="700" x2="350" y2="780" stroke="#0288D1" stroke-width="2"/>
+      <line x1="250" y1="780" x2="200" y2="860" stroke="#4CAF50" stroke-width="2"/>
+      <line x1="350" y1="780" x2="400" y2="860" stroke="#FDD835" stroke-width="2"/>-->
+    </svg>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay">
+    <h2 id="overlay-title">Título del Orbe</h2>
+    <p id="overlay-content">Aquí va la información del orbe seleccionado.</p>
+    <button onclick="closeOverlay()">Cerrar</button>
+  </div>
+
+  <script>
+   
+
+    document.addEventListener("DOMContentLoaded", () => {
+  crearMenu();
+  crearOverlay();
+  const svg = document.getElementById("simbolo");
+  crearLineas(svg);
+  crearOrbes(svg);
+});
+function crearOverlay() {
+  const overlay = document.createElement("div");
+  overlay.id = "overlay";
+  overlay.className = "overlay";
+  overlay.innerHTML = `
+    <h2 id="overlay-title">Título del Orbe</h2>
+    <p id="overlay-content">Contenido del orbe...</p>
+    <button onclick="closeOverlay()">Cerrar</button>
+  `;
+  document.body.appendChild(overlay);
+}
+function crearMenu() {
+  const body = document.body;
+
+  const menuToggle = document.createElement("input");
+  menuToggle.type = "checkbox";
+  menuToggle.id = "menu-toggle";
+  body.prepend(menuToggle);
+
+  const menuIcon = document.createElement("label");
+  menuIcon.className = "menu-icon";
+  menuIcon.setAttribute("for", "menu-toggle");
+  menuIcon.innerHTML = "<div></div><div></div><div></div>";
+  body.prepend(menuIcon);
+
+  const nav = document.createElement("nav");
+  nav.innerHTML = `
+    <a href="index.html">Inicio</a>
+    <a href="simbolo.html">Símbolo</a>
+    <a href="arbol1.html">Árbol 1</a>
+    <a href="arbol2.html">Árbol 2</a>
+  `;
+  body.insertBefore(nav, document.getElementById("svg-container"));
+}
+function crearLineas(svg) {
+const lineas = [
+    { x1: 300, y1: 100, x2: 300, y2: 200, color: '#7B1FA2', width: 3 },
+    { x1: 300, y1: 200, x2: 300, y2: 300, color: '#1976D2', width: 3 },
+    { x1: 300, y1: 300, x2: 230, y2: 400, color: '#388E3C', width: 3 },
+    { x1: 300, y1: 300, x2: 370, y2: 400, color: '#388E3C', width: 3 },
+    { x1: 230, y1: 400, x2: 300, y2: 500, color: '#FBC02D', width: 3 },
+    { x1: 370, y1: 400, x2: 300, y2: 500, color: '#FFA000', width: 3 },
+    { x1: 300, y1: 500, x2: 300, y2: 600, color: '#D32F2F', width: 3 },
+    { x1: 300, y1: 600, x2: 300, y2: 700, color: '#512DA8', width: 3 },
+    // líneas más finas
+    { x1: 300, y1: 700, x2: 250, y2: 780, color: '#0288D1', width: 2 },
+    { x1: 300, y1: 700, x2: 350, y2: 780, color: '#0288D1', width: 2 },
+    { x1: 250, y1: 780, x2: 200, y2: 860, color: '#4CAF50', width: 2 },
+    { x1: 350, y1: 780, x2: 400, y2: 860, color: '#FDD835', width: 2 }
+  ];
+  lineas.forEach(({ x1, y1, x2, y2, color, width }) => {
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("x1", x1);
+    line.setAttribute("y1", y1);
+    line.setAttribute("x2", x2);
+    line.setAttribute("y2", y2);
+    line.setAttribute("stroke", color);
+    line.setAttribute("stroke-width", width);
+    svg.appendChild(line);
+  });
+}
+function crearOrbes(svg) {
+  const orbes = [
+    { id: 'orb1', cx: 300, cy: 100, r: 40, color: '#7B1FA2' },
+    { id: 'orb2', cx: 300, cy: 200, r: 40, color: '#1976D2' },
+    { id: 'orb3', cx: 300, cy: 300, r: 40, color: '#388E3C' },
+    { id: 'orb4', cx: 230, cy: 400, r: 40, color: '#FBC02D' },
+    { id: 'orb5', cx: 370, cy: 400, r: 40, color: '#FFA000' },
+    { id: 'orb6', cx: 300, cy: 500, r: 40, color: '#D32F2F' },
+    { id: 'orb7', cx: 300, cy: 600, r: 40, color: '#512DA8' },
+    { id: 'orb8', cx: 300, cy: 700, r: 40, color: '#0288D1' },
+    { id: 'orb9', cx: 250, cy: 780, r: 40, color: '#4CAF50' },
+    { id: 'orb10', cx: 350, cy: 780, r: 40, color: '#FDD835' },
+    { id: 'orb11', cx: 200, cy: 860, r: 40, color: '#E64A19' },
+    { id: 'orb12', cx: 400, cy: 860, r: 40, color: '#C2185B' }
+  ];
+
+  orbes.forEach(({ id, cx, cy, r, color }) => {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", cx);
+    circle.setAttribute("cy", cy);
+    circle.setAttribute("r", r);
+    circle.setAttribute("fill", color);
+    circle.setAttribute("onclick", `showOverlay('${id}')`);
+    svg.appendChild(circle);
+
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("x", cx);
+    text.setAttribute("y", cy + 5);
+    text.setAttribute("text-anchor", "middle");
+    text.textContent = id;
+    svg.appendChild(text);
+  });
+}
+     function showOverlay(orbId) {
+      if (typeof datos !== "undefined" && datos[orbId]) {
+        document.getElementById("overlay-title").textContent = datos[orbId].titulo;
+        document.getElementById("overlay-content").textContent = datos[orbId].contenido;
+      } else {
+        document.getElementById("overlay-title").textContent = orbId;
+        document.getElementById("overlay-content").textContent = "Contenido no disponible.";
+      }
+      document.getElementById("overlay").classList.add("active");
+    }
+
+    function closeOverlay() {
+      document.getElementById("overlay").classList.remove("active");
+    }
+
+  </script>
+  <script src="datos.js"></script>
+
+</body>
+</html>

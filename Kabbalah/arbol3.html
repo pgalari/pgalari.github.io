@@ -178,8 +178,8 @@
     });
 
     function mostrarOverlay(orb) {
-      document.getElementById("overlay-titulo").textContent = `Orbe: ${orb.id}`;
-      document.getElementById("overlay-texto").textContent = `Tipo: ${orb.tipo}, Orden: ${orb.orden || '—'}`;
+      document.getElementById("overlay-titulo").textContent = `Orb: ${orb.nombre}`;
+      document.getElementById("overlay-texto").textContent = `Tipo: ${orb.tipo}, Se activa con: ${orb.conecta || '.<BR>'}`;
       document.getElementById("overlay").classList.remove("oculto");
     }
 

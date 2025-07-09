@@ -3,28 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Logo Animado Api</title>
+  <title>Apicia Logo Animado</title>
   <style>
     body {
-      background: #fff;
+      background-color: #fefcf9;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
+
     svg {
       width: 300px;
       height: auto;
     }
+
     .stroke {
       fill: none;
-      stroke: #8e44ad;
+      stroke: #613b1f;
       stroke-width: 4;
       stroke-linecap: round;
       stroke-linejoin: round;
       stroke-dasharray: 1000;
       stroke-dashoffset: 1000;
-      animation: draw 4s ease forwards;
+      animation: draw 2s ease forwards;
+    }
+
+    .stroke-second {
+      animation-delay: 1.5s;
+    }
+
+    .dot {
+      fill: #c48f65;
+      filter: url(#blur);
+      animation: spin 6s linear infinite;
+      transform-origin: center;
     }
 
     @keyframes draw {
@@ -33,30 +47,29 @@
       }
     }
 
-    .dot {
-      fill: #8e44ad;
-      opacity: 0.6;
-      transform-origin: center;
-      animation: rotate 2s linear infinite;
-    }
-
-    @keyframes rotate {
-      from {
-        transform: rotate(0deg) translateY(-4px);
-      }
-      to {
-        transform: rotate(360deg) translateY(-4px);
-      }
+    @keyframes spin {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.1); }
+      100% { transform: rotate(360deg) scale(1); }
     }
   </style>
 </head>
 <body>
   <svg viewBox="0 0 200 100">
-    <!-- Trazo dibujado de "Api" -->
-    <path class="stroke" d="M20,70 Q25,30 40,70 Q45,85 50,70 M60,70 Q60,40 80,40 Q85,40 85,70 Q85,90 80,90 Q75,90 75,70 M95,70 Q95,40 115,40 Q120,40 120,70" />
+    <!-- Primer trazo: forma general de "Apicia" -->
+    <path class="stroke" d="M10,80 C20,20 80,20 90,80 S160,80 170,20" />
 
-    <!-- Punto de la "i" girando -->
-    <circle class="dot" cx="120" cy="30" r="4"/>
+    <!-- Segundo trazo: patita de la "p" -->
+    <path class="stroke stroke-second" d="M35,40 L35,85" />
+
+    <!-- Punto de la "i": orbe gaseoso girando -->
+    <defs>
+      <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+      </filter>
+    </defs>
+    <circle class="dot" cx="115" cy="30" r="5" />
   </svg>
 </body>
 </html>
+

@@ -81,15 +81,15 @@
       pointer-events: none;
     }
     .sphere {
-      //  width: 200px;
-      //  height: 200px;
+        width: 30px;
+        height: 30px;
         line-height: 20px;
         text-align: center;
-    //    position: absolute;
+        position: absolute;
         margin: -10px;
         border-radius: 10%;
         box-shadow: inset 0 0 80px #FFF;
-        //color: #FFF;
+        color: #FFF;
       }
 
     /* Overlay */
@@ -211,7 +211,7 @@
       circle.setAttribute("cy", orb.y);
       circle.setAttribute("r", 25);
       circle.setAttribute("fill", orb.color);
-      circle.classList.add('sphere');
+      circle.classList.add('sphere');//ok
       circle.style.cursor = "pointer";
       circle.addEventListener("click", () => mostrarOverlay(orb));
       svg.appendChild(circle);

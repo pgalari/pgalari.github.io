@@ -76,8 +76,8 @@
     }
 
     text {
-      fill: white;
-      font-size: 14px;
+      fill: black;
+      font-size: 12px;
       pointer-events: none;
     }
 
@@ -213,10 +213,10 @@
     });
 
     function mostrarOverlay(orb) {
-      document.getElementById("overlay-titulo").textContent = `Orbe: ${orb.id}`;
-      document.getElementById("overlay-texto").textContent = `Tipo: ${orb.tipo}, Orden: ${orb.orden || '—'}`;
+      document.getElementById("overlay-titulo").textContent = `Orb: ${orb.nombre}`;
+      document.getElementById("overlay-texto").textContent = `Tipo: ${orb.tipo}, Se activa en: ${orb.conecta || '—'}`;
       document.getElementById("overlay").classList.remove("oculto");
-       document.getElementById('overlay').classList.add('active');
+      document.getElementById('overlay').classList.add('active');
     }
 
     function cerrarOverlay() {

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Símbolo Maestro</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: sans-serif;
+      background: white;
+    }
+
+    /* Menú hamburguesa */
+    #menu-toggle {
+      display: none;
+    }
+
+    .menu-icon {
+      display: none;
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    .menu-icon div {
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+      margin: 5px 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      background: #eee;
+      padding: 1rem;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #menu-toggle:checked + .menu-icon + nav {
+        display: flex;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+    }
+
+    /* SVG container */
+    #svg-container {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      text-align: center;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    #simbolo {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    text {
+      fill: white;
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      z-index: 100;
+      box-sizing: border-box;
+    }
+
+    .overlay.active {
+      display: flex;
+    }
+
+    .overlay h2 {
+      margin-top: 0;
+    }
+
+    .overlay button {
+      margin-top: 1.5rem;
+      padding: 0.5rem 1rem;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menú hamburguesa y navegación -->
+  <input type="checkbox" id="menu-toggle" />
+  <label class="menu-icon" for="menu-toggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </label>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="simbolo.html">Símbolo</a>
+    <a href="arbol1.html">Árbol 1</a>
+    <a href="arbol2.html">Árbol 2</a>
+     <a href="arbol3.html">Árbol 3</a>
+     <a href="arbol4.html">Árbol 4</a>
+  </nav>
+  </nav>
+
+  <!-- Contenedor SVG -->
+  <div id="svg-container">
+    <svg id="simbolo" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    </svg>
+  </div>
+
+  <!-- Overlay estático -->
+  <div id="overlay" class="overlay">
+    <h2 id="overlay-title">Título del Orbe</h2>
+    <p id="overlay-content">Aquí va la información del orbe seleccionado.</p>
+    <button onclick="closeOverlay()">Cerrar</button>
+  </div>
+
+
+  <script src="datos.js"></script>
+  <script>
+    const svg = document.getElementById("simbolo");
+
+    // Gradientes
+    conexiones.forEach((conn, index) => {
+      const orbA = orbes.find(o => o.id === conn.de);
+      const orbB = orbes.find(o => o.id === conn.a);
+
+      if (orbA && orbB) {
+        const gradId = `grad-${index}`;
+        const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+        grad.setAttribute("id", gradId);
+        grad.setAttribute("x1", orbA.x);
+        grad.setAttribute("y1", orbA.y);
+        grad.setAttribute("x2", orbB.x);
+        grad.setAttribute("y2", orbB.y);
+        grad.setAttribute("gradientUnits", "userSpaceOnUse");
+
+        const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+        stop1.setAttribute("offset", "0%");
+        stop1.setAttribute("stop-color", orbA.color);
+        grad.appendChild(stop1);
+
+        const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+        stop2.setAttribute("offset", "100%");
+        stop2.setAttribute("stop-color", orbB.color);
+        grad.appendChild(stop2);
+
+        svg.appendChild(grad);
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", orbA.x);
+        line.setAttribute("y1", orbA.y);
+        line.setAttribute("x2", orbB.x);
+        line.setAttribute("y2", orbB.y);
+        line.setAttribute("stroke", `url(#${gradId})`);
+        line.setAttribute("stroke-width", "3");
+        svg.appendChild(line);
+      }
+    });
+
+    // Dibujar orbes
+    orbes.forEach(orb => {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", orb.x);
+      circle.setAttribute("cy", orb.y);
+      circle.setAttribute("r", 25);
+      circle.setAttribute("fill", orb.color);
+      circle.style.cursor = "pointer";
+      circle.addEventListener("click", () => mostrarOverlay(orb));
+      svg.appendChild(circle);
+
+      const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      label.setAttribute("x", orb.x);
+      label.setAttribute("y", orb.y);
+      label.textContent = orb.id;
+      svg.appendChild(label);
+    });
+
+    function mostrarOverlay(orb) {
+      document.getElementById("overlay-titulo").textContent = `Orbe: ${orb.id}`;
+      document.getElementById("overlay-texto").textContent = `Tipo: ${orb.tipo}, Orden: ${orb.orden || '—'}`;
+      document.getElementById("overlay").classList.remove("oculto");
+       document.getElementById('overlay').classList.add('active');
+    }
+
+    function cerrarOverlay() {
+      document.getElementById("overlay").classList.add("oculto");
+      document.getElementById('overlay').classList.remove('active');
+    }
+  </script>
+
+
+</body>
+</html>
+  </script>
+
+</body>
+</html>

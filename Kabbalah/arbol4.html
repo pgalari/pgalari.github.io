@@ -211,6 +211,7 @@
       circle.setAttribute("cy", orb.y);
       circle.setAttribute("r", 25);
       circle.setAttribute("fill", orb.color);
+      circle.classList.add('sphere');
       circle.style.cursor = "pointer";
       circle.addEventListener("click", () => mostrarOverlay(orb));
       svg.appendChild(circle);

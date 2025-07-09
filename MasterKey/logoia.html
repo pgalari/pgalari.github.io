@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Apicia Logo Animado</title>
+  <title>Api - Trazo Elegante</title>
   <style>
     body {
       background-color: #fefcf9;
@@ -15,7 +15,7 @@
     }
 
     svg {
-      width: 300px;
+      width: 320px;
       height: auto;
     }
 
@@ -25,13 +25,9 @@
       stroke-width: 4;
       stroke-linecap: round;
       stroke-linejoin: round;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: draw 2s ease forwards;
-    }
-
-    .stroke-second {
-      animation-delay: 1.5s;
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      animation: draw 3s ease forwards;
     }
 
     .dot {
@@ -55,21 +51,27 @@
   </style>
 </head>
 <body>
-  <svg viewBox="0 0 200 100">
-    <!-- Primer trazo: forma general de "Apicia" -->
-    <path class="stroke" d="M10,80 C20,20 80,20 90,80 S160,80 170,20" />
+  <svg viewBox="0 0 300 100">
+    <!-- Trazo único para "Api" -->
+    <path class="stroke"
+      d="
+        M10,80
+        C10,20 50,20 50,60
+        C50,80 30,80 30,60
+        M60,70
+        C65,30 90,30 95,60
+        C95,80 75,80 70,60
+        M110,60
+        C112,50 120,40 130,60
+        " />
 
-    <!-- Segundo trazo: patita de la "p" -->
-    <path class="stroke stroke-second" d="M35,40 L35,85" />
-
-    <!-- Punto de la "i": orbe gaseoso girando -->
+    <!-- Punto de la i (orbe gaseoso girando) -->
     <defs>
       <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
         <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
       </filter>
     </defs>
-    <circle class="dot" cx="115" cy="30" r="5" />
+    <circle class="dot" cx="135" cy="35" r="5" />
   </svg>
 </body>
 </html>
-

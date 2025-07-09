@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logo Animado Api</title>
+  <style>
+    body {
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    svg {
+      width: 300px;
+      height: auto;
+    }
+    .stroke {
+      fill: none;
+      stroke: #8e44ad;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: draw 4s ease forwards;
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .dot {
+      fill: #8e44ad;
+      opacity: 0.6;
+      transform-origin: center;
+      animation: rotate 2s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg) translateY(-4px);
+      }
+      to {
+        transform: rotate(360deg) translateY(-4px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 200 100">
+    <!-- Trazo dibujado de "Api" -->
+    <path class="stroke" d="M20,70 Q25,30 40,70 Q45,85 50,70 M60,70 Q60,40 80,40 Q85,40 85,70 Q85,90 80,90 Q75,90 75,70 M95,70 Q95,40 115,40 Q120,40 120,70" />
+
+    <!-- Punto de la "i" girando -->
+    <circle class="dot" cx="120" cy="30" r="4"/>
+  </svg>
+</body>
+</html>

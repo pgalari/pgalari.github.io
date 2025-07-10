@@ -24,13 +24,13 @@
       cursor: pointer;
     }
 
-    .orb-lateral {
+    .orb-central {
       stroke: white;
       stroke-width: 2;
       animation: pulse 2.5s infinite ease-in-out;
     }
 
-    .orb-central {
+    .orb-lateral {
       stroke: #ffffff88;
       stroke-width: 1;
       animation: haloPulse 3s infinite ease-in-out;
@@ -118,7 +118,7 @@
       const halo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       halo.setAttribute("cx", orb.x);
       halo.setAttribute("cy", orb.y);
-      halo.setAttribute("r", "30");
+      halo.setAttribute("r", "35");
       halo.setAttribute("fill", orb.color);
       halo.setAttribute("class", "orb-halo");
 
@@ -126,7 +126,7 @@
       const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       circle.setAttribute("cx", orb.x);
       circle.setAttribute("cy", orb.y);
-      circle.setAttribute("r", "20");
+      circle.setAttribute("r", "30");
       circle.setAttribute("fill", orb.color);
       circle.classList.add("orb", `orb-${orb.tipo}`);
 

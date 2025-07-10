@@ -112,7 +112,7 @@
     // Dibujar orbes
     orbes.forEach((orb) => {
       const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-      group.classList.add("orb-group", "rotating");
+   //   group.classList.add("orb-group", "rotating");
 
       // Halo gaseoso
       const halo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -138,7 +138,7 @@
       label.setAttribute("fill", "#fff");
       label.setAttribute("font-size", "12");
       label.setAttribute("pointer-events", "none");
-      label.textContent = orb.id;
+      label.textContent = orb.orden;
 
       group.appendChild(halo);
       group.appendChild(circle);

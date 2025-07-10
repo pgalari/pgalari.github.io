@@ -24,13 +24,13 @@
       cursor: pointer;
     }
 
-    .orb-central {
+    .orb-lateral {
       stroke: white;
       stroke-width: 2;
       animation: pulse 2.5s infinite ease-in-out;
     }
 
-    .orb-lateral {
+    .orb-central {
       stroke: #ffffff88;
       stroke-width: 1;
       animation: haloPulse 3s infinite ease-in-out;
@@ -112,7 +112,7 @@
     // Dibujar orbes
     orbes.forEach((orb) => {
       const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-   //   group.classList.add("orb-group", "rotating");
+   //   group.classList.add("orb-group", "rotating"); hacen rotar las orbes del símbolo sin las lineas por toda la pantalla
 
       // Halo gaseoso
       const halo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -135,8 +135,8 @@
       label.setAttribute("x", orb.x);
       label.setAttribute("y", orb.y + 5);
       label.setAttribute("text-anchor", "middle");
-      label.setAttribute("fill", "#fff");
-      label.setAttribute("font-size", "12");
+      label.setAttribute("fill", "#000");
+      label.setAttribute("font-size", "14");
       label.setAttribute("pointer-events", "none");
       label.textContent = orb.orden;
 

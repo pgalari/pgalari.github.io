@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orbes Animados</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: radial-gradient(ellipse at center, #0f0f1f 0%, #000010 100%);
+    }
+
+    svg {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+
+    .orb {
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .orb-central {
+      stroke: white;
+      stroke-width: 2;
+      animation: pulse 2.5s infinite ease-in-out;
+    }
+
+    .orb-lateral {
+      stroke: #ffffff88;
+      stroke-width: 1;
+      animation: haloPulse 3s infinite ease-in-out;
+    }
+
+    .orb-intermedio {
+      stroke: #ffffff44;
+      stroke-dasharray: 4, 2;
+      animation: pulse 4s infinite ease-in-out;
+    }
+
+    .orb-halo {
+      animation: haloPulse 4s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { r: 20; opacity: 0.7; }
+      50% { r: 24; opacity: 1; }
+    }
+
+    @keyframes haloPulse {
+      0%, 100% { r: 30; opacity: 0.15; }
+      50% { r: 35; opacity: 0.3; }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    .orb-group.rotating {
+      animation: spin 16s linear infinite;
+      transform-origin: center;
+    }
+
+  </style>
+</head>
+<body>
+  <svg id="simbolo"></svg>
+
+  <script src="quantum-data.js"></script>
+  <script>
+    const svg = document.getElementById("simbolo");
+
+    // Dibujar conexiones con degradado
+    conexiones.forEach((conn, index) => {
+      const orbA = orbes.find(o => o.id === conn.de);
+      const orbB = orbes.find(o => o.id === conn.a);
+      if (orbA && orbB) {
+        const gradId = `grad-${index}`;
+        const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+        grad.setAttribute("id", gradId);
+        grad.setAttribute("x1", orbA.x);
+        grad.setAttribute("y1", orbA.y);
+        grad.setAttribute("x2", orbB.x);
+        grad.setAttribute("y2", orbB.y);
+        grad.setAttribute("gradientUnits", "userSpaceOnUse");
+        grad.innerHTML = `
+          <stop offset="0%" stop-color="${orbA.color}" />
+          <stop offset="100%" stop-color="${orbB.color}" />
+        `;
+        svg.appendChild(grad);
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", orbA.x);
+        line.setAttribute("y1", orbA.y);
+        line.setAttribute("x2", orbB.x);
+        line.setAttribute("y2", orbB.y);
+        line.setAttribute("stroke", `url(#${gradId})`);
+        line.setAttribute("stroke-width", 
+          (["orb7", "orb8"].includes(orbA.id) && ["orb9", "orb10", "orb11", "orb12"].includes(orbB.id)) ||
+          (["orb9", "orb10", "orb11", "orb12"].includes(orbA.id) && ["orb7", "orb8"].includes(orbB.id))
+          ? "1.5" : "3");
+        svg.appendChild(line);
+      }
+    });
+
+    // Dibujar orbes
+    orbes.forEach((orb) => {
+      const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      group.classList.add("orb-group", "rotating");
+
+      // Halo gaseoso
+      const halo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      halo.setAttribute("cx", orb.x);
+      halo.setAttribute("cy", orb.y);
+      halo.setAttribute("r", "30");
+      halo.setAttribute("fill", orb.color);
+      halo.setAttribute("class", "orb-halo");
+
+      // Círculo principal
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", orb.x);
+      circle.setAttribute("cy", orb.y);
+      circle.setAttribute("r", "20");
+      circle.setAttribute("fill", orb.color);
+      circle.classList.add("orb", `orb-${orb.tipo}`);
+
+      // Etiqueta de ID centrada
+      const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      label.setAttribute("x", orb.x);
+      label.setAttribute("y", orb.y + 5);
+      label.setAttribute("text-anchor", "middle");
+      label.setAttribute("fill", "#fff");
+      label.setAttribute("font-size", "12");
+      label.setAttribute("pointer-events", "none");
+      label.textContent = orb.id;
+
+      group.appendChild(halo);
+      group.appendChild(circle);
+      group.appendChild(label);
+      svg.appendChild(group);
+    });
+  </script>
+</body>
+</html>

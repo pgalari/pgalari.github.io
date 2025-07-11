@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Respiración Dinámica</title>
+  <style>
+    body {
+      background: #111;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #circle-container {
+      position: relative;
+      width: 125px;
+      height: 125px;
+    }
+
+    .circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background-color: #bbb;
+      opacity: 0.6;
+      transition: transform 0.8s ease-in-out;
+    }
+
+    .dot1 {
+      width: 25px;
+      height: 25px;
+    }
+
+    .dot3 {
+      width: 75px;
+      height: 75px;
+    }
+
+    .dot5 {
+      width: 125px;
+      height: 125px;
+    }
+
+    .visible {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  </style>
+</head>
+<body>
+
+<div id="circle-container">
+  <div id="circle1" class="circle dot1"></div>
+  <div id="circle2" class="circle dot3"></div>
+  <div id="circle3" class="circle dot5"></div>
+</div>
+
+<script>
+  function animarRespiracion(inhalacionSegundos, exhalacionSegundos, repeticiones = 13) {
+    const circle1 = document.getElementById('circle1');
+    const circle2 = document.getElementById('circle2');
+    const circle3 = document.getElementById('circle3');
+
+    const circles = [circle1, circle2, circle3];
+
+    let ciclo = 0;
+
+    function animarUnCiclo() {
+      // INHALACIÓN: crecer secuencialmente
+      for (let i = 0; i < inhalacionSegundos && i < circles.length; i++) {
+        setTimeout(() => {
+          circles[i].classList.add('visible');
+        }, i * 1000);
+      }
+
+      // EXHALACIÓN: decrecer secuencialmente
+      for (let i = 0; i < exhalacionSegundos && i < circles.length; i++) {
+        setTimeout(() => {
+          const index = circles.length - 1 - i;
+          if (circles[index]) {
+            circles[index].classList.remove('visible');
+          }
+        }, (inhalacionSegundos + i) * 1000);
+      }
+
+      ciclo++;
+      if (ciclo < repeticiones) {
+        setTimeout(animarUnCiclo, (inhalacionSegundos + exhalacionSegundos) * 1000);
+      }
+    }
+
+    animarUnCiclo();
+  }
+
+  // Llamada de ejemplo: 3 seg inhalar, 3 seg exhalar, 13 repeticiones
+  animarRespiracion(3, 3, 13);
+</script>
+
+</body>
+</html>

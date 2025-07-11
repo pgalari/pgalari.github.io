@@ -142,8 +142,8 @@ function dibujarOrbes() {
 
     circle.addEventListener("click", () => {
       overlayTitulo.textContent = orb.nombre;
-      overlayClave.textContent = orb.palabraClave;
-      overlayDescripcion.textContent = orb.descripcion;
+      overlayClave.textContent = orb.breve;
+      overlayDescripcion.textContent = orb.ampliado;
       overlay.style.display = "flex";
     });
 
@@ -158,7 +158,7 @@ label.setAttribute("text-anchor", "middle");
 label.setAttribute("dominant-baseline", "middle");
 label.setAttribute("fill", "white");
 label.setAttribute("font-size", "12px");
-label.textContent = orb.nombre; // muestra el ID dentro del círculo
+label.textContent = orb.orden; // muestra el ID dentro del círculo
 svg.appendChild(label);
   });
 }

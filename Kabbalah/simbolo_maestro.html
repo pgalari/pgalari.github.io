@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Símbolo con Orbes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <style>
+    /* RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      overflow: hidden;
+    }
+
+    body.light {
+      background: #f5f5f5;
+      color: #111;
+    }
+
+    body.dark {
+      background: #111;
+      color: #f5f5f5;
+    }
+
+    #menu-button {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 999;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    #menu-button span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: currentColor;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    #menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 200px;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      padding: 2rem;
+      transition: left 0.3s ease;
+      z-index: 998;
+    }
+    #menu.active {
+      left: 0;
+    }
+
+    #theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 999;
+    }
+
+    svg {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .orbe {
+      transition: transform 0.3s;
+    }
+    .central {
+      animation: pulse 3s infinite;
+    }
+    .lateral {
+      animation: rotate 8s linear infinite;
+      transform-origin: center;
+    }
+    @keyframes pulse {
+      0%, 100% { r: 10; opacity: 0.8; }
+      50% { r: 14; opacity: 1; }
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="light">
+  <button id="menu-button">
+    <span></span><span></span><span></span>
+  </button>
+  <div id="menu">
+    <p><strong>Menú</strong></p>
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Simbolo</a></li>
+      <li><a href="#">Acerca de</a></li>
+    </ul>
+  </div>
+  <div id="theme-toggle">
+    <label>
+      <input type="checkbox" id="theme-switch"> ☼ / ☾
+    </label>
+  </div>
+
+  <svg id="simbolo"></svg>
+  <script src="datos.js"></script>
+  <script>
+    const svg = document.getElementById("simbolo");
+
+    // Dibujar degradados y líneas
+    conexiones.forEach((conn, i) => {
+      const orbA = orbes.find(o => o.id === conn.de);
+      const orbB = orbes.find(o => o.id === conn.a);
+      if (orbA && orbB) {
+        const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+        grad.setAttribute("id", `grad-${i}`);
+        grad.setAttribute("x1", orbA.x);
+        grad.setAttribute("y1", orbA.y);
+        grad.setAttribute("x2", orbB.x);
+        grad.setAttribute("y2", orbB.y);
+        grad.setAttribute("gradientUnits", "userSpaceOnUse");
+
+        grad.innerHTML = `
+          <stop offset="0%" stop-color="${orbA.color}" />
+          <stop offset="100%" stop-color="${orbB.color}" />
+        `;
+        svg.appendChild(grad);
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", orbA.x);
+        line.setAttribute("y1", orbA.y);
+        line.setAttribute("x2", orbB.x);
+        line.setAttribute("y2", orbB.y);
+        line.setAttribute("stroke", `url(#grad-${i})`);
+        line.setAttribute("stroke-width", (orbA.id >= 7 && orbA.id <= 12) ? "1.5" : "3");
+        svg.appendChild(line);
+      }
+    });
+
+    // Dibujar orbes
+    orbes.forEach(orb => {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", orb.x);
+      circle.setAttribute("cy", orb.y);
+      circle.setAttribute("r", 10);
+      circle.setAttribute("fill", orb.color);
+      circle.setAttribute("class", `orbe ${orb.tipo === 'central' ? 'central' : 'lateral'}`);
+      svg.appendChild(circle);
+    });
+
+    // Menú toggle
+    const menuBtn = document.getElementById("menu-button");
+    const menu = document.getElementById("menu");
+    menuBtn.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+
+    // Tema claro / oscuro
+    const themeSwitch = document.getElementById("theme-switch");
+    themeSwitch.addEventListener("change", () => {
+      document.body.classList.toggle("dark");
+      document.body.classList.toggle("light");
+    });
+  </script>
+</body>
+</html>

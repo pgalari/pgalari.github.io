@@ -64,7 +64,27 @@
       width: 100%;
       height: 90vh;
     }
+    svg circle {
+  pointer-events: all;
+  cursor: pointer;
+}
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  overflow-y: auto;
+  padding: 1rem;
+  display: none;
+}
 
+#overlay.visible {
+  display: block;
+}
     .orbe {
       transition: transform 0.3s;
     }
@@ -172,9 +192,10 @@
       circle.dataset.id = orb.id;
 
       circle.addEventListener("click", () => showOverlay(orb));
+      circle.addEventListener("touchstart", () => showOverlay(orb));
+
       svg.appendChild(circle);
     });
-
     const overlay = document.getElementById("overlay");
     const overlayContent = document.getElementById("overlay-content");
 

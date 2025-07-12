@@ -74,8 +74,8 @@
     }
 
     .exterior {
-      animation: spin 6s linear infinite;
-      transform-origin: center;
+      animation: pulse 6s linear infinite;
+   //   transform-origin: center;
     }
 
     @keyframes pulse {
@@ -166,7 +166,7 @@
       const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       circle.setAttribute("cx", orb.x);
       circle.setAttribute("cy", orb.y);
-      circle.setAttribute("r", 12);
+      circle.setAttribute("r", 30);
       circle.setAttribute("fill", orb.color);
       circle.classList.add("orbe", orb.tipo);
       circle.dataset.id = orb.id;
@@ -187,10 +187,10 @@
         <h2>${orb.nombre}</h2>
         <p><strong>Frecuencia:</strong> <a href="frecuencia.html#${orb.frecuencia.toLowerCase()}">${orb.frecuencia}</a></p>
         <p><strong>Mudra:</strong> <a href="mudras.html#${orb.mudra.toLowerCase().replaceAll(' ', '-')}">${orb.mudra}</a></p>
-        <p><strong>Ubicación:</strong> ${orb.situacion}</p>
-        <p><strong>Conecta con:</strong> ${orb.conecta}</p>
-        <p><strong>Breve:</strong> ${orb.breve}</p>
-        <p><strong>Ampliado:</strong> ${orb.ampliado}</p>
+        <p><strong>Está situado en </strong> ${orb.situacion}</p>
+        <p><strong>Se activa en :</strong> ${orb.conecta}</p>
+        <p><strong></strong> ${orb.breve}</p>
+        <p><strong></strong> ${orb.ampliado}</p>
         <a href="detalles.html#${orb.id}">Ver más detalles</a>
       `;
       overlay.style.display = "flex";

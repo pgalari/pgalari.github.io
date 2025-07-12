@@ -3,6 +3,220 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Símbolo de Orbes</title>
+  <link rel="stylesheet" href="reset.css" />
+  <style>
+    :root {
+      --bg-light: #ffffff;
+      --bg-dark: #121212;
+      --text-light: #000000;
+      --text-dark: #ffffff;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      margin: 0;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    #menu {
+      position: relative;
+    }
+
+    #menu-button {
+      cursor: pointer;
+    }
+
+    #menu-content {
+      display: none;
+      position: absolute;
+      top: 2rem;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 1rem;
+    }
+
+    #menu-content a {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    #menu.open #menu-content {
+      display: block;
+    }
+
+    #simbolo {
+      width: 100%;
+      height: 90vh;
+    }
+
+    .orbe {
+      transition: transform 0.3s;
+    }
+
+    .interior {
+      animation: pulse 2s infinite;
+    }
+
+    .exterior {
+      animation: spin 6s linear infinite;
+      transform-origin: center;
+    }
+
+    @keyframes pulse {
+      0%, 100% { r: 12; }
+      50% { r: 16; }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay-content {
+      background: white;
+      color: black;
+      padding: 2rem;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow: auto;
+      border-radius: 1rem;
+    }
+
+    .overlay.dark .overlay-content {
+      background: #1e1e1e;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .overlay-content {
+        width: 95%;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div id="menu">
+      <span id="menu-button">☰ Menú</span>
+      <div id="menu-content">
+        <a href="frecuencia.html">Frecuencias</a>
+        <a href="mudras.html">Mudras</a>
+        <a href="detalles.html">Detalles</a>
+      </div>
+    </div>
+    <button id="toggle-theme">🌓</button>
+  </header>
+
+  <svg id="simbolo"></svg>
+
+  <div class="overlay" id="overlay">
+    <div class="overlay-content" id="overlay-content"></div>
+  </div>
+
+  <script src="datos.js"></script>
+  <script>
+    const svg = document.getElementById("simbolo");
+    svg.setAttribute("viewBox", "0 0 800 800");
+
+    conexiones.forEach(c => {
+      const orbA = orbes.find(o => o.id === c.de);
+      const orbB = orbes.find(o => o.id === c.a);
+      if (orbA && orbB) {
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", orbA.x);
+        line.setAttribute("y1", orbA.y);
+        line.setAttribute("x2", orbB.x);
+        line.setAttribute("y2", orbB.y);
+        line.setAttribute("stroke", "#999");
+        line.setAttribute("stroke-width", c.width);
+        svg.appendChild(line);
+      }
+    });
+
+    orbes.forEach(orb => {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", orb.x);
+      circle.setAttribute("cy", orb.y);
+      circle.setAttribute("r", 12);
+      circle.setAttribute("fill", orb.color);
+      circle.classList.add("orbe", orb.tipo);
+      circle.dataset.id = orb.id;
+
+      circle.addEventListener("click", () => showOverlay(orb));
+      svg.appendChild(circle);
+    });
+
+    const overlay = document.getElementById("overlay");
+    const overlayContent = document.getElementById("overlay-content");
+
+    function showOverlay(orb) {
+      document.body.classList.contains("dark")
+        ? overlay.classList.add("dark")
+        : overlay.classList.remove("dark");
+
+      overlayContent.innerHTML = `
+        <h2>${orb.nombre}</h2>
+        <p><strong>Frecuencia:</strong> <a href="frecuencia.html#${orb.frecuencia.toLowerCase()}">${orb.frecuencia}</a></p>
+        <p><strong>Mudra:</strong> <a href="mudras.html#${orb.mudra.toLowerCase().replaceAll(' ', '-')}">${orb.mudra}</a></p>
+        <p><strong>Ubicación:</strong> ${orb.situacion}</p>
+        <p><strong>Conecta con:</strong> ${orb.conecta}</p>
+        <p><strong>Breve:</strong> ${orb.breve}</p>
+        <p><strong>Ampliado:</strong> ${orb.ampliado}</p>
+        <a href="detalles.html#${orb.id}">Ver más detalles</a>
+      `;
+      overlay.style.display = "flex";
+    }
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+
+    document.getElementById("toggle-theme").addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+
+    document.getElementById("menu-button").addEventListener("click", () => {
+      document.getElementById("menu").classList.toggle("open");
+    });
+  </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simbolo Maestro</title>
   <style>
     body {

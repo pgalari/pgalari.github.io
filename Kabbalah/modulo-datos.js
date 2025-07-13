@@ -254,5 +254,4 @@ const conexiones = [
   { de: "orb9", a: "orb5", ancho: 3 },
   { de: "orb10", a: "orb5", ancho: 3 }
 ];
-
-module.exports = { orbes, conexiones };
+module.exports = {orbes, conexiones};

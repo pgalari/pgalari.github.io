@@ -4,6 +4,44 @@ const svg = document.getElementById("simbolo");
 const overlay = document.getElementById("overlay");
 const overlayContent = document.getElementById("overlay-content");
 const closeOverlay = document.getElementById("close-overlay");
+//
+ // Gradientes
+    conexiones.forEach((conn, index) => {
+      const orbA = orbes.find(o => o.id === conn.de);
+      const orbB = orbes.find(o => o.id === conn.a);
+
+      if (orbA && orbB) {
+        const gradId = `grad-${index}`;
+        const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+        grad.setAttribute("id", gradId);
+        grad.setAttribute("x1", orbA.x);
+        grad.setAttribute("y1", orbA.y);
+        grad.setAttribute("x2", orbB.x);
+        grad.setAttribute("y2", orbB.y);
+        grad.setAttribute("gradientUnits", "userSpaceOnUse");
+
+        const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+        stop1.setAttribute("offset", "0%");
+        stop1.setAttribute("stop-color", orbA.color);
+        grad.appendChild(stop1);
+
+        const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+        stop2.setAttribute("offset", "100%");
+        stop2.setAttribute("stop-color", orbB.color);
+        grad.appendChild(stop2);
+
+        svg.appendChild(grad);
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", orbA.x);
+        line.setAttribute("y1", orbA.y);
+        line.setAttribute("x2", orbB.x);
+        line.setAttribute("y2", orbB.y);
+        line.setAttribute("stroke", `url(#${gradId})`);
+        line.setAttribute("stroke-width", "3");
+        svg.appendChild(line);
+      }
+    });
 
 // Posicionar orbes
 orbes.forEach((orbe) => {

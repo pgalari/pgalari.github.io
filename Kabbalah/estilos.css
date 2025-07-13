@@ -1,5 +1,7 @@
 /* RESET BÁSICO */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,16 +10,13 @@
 html, body {
   width: 100%;
   height: 100%;
-  font-family: sans-serif;
+  font-family: papyrus, sans-serif;
   background-color: #fff;
   color: #222;
   overflow: hidden;
 }
 
-body.dark {
-  background-color: #111;
-  color: #eee;
-}
+
 
 header {
   display: flex;
@@ -28,10 +27,6 @@ header {
   position: absolute;
   width: 100%;
   z-index: 10;
-}
-
-body.dark header {
-  background-color: rgba(20, 20, 20, 0.9);
 }
 
 .menu-toggle {
@@ -47,26 +42,7 @@ body.dark header {
   background: #333;
 }
 
-nav {
-  display: flex;
-  gap: 1rem;
-}
 
-nav a {
-  text-decoration: none;
-  color: inherit;
-  font-weight: bold;
-}
-
-nav.open {
-  flex-direction: column;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  background: inherit;
-  padding: 1rem;
-  width: 100%;
-}
 
 #tema-switch {
   display: flex;
@@ -94,14 +70,6 @@ nav.open {
   top: 1px;
   left: 1px;
   transition: transform 0.3s;
-}
-
-body.dark .switch {
-  background: #555;
-}
-
-body.dark .switch::before {
-  transform: translateX(20px);
 }
 
 #simbolo {
@@ -148,10 +116,6 @@ circle.exterior {
   display: none;
 }
 
-body.dark .overlay {
-  background: rgba(20,20,20,0.95);
-  color: #fff;
-}
 
 .overlay h2 {
   margin-bottom: 0.5rem;
@@ -184,38 +148,38 @@ body.dark .overlay {
     max-height: 85vh;
   }
 }
-/* RESET */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html, body {
-  width: 100%;
-  height: 100%;
-  font-family: sans-serif;
-  background-color: #fff;
-  color: #111;
-}
 
 /* DARK MODE */
 body.dark {
   background-color: #111;
   color: #eee;
 }
-body.dark .overlay {
-  background-color: rgba(20, 20, 20, 0.95);
+body.dark header {
+  background-color: rgba(20, 20, 20, 0.9);
 }
+
+body.dark .overlay {
+  background: rgba(20,20,20,0.95);
+  color: #fff;
+}
+
 body.dark #menu {
   background-color: #222;
 }
 body.dark .theme-toggle::before {
   background: #eee;
 }
+body.dark .switch {
+  background: #555;
+}
+
+body.dark .switch::before {
+  transform: translateX(20px);
+}
+
 
 /* MENU */
+
 #menu {
   position: fixed;
   top: 0;
@@ -259,6 +223,26 @@ body.dark .theme-toggle::before {
     display: block;
     cursor: pointer;
   }
+}
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+
+nav.open {
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  background: inherit;
+  padding: 1rem;
+  width: 100%;
 }
 
 /* THEME TOGGLE */

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Símbolo Interactivo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <button id="menu-toggle">☰</button>
+    <nav id="menu">
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Explorar</a></li>
+        <li><a href="#">Sobre</a></li>
+      </ul>
+    </nav>
+    <label class="theme-switch">
+      <input type="checkbox" id="theme-toggle" />
+      <span class="slider"></span>
+    </label>
+  </header>
+
+  <main>
+    <svg id="simbolo" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="overlay" class="hidden">
+      <div class="overlay-content">
+        <button id="close-overlay">×</button>
+        <h2 id="overlay-nombre"></h2>
+        <p id="overlay-breve"></p>
+        <p><strong>Ubicación:</strong> <span id="overlay-situacion"></span></p>
+        <p><strong>Conexión:</strong> <span id="overlay-conecta"></span></p>
+        <p><strong>Frecuencia:</strong> <a id="overlay-frecuencia" href="#" target="_blank"></a></p>
+        <p><strong>Mudra:</strong> <a id="overlay-mudra" href="#" target="_blank"></a></p>
+        <p id="overlay-ampliado"></p>
+      </div>
+    </div>
+  </main>
+
+  <script src="datos.js"></script>
+  <script src="logic.js"></script>
+</body>
+</html>

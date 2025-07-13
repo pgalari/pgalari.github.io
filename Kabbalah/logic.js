@@ -1,6 +1,7 @@
 // logic.js
 
-import { orbes, conexiones } from './datos.js';
+//import { orbes, conexiones } from './datos.js';
+import datos from './datos.js';
 
 const svg = document.getElementById("simbolo");
 const overlay = document.getElementById("overlay");

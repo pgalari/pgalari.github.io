@@ -44,17 +44,17 @@ const closeOverlay = document.getElementById("close-overlay");
     });
 
 // Posicionar orbes
-orbes.forEach((orbe) => {
+orbes.forEach((orb) => {
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  circle.setAttribute("id", orbe.id);
-  circle.setAttribute("cx", orbe.x);
-  circle.setAttribute("cy", orbe.y);
+  circle.setAttribute("id", orb.id);
+  circle.setAttribute("cx", orb.x);
+  circle.setAttribute("cy", orb.y);
   circle.setAttribute("r", 20);
-  circle.setAttribute("fill", orbe.color);
-  circle.classList.add("orbe", orbe.tipo);
+  circle.setAttribute("fill", orb.color);
+  circle.classList.add("orbe", orb.tipo);
   svg.appendChild(circle);
 
- const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+/* const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
       text.setAttribute("x", 0);
       text.setAttribute("y", 5);
       text.setAttribute("text-anchor", "middle");
@@ -62,9 +62,16 @@ orbes.forEach((orbe) => {
       text.textContent = c.nombre;
       circle.appendChild(text);
       
-      svg.appendChild(circle);
+      svg.appendChild(circle);*//
 
-
+   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", orb.x);
+      text.setAttribute("y", orb.y);
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("dominant-baseline", "middle");
+      text.classList.add("orb-text");
+      text.textContent = orb.nombre;
+      svg.appendChild(text);
  
   // Evento para mostrar overlay
   circle.addEventListener("click", () => {

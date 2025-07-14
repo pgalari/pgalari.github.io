@@ -70,7 +70,7 @@ orbes.forEach((orb) => {
       text.setAttribute("text-anchor", "middle");
       text.setAttribute("dominant-baseline", "middle");
       text.classList.add("orb-text");
-      text.textContent = orb.nombre;
+      text.textContent = orb.orb;
       svg.appendChild(text);
  
   // Evento para mostrar overlay

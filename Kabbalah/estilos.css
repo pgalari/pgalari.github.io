@@ -90,6 +90,12 @@ circle.exterior {
   animation: spin 6s linear infinite;
   transform-origin: center;
 }
+ .circle-text {
+      pointer-events: none;
+      font-size: 14px;
+      font-weight: bold;
+      fill: white;
+}
 
 @keyframes latido {
   0%, 100% { r: 20; }

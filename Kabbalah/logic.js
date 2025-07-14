@@ -69,7 +69,7 @@ orbes.forEach((orb) => {
       text.setAttribute("y", orb.y);
       text.setAttribute("text-anchor", "middle");
       text.setAttribute("dominant-baseline", "middle");
-      text.classList.add("orb-text");
+      text.classList.add("circle-text");
       text.textContent = orb.orb;
       svg.appendChild(text);
  

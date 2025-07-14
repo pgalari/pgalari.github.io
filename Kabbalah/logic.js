@@ -54,6 +54,18 @@ orbes.forEach((orbe) => {
   circle.classList.add("orbe", orbe.tipo);
   svg.appendChild(circle);
 
+ const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", 0);
+      text.setAttribute("y", 5);
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("fill", "#fff");
+      text.textContent = c.nombre;
+      circle.appendChild(text);
+      
+      svg.appendChild(circle);
+
+
+ 
   // Evento para mostrar overlay
   circle.addEventListener("click", () => {
     overlayContent.innerHTML = `

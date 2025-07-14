@@ -58,17 +58,7 @@ orbes.forEach((orb) => {
   
  svg.appendChild(circle);
 
-/* const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      text.setAttribute("x", 0);
-      text.setAttribute("y", 5);
-      text.setAttribute("text-anchor", "middle");
-      text.setAttribute("fill", "#fff");
-      text.textContent = c.nombre;
-      circle.appendChild(text);
-      
-      svg.appendChild(circle);*/
-
-   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+ const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
       text.setAttribute("x", orb.x);
       text.setAttribute("y", orb.y);
       text.setAttribute("text-anchor", "middle");
@@ -76,20 +66,6 @@ orbes.forEach((orb) => {
       text.classList.add("circle-text");
       text.textContent = orb.orb;
       svg.appendChild(text);
- 
-  // Evento para mostrar overlay
-  circle.addEventListener("click", () => {
-    overlayContent.innerHTML = `
-      <h2>${orbe.nombre}</h2>
-      <p><strong>Frecuencia:</strong> <a href="frecuencia-${orbe.frecuencia.toLowerCase()}.html">${orbe.frecuencia}</a></p>
-      <p><strong>Mudra:</strong> <a href="mudra-${orbe.mudra.toLowerCase().replace(/\s+/g, '-')}.html">${orbe.mudra}</a></p>
-      <p><strong>Situación:</strong> ${orbe.situacion}</p>
-      <p><strong>Conecta:</strong> ${orbe.conecta}</p>
-      <p>${orbe.breve}</p>
-      <p>${orbe.ampliado}</p>
-    `;
-    overlay.style.display = "flex";
-  });
 });
 
 // Dibujar conexiones
@@ -108,10 +84,7 @@ conexiones.forEach((con) => {
     svg.insertBefore(line, svg.firstChild);
   }
 });
-
-
-
-
+  // Evento para mostrar overlay
     const overlay = document.getElementById("overlay");
     const overlayContent = document.getElementById("overlay-content");
 
@@ -121,17 +94,22 @@ conexiones.forEach((con) => {
         : overlay.classList.remove("dark");
 
       overlayContent.innerHTML = `
-        <h2>${orb.nombre}</h2>
+        <h2>${orb.orb}</h2>
         <p><strong>Frecuencia:</strong> <a href="frecuencia.html#${orb.frecuencia.toLowerCase()}">${orb.frecuencia}</a></p>
         <p><strong>Mudra:</strong> <a href="mudras.html#${orb.mudra.toLowerCase().replaceAll(' ', '-')}">${orb.mudra}</a></p>
-        <p><strong>Está situado en </strong> ${orb.situacion}</p>
-        <p><strong>Se activa en :</strong> ${orb.conecta}</p>
+        <p><strong>Está en:  </strong> ${orb.situacion}</p>
+        <p><strong>Conecta con: </strong> ${orb.conecta}</p>
         <p><strong></strong> ${orb.breve}</p>
         <p><strong></strong> ${orb.ampliado}</p>
         <a href="detalles.html#${orb.id}">Ver más detalles</a>
       `;
       overlay.style.display = "flex";
     }
+
+    ///  <p><strong>Frecuencia:</strong> <a href="frecuencia-${orbe.frecuencia.toLowerCase()}.html">${orbe.frecuencia}</a></p>
+    //  <p><strong>Mudra:</strong> <a href="mudra-${orbe.mudra.toLowerCase().replace(/\s+/g, '-')}.html">${orbe.mudra}</a></p>
+
+
 // Cerrar overlay
 closeOverlay.addEventListener("click", () => {
   overlay.style.display = "none";

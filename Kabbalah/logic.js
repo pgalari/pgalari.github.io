@@ -109,6 +109,29 @@ conexiones.forEach((con) => {
   }
 });
 
+
+
+
+    const overlay = document.getElementById("overlay");
+    const overlayContent = document.getElementById("overlay-content");
+
+    function showOverlay(orb) {
+      document.body.classList.contains("dark")
+        ? overlay.classList.add("dark")
+        : overlay.classList.remove("dark");
+
+      overlayContent.innerHTML = `
+        <h2>${orb.nombre}</h2>
+        <p><strong>Frecuencia:</strong> <a href="frecuencia.html#${orb.frecuencia.toLowerCase()}">${orb.frecuencia}</a></p>
+        <p><strong>Mudra:</strong> <a href="mudras.html#${orb.mudra.toLowerCase().replaceAll(' ', '-')}">${orb.mudra}</a></p>
+        <p><strong>Está situado en </strong> ${orb.situacion}</p>
+        <p><strong>Se activa en :</strong> ${orb.conecta}</p>
+        <p><strong></strong> ${orb.breve}</p>
+        <p><strong></strong> ${orb.ampliado}</p>
+        <a href="detalles.html#${orb.id}">Ver más detalles</a>
+      `;
+      overlay.style.display = "flex";
+    }
 // Cerrar overlay
 closeOverlay.addEventListener("click", () => {
   overlay.style.display = "none";
@@ -120,10 +143,16 @@ themeToggle.addEventListener("change", (e) => {
   document.body.classList.toggle("light-theme", e.target.checked);
 });
 
-// Menu responsive
+    document.getElementById("toggle-theme").addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+
+    // Menu responsive
 const menuToggle = document.getElementById("menu-toggle");
 const menu = document.getElementById("menu");
 menuToggle.addEventListener("click", () => {
   menu.classList.toggle("open");
 });
-
+    document.getElementById("menu-button").addEventListener("click", () => {
+      document.getElementById("menu").classList.toggle("open");
+    });

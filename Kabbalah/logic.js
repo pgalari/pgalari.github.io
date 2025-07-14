@@ -52,7 +52,11 @@ orbes.forEach((orb) => {
   circle.setAttribute("r", 20);
   circle.setAttribute("fill", orb.color);
   circle.classList.add("orbe", orb.tipo);
-  svg.appendChild(circle);
+ 
+      circle.addEventListener("click", () => showOverlay(orb));
+      circle.addEventListener("touchstart", () => showOverlay(orb));
+  
+ svg.appendChild(circle);
 
 /* const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
       text.setAttribute("x", 0);

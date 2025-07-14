@@ -4,7 +4,7 @@ const svg = document.getElementById("simbolo");
 const overlay = document.getElementById("overlay");
 const overlayContent = document.getElementById("overlay-content");
 const closeOverlay = document.getElementById("close-overlay");
-//
+
  // Gradientes
     conexiones.forEach((conn, index) => {
       const orbA = orbes.find(o => o.id === conn.de);
@@ -85,10 +85,7 @@ conexiones.forEach((con) => {
   }
 });
   // Evento para mostrar overlay
-    const overlay = document.getElementById("overlay");
-    const overlayContent = document.getElementById("overlay-content");
-
-    function showOverlay(orb) {
+     function showOverlay(orb) {
       document.body.classList.contains("dark")
         ? overlay.classList.add("dark")
         : overlay.classList.remove("dark");

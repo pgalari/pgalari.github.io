@@ -231,6 +231,7 @@ h1 { font-family: Papyrus, fantasy; font-size: 24px; font-style: normal; font-va
         svg.appendChild(line);
       }
     });
+    // ORBS
     orbes.forEach(orb => {
       const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       circle.setAttribute("cx", orb.x);
@@ -244,7 +245,18 @@ h1 { font-family: Papyrus, fantasy; font-size: 24px; font-style: normal; font-va
       circle.addEventListener("touchstart", () => showOverlay(orb));
 
       svg.appendChild(circle);
+
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", orb.x);
+      text.setAttribute("y", orb.y);
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("dominant-baseline", "middle");
+      text.classList.add("circle-text");
+      text.textContent = orb.orb;
+      svg.appendChild(text);
+ 
     });
+    
     const overlay = document.getElementById("overlay");
     const overlayContent = document.getElementById("overlay-content");
 

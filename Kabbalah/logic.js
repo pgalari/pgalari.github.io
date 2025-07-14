@@ -123,11 +123,11 @@ themeToggle.addEventListener("change", (e) => {
     });
 
     // Menu responsive
-const menuToggle = document.getElementById("menu-toggle");
+const menuToggle = document.getElementById("theme-toggle");
 const menu = document.getElementById("menu");
 menuToggle.addEventListener("click", () => {
   menu.classList.toggle("open");
 });
-    document.getElementById("menu-button").addEventListener("click", () => {
+/*    document.getElementById("menu-button").addEventListener("click", () => {
       document.getElementById("menu").classList.toggle("open");
-    });
+    });*/

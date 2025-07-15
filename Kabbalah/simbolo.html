@@ -35,6 +35,46 @@
       padding: 1rem;
     }
 h1 { font-family: Papyrus, fantasy; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; } h3 { font-family: Papyrus, fantasy; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } p { font-family: Papyrus, fantasy; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: Papyrus, fantasy; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: Papyrus, fantasy; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
+    
+    #menu {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+
+    #menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    #menu-items {
+      display: none;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    #menu-items a {
+      color: white;
+      text-decoration: none;
+      margin: 5px 0;
+    }
+
+    #menu.open #menu-items {
+      display: flex;
+    }
+    
+    
+    
+    
+    
+    
     #menu {
       position: relative;
     }
@@ -106,7 +146,7 @@ h1 { font-family: Papyrus, fantasy; font-size: 24px; font-style: normal; font-va
 #overlay.visible {
   display: block;
 }
-        .overlay {
+    .overlay {
       position: fixed;
       top: 0;
       left: 0;

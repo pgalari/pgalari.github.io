@@ -18,6 +18,21 @@
     }
     h1,h2,h3,h4{text-wrap:balance;}
     p{text-wrap: pretty;}
+    * {
+  all: unset;
+}
+
+head, link, meta, script, style, title {
+  display: none;
+}
+
+div {
+  display: block;
+}
+
+.icon {
+  width: 4rem;
+}
     @namespace svg "http://www.w3.org/2000/svg";
     :not(svg|*) {
     all: unset;
